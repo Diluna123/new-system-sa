@@ -47,3 +47,41 @@
     }
   })
 })()
+function loadDashboard(){
+  const mainDev = document.getElementById("main-dev");
+  
+  mainDev.innerHTML = "";
+
+  
+  var req = new XMLHttpRequest();
+  req.open("POST", "dashboard.php", true);
+  req.onreadystatechange = function() {
+    if (req.readyState == 4 && req.status == 200) {
+      mainDev.innerHTML = req.responseText;
+    }
+  }
+  req.send();
+
+
+}
+function loadOrders(){
+  const mainDev = document.getElementById("main-dev");
+  mainDev.innerHTML = "";
+
+  var req = new XMLHttpRequest();
+  req.open("POST", "orders.php", true);
+  req.onreadystatechange = function() {
+    if (req.readyState == 4 && req.status == 200) {
+      mainDev.innerHTML = req.responseText;
+    }
+  }
+  req.send();
+}
+function showModal(){
+  var mymodal = new bootstrap.Modal(document.getElementById("addNewModal")) ;
+  mymodal.show();
+}
+
+
+
+
