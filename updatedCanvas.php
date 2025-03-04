@@ -302,6 +302,7 @@ $cAllData = $policies->fetch_assoc();
             ?>
                 <button class="btn btn-sm btn-warning col-3" onclick="showCModal(<?php echo $cAllData['id']; ?>, 1);">Close</button>
                 <button class="btn btn-sm btn-outline-success col-3 ms-2">Send</button>
+                <button class="btn btn-sm btn-danger col-3 ms-2" onclick="deletePol(<?php echo $cAllData['id']; ?>);">Delete</button>
             <?php
 
 

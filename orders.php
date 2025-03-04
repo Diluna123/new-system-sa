@@ -19,9 +19,9 @@ $dataForTotMonth = Database::search("
 ");
 
 
-$dataForTotNum =$dataForTot->num_rows;
-$dataForTotNumPending =$dataForTotPending->num_rows;
-$dataForTotNumClosed =$dataForTotClosed->num_rows;
+$dataForTotNum = $dataForTot->num_rows;
+$dataForTotNumPending = $dataForTotPending->num_rows;
+$dataForTotNumClosed = $dataForTotClosed->num_rows;
 
 $dataForTotMonthNum = $dataForTotMonth->num_rows;
 
@@ -50,43 +50,40 @@ $dataForTotMonthNum = $dataForTotMonth->num_rows;
             <div class="card-body">
                 <small>D.Total: </small>
                 <?php
-                if($dataForTotNum > 0){
+                if ($dataForTotNum > 0) {
                     $totalDaily = 0;
 
-                    for($i=0;$i<$dataForTotNum;$i++){
+                    for ($i = 0; $i < $dataForTotNum; $i++) {
 
                         $dataFortot = $dataForTot->fetch_assoc();
 
                         $totalDaily += $dataFortot['ammount'];
-
-                        
                     }
 
-                    ?>
+                ?>
                     <div>
-                        <label for="" class="form-labe fw-bold"> <?php echo $totalDaily?></label>
+                        <label for="" class="form-labe fw-bold"> <?php echo $totalDaily ?></label>
 
                     </div>
 
-                    
-                    <?php
+
+                <?php
 
 
-                }
-                else{
+                } else {
 
-                    ?>
+                ?>
                     <div>
                         <label for="" class="form-labe fw-bold"> 0/=</label>
 
                     </div>
-                    
-                    <?php
+
+                <?php
                 }
-                
+
                 ?>
-              
-                
+
+
 
             </div>
         </div>
@@ -96,44 +93,41 @@ $dataForTotMonthNum = $dataForTotMonth->num_rows;
             <div class="card-body">
                 <small>Pandings: </small>
                 <?php
-                if($dataForTotNumPending > 0){
+                if ($dataForTotNumPending > 0) {
                     $totalDailypending = 0;
 
-                    for($i=0;$i<$dataForTotNumPending;$i++){
+                    for ($i = 0; $i < $dataForTotNumPending; $i++) {
 
                         $dataFortotpending = $dataForTotPending->fetch_assoc();
 
                         $totalDailypending += $dataFortotpending['ammount'];
-
-                        
                     }
 
-                    ?>
+                ?>
                     <div>
-                        <label for="" class="form-labe fw-bold"> <?php echo $totalDailypending?></label>
+                        <label for="" class="form-labe fw-bold"> <?php echo $totalDailypending ?></label>
 
                     </div>
 
-                    
-                    <?php
+
+                <?php
 
 
-                }
-                else{
+                } else {
 
-                    ?>
+                ?>
                     <div>
                         <label for="" class="form-labe fw-bold"> 0/=</label>
 
                     </div>
-                    
-                    <?php
+
+                <?php
                 }
-                
+
                 ?>
-              
-                
-                
+
+
+
             </div>
         </div>
     </div>
@@ -142,49 +136,50 @@ $dataForTotMonthNum = $dataForTotMonth->num_rows;
             <div class="card-body">
                 <small>Closed: </small>
                 <?php
-                if($dataForTotNumClosed > 0){
+                if ($dataForTotNumClosed > 0) {
                     $totalDailyclosed = 0;
 
-                    for($i=0;$i<$dataForTotNumClosed;$i++){
+                    for ($i = 0; $i < $dataForTotNumClosed; $i++) {
 
                         $dataFortotclosed = $dataForTotClosed->fetch_assoc();
 
                         $totalDailyclosed += $dataFortotclosed['ammount'];
-
-                        
                     }
 
-                    ?>
+                ?>
                     <div>
 
-                        <label for="" class="form-labe fw-bold"> <?php echo $totalDailyclosed?></label>
+                        <label for="" class="form-labe fw-bold"> <?php echo $totalDailyclosed ?></label>
                     </div>
 
-                    
-                    <?php
+
+                <?php
 
 
-                }
-                else{
+                } else {
 
-                    ?>
+                ?>
                     <div>
                         <label for="" class="form-labe fw-bold"> 0/=</label>
 
                     </div>
-                    
-                    <?php
+
+                <?php
                 }
-                
+
                 ?>
-            
-                
+
+
 
 
             </div>
         </div>
 
     </div>
+
+
+</div>
+<div class="row">
     <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
         <div class="card bg-warning">
             <div class="card-body text-dark">
@@ -192,45 +187,42 @@ $dataForTotMonthNum = $dataForTotMonth->num_rows;
                 <?php
                 $totalMonthly = 0;
 
-                if($dataForTotMonthNum > 0){
+                if ($dataForTotMonthNum > 0) {
 
-                    for($i=0;$i<$dataForTotMonthNum;$i++){
+                    for ($i = 0; $i < $dataForTotMonthNum; $i++) {
 
                         $dataFortotMonth = $dataForTotMonth->fetch_assoc();
 
                         $totalMonthly += $dataFortotMonth['ammount'];
-
-
                     }
-                    ?>
+                ?>
                     <div>
                         <label for="" class="form-labe fw-bold"> <?php echo $totalMonthly ?></label>
 
                     </div>
 
-                    
-                    <?php
+
+                <?php
 
 
-                }
-                else{
-                    ?>
+                } else {
+                ?>
                     <div>
                         <label for="" class="form-labe fw-bold"> 0</label>
 
                     </div>
-                    
-                    <?php
+
+                <?php
 
 
                 }
-                
 
 
-                
+
+
                 ?>
-               
-                
+
+
 
 
             </div>
@@ -241,8 +233,51 @@ $dataForTotMonthNum = $dataForTotMonth->num_rows;
         <div class="card">
             <div class="card-body">
                 <small>MCFP: </small>
-                
-                <label for="" class="form-labe fw-bold"> 200000/=</label>
+
+                <?php
+
+                $dataForTotMCFP = Database::search("
+SELECT * FROM `police_t` 
+WHERE `users_u_id` = '$uid' 
+AND `status_s_id` = '1' 
+AND DATE_FORMAT(`date`, '%Y-%m') = '$dateYearMonth'
+");
+
+                $dataForTotMCFPNum = $dataForTotMCFP->num_rows;
+
+                if ($dataForTotMCFPNum > 0) {
+
+                    $totalMCFP = 0;
+                    for ($i = 0; $i < $dataForTotMCFPNum; $i++) {
+
+                        $dataFortotMCFP = $dataForTotMCFP->fetch_assoc();
+                        if ($dataFortotMCFP['payments_pay_id'] == 1 || $dataFortotMCFP['payments_pay_id'] == 2 || $dataFortotMCFP['payments_pay_id'] == 4) {
+
+                            $totalMCFP += $dataFortotMCFP['ammount'];
+                        }
+                    }
+                ?>
+                    <div>
+
+                        <label for="" class="form-labe fw-bold"> <?php echo $totalMCFP; ?></label>
+                    </div>
+
+                <?php
+
+                } else {
+
+                ?>
+                    <label for="" class="form-labe fw-bold"> 0</label>
+
+
+
+                <?php
+                }
+
+
+                ?>
+
+
 
             </div>
         </div>
@@ -252,14 +287,56 @@ $dataForTotMonthNum = $dataForTotMonth->num_rows;
         <div class="card">
             <div class="card-body">
                 <small>FP: </small>
-               
-                <label for="" class="form-labe fw-bold"> 200000/=</label>
+                <div>
+
+                    <?php
+
+                    $dataForTotFP = Database::search("
+SELECT * FROM `police_t` 
+WHERE `users_u_id` = '$uid' 
+AND `status_s_id` = '1' 
+AND DATE_FORMAT(`date`, '%Y-%m') = '$dateYearMonth'
+");
+
+                    $dataForTotFPNum = $dataForTotFP->num_rows;
+
+                    if ($dataForTotFPNum > 0) {
+
+                        $totalFP = 0;
+                        for ($i = 0; $i < $dataForTotFPNum; $i++) {
+
+                            $dataFortotFP = $dataForTotFP->fetch_assoc();
+                            if ($dataFortotFP['payments_pay_id'] == 3 || $dataFortotFP['payments_pay_id'] == 5 ) {
+
+                                $totalFP += $dataFortotFP['ammount'];
+                            }
+                        }
+                    ?>
+                        <div>
+
+                            <label for="" class="form-labe fw-bold"> <?php echo $totalFP; ?></label>
+                        </div>
+
+                    <?php
+
+                    } else {
+
+                    ?>
+                        <label for="" class="form-labe fw-bold"> 0</label>
+
+
+
+                    <?php
+                    }
+
+
+                    ?>
+                </div>
 
             </div>
         </div>
 
     </div>
-
 </div>
 <button class="btn btn-sm btn-outline-secondary text-warning mt-2 mb-3" onclick="showModal();">Add New &nbsp<i class="fas fa-plus"></i></button>
 
@@ -280,7 +357,7 @@ $dataForTotMonthNum = $dataForTotMonth->num_rows;
             <?php
 
 
-            
+
             $ppolicies = Database::search("SELECT * FROM `customers` JOIN `police_t` ON `customers`.`id` = `police_t`.`customers_id` JOIN `plans` ON `plans`.`p_id` = `police_t`.`plans_p_id` JOIN `payments` ON `payments`.`pay_id` = `police_t`.`payments_pay_id` JOIN `users` ON `users`.`u_id` =`police_t`.`users_u_id` WHERE `police_t`.`users_u_id` ='$uid' AND `police_t`.`status_s_id`='2' ORDER BY `customers`.`id` DESC");
             if ($ppolicies->num_rows > 0) {
                 for ($i = 0; $i < $ppolicies->num_rows; $i++) {

@@ -386,16 +386,17 @@
 
           <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
-          <h2>Section title</h2>
+          <h2>Monthly Progress</h2>
           <div class="table-responsive small">
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Header</th>
-                  <th scope="col">Header</th>
-                  <th scope="col">Header</th>
-                  <th scope="col">Header</th>
+                  <th scope="col">Month</th>
+                  <th scope="col">Nope</th>
+                  <th scope="col">MCFP</th>
+                  <th scope="col">FP</th>
+                  <th scope="col">Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -403,119 +404,23 @@
                   <td>1,001</td>
                   <td>random</td>
                   <td>data</td>
-                  <td>placeholder</td>
-                  <td>text</td>
+                  <td>40000</td>
+                  <td>30000</td>
+                  <td>200000</td>
                 </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>placeholder</td>
-                  <td>irrelevant</td>
-                  <td>visual</td>
-                  <td>layout</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>data</td>
-                  <td>rich</td>
-                  <td>dashboard</td>
-                  <td>tabular</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>information</td>
-                  <td>placeholder</td>
-                  <td>illustrative</td>
-                  <td>data</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>text</td>
-                  <td>random</td>
-                  <td>layout</td>
-                  <td>dashboard</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>dashboard</td>
-                  <td>irrelevant</td>
-                  <td>text</td>
-                  <td>placeholder</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>dashboard</td>
-                  <td>illustrative</td>
-                  <td>rich</td>
-                  <td>data</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>placeholder</td>
-                  <td>tabular</td>
-                  <td>information</td>
-                  <td>irrelevant</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>random</td>
-                  <td>data</td>
-                  <td>placeholder</td>
-                  <td>text</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>placeholder</td>
-                  <td>irrelevant</td>
-                  <td>visual</td>
-                  <td>layout</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>data</td>
-                  <td>rich</td>
-                  <td>dashboard</td>
-                  <td>tabular</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>information</td>
-                  <td>placeholder</td>
-                  <td>illustrative</td>
-                  <td>data</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>text</td>
-                  <td>placeholder</td>
-                  <td>layout</td>
-                  <td>dashboard</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>dashboard</td>
-                  <td>irrelevant</td>
-                  <td>text</td>
-                  <td>visual</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>dashboard</td>
-                  <td>illustrative</td>
-                  <td>rich</td>
-                  <td>data</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>random</td>
-                  <td>tabular</td>
-                  <td>information</td>
-                  <td>text</td>
-                </tr>
+                
               </tbody>
             </table>
           </div>
         </main>
       </div>
+    </div>
+    <div class="row">
+      <div class=" fixed-bottom"  style="height: 30px; width: 100%;">
+        <p class="text-center text-secondary">Copyright &copy; 2025 D. Sithija Sulakshana</p>
+      </div>
+    </div>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
