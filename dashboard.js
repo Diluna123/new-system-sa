@@ -55,6 +55,7 @@ function loadDashboard() {
   };
   req.send();
 }
+
 function loadOrders() {
   const mainDev = document.getElementById("main-dev");
   mainDev.innerHTML = "";
@@ -275,8 +276,12 @@ function submitBtn() {
         timep.value = "";
         note.value = "";
         age.value = "";
+        
 
-        $("#policiesTable").load(location.href + " #policiesTable");
+        
+        
+
+        
       } else {
         alert(req.responseText);
         Swal.fire({

@@ -4,18 +4,23 @@ session_start();
 $uid = $_SESSION['user']['u_id'];
 
 
-$date = date('Y-m-d');
-$dataForTot = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`!='3' AND `date`= '$date'");
-$dataForTotPending = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='2' AND `date`= '$date'");
-$dataForTotClosed = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1' AND `date`= '$date'");
+$d = new DateTime();
+$tz = new DateTimeZone("Asia/Colombo");
+$d->setTimezone($tz);
+$currentdate = $d->format("Y-m-d");
 
-$dateYearMonth = date('Y-m');
+
+$dataForTot = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`!='3' AND `date`= '$currentdate'");
+$dataForTotPending = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='2' AND `date`= '$currentdate'");
+$dataForTotClosed = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1' AND `date`= '$currentdate'");
+
+$currentMonth = $d->format("Y-m");
 // $dataForTotMonth = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1' AND  DATE_FORMAT(`date`, '%Y-%m') = '$dateYearMonth'");
 $dataForTotMonth = Database::search("
     SELECT * FROM `police_t` 
     WHERE `users_u_id` = '$uid' 
     AND `status_s_id` = '1' 
-    AND DATE_FORMAT(`date`, '%Y-%m') = '$dateYearMonth'
+    AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
 ");
 
 
@@ -240,7 +245,7 @@ $dataForTotMonthNum = $dataForTotMonth->num_rows;
 SELECT * FROM `police_t` 
 WHERE `users_u_id` = '$uid' 
 AND `status_s_id` = '1' 
-AND DATE_FORMAT(`date`, '%Y-%m') = '$dateYearMonth'
+AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
 ");
 
                 $dataForTotMCFPNum = $dataForTotMCFP->num_rows;
@@ -267,7 +272,10 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$dateYearMonth'
                 } else {
 
                 ?>
+                <div>
                     <label for="" class="form-labe fw-bold"> 0</label>
+
+                </div>
 
 
 
@@ -295,7 +303,7 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$dateYearMonth'
 SELECT * FROM `police_t` 
 WHERE `users_u_id` = '$uid' 
 AND `status_s_id` = '1' 
-AND DATE_FORMAT(`date`, '%Y-%m') = '$dateYearMonth'
+AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
 ");
 
                     $dataForTotFPNum = $dataForTotFP->num_rows;
@@ -322,7 +330,10 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$dateYearMonth'
                     } else {
 
                     ?>
+                    <div>
                         <label for="" class="form-labe fw-bold"> 0</label>
+
+                    </div>
 
 
 
