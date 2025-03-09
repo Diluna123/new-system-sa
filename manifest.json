@@ -1,0 +1,22 @@
+{
+    "name": "My Web App",
+    "short_name": "WebApp",
+    "description": "A Progressive Web Application",
+    "start_url": "/index.php",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#712cf9",
+    "icons": [
+      {
+        "src": "sansa192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "sanasalogo.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

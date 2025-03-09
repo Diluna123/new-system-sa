@@ -1,5 +1,5 @@
-function getLocation() {
-  const locText = document.getElementById("locText");
+function getLocation(inputid) {
+  const locText = document.getElementById(inputid);
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {

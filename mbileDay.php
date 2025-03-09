@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
 
-
 <head>
   <script src="/assets/js/color-modes.js"></script>
 
@@ -14,19 +13,17 @@
   <link rel="icon" type="image/png" href="sansalogo.png">
 
 
+
   <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
-
+  <link rel="manifest" href="manifest.json">
 
 
   <? include "connection.php" ?>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
   <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="manifest" href="manifest.json">
-
-
 
 
 
@@ -126,7 +123,6 @@
 <body>
   <?php
   session_start();
-
 
   if (isset($_SESSION['user'])) {
 
@@ -230,13 +226,13 @@
         <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
           <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="sidebarMenuLabel">SANASA LIFE</h5>
+              <h5 class="offcanvas-title" id="sidebarMenuLabel">SANASA LIFE <small>V2.0</small> </h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <a href="index.php" class="nav-link d-flex align-items-center gap-2 active" aria-current="page" onclick="">
+                  <a href="index.php" class="nav-link d-flex align-items-center gap-2 " aria-current="page" onclick="">
                     <svg class="bi">
                       <use xlink:href="#house-fill" />
                     </svg>
@@ -249,6 +245,7 @@
                       <use xlink:href="#file-earmark" />
                     </svg>
                     My Policies
+
                   </a>
                 </li>
                 <li class="nav-item">
@@ -260,7 +257,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2 " href="mbileDay.php">
+                  <a class="nav-link d-flex align-items-center gap-2 active" href="mbileDay.php">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bus-front" viewBox="0 0 16 16">
                       <path d="M5 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0m8 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-6-1a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2zm1-6c-1.876 0-3.426.109-4.552.226A.5.5 0 0 0 3 4.723v3.554a.5.5 0 0 0 .448.497C4.574 8.891 6.124 9 8 9s3.426-.109 4.552-.226A.5.5 0 0 0 13 8.277V4.723a.5.5 0 0 0-.448-.497A44 44 0 0 0 8 4m0-1c-1.837 0-3.353.107-4.448.22a.5.5 0 1 1-.104-.994A44 44 0 0 1 8 2c1.876 0 3.426.109 4.552.226a.5.5 0 1 1-.104.994A43 43 0 0 0 8 3" />
                       <path d="M15 8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1V2.64c0-1.188-.845-2.232-2.064-2.372A44 44 0 0 0 8 0C5.9 0 4.208.136 3.064.268 1.845.408 1 1.452 1 2.64V4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v3.5c0 .818.393 1.544 1 2v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V14h6v1.5a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2c.607-.456 1-1.182 1-2zM8 1c2.056 0 3.71.134 4.822.261.676.078 1.178.66 1.178 1.379v8.86a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 11.5V2.64c0-.72.502-1.301 1.178-1.379A43 43 0 0 1 8 1" />
@@ -269,7 +266,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="Products.php">
+                  <a class="nav-link d-flex align-items-center gap-2 " href="Products.php">
                     <svg class="bi">
                       <use xlink:href="#cart" />
                     </svg>
@@ -385,94 +382,15 @@
         </div>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-dev">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
+          <div class="row ">
+            <div class="d-flex justify-content-center align-items-center h-100">
 
-              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
-                <svg class="bi">
-                  <use xlink:href="#calendar3" />
-                </svg>
-                This week
-              </button>
             </div>
-          </div>
 
-          <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-          <h2>Monthly Progress</h2>
-          <div class="table-responsive small">
-            <table class="table table-striped table-sm">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Month</th>
-                  <th scope="col">Nope</th>
-                  <th scope="col">MCFP</th>
-                  <th scope="col">FP</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-
-                <?php
-
-                $summeryDataQ = Database::search("SELECT * FROM `summery_t` WHERE `users_u_id` = " . $_SESSION['user']['u_id'] . "");
-
-                if ($summeryDataQ->num_rows > 0) {
-
-                  for ($i = 1; $i <= $summeryDataQ->num_rows; $i++) {
-                    $summeryData = $summeryDataQ->fetch_assoc();
-
-                ?>
-                    <tr>
-                      <td><?php echo $i; ?></td>
-                      <td><?php echo $summeryData['month']; ?></td>
-                      <td><?php echo $summeryData['nope']; ?></td>
-                      <td><?php echo $summeryData['mcfp']; ?></td>
-                      <td><?php echo $summeryData['fp']; ?></td>
-                      <td><?php echo $summeryData['total']; ?></td>
-                    </tr>
+            <h4 class="text-center mt-5">Comming Soon!</h4>
 
 
 
-                  <?php
-
-
-                  }
-                } else {
-
-
-
-
-                  ?>
-
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td>No Data Found</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-
-
-
-
-
-                <?php
-                }
-
-
-                ?>
-
-
-              </tbody>
-            </table>
           </div>
         </main>
       </div>

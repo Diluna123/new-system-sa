@@ -110,9 +110,6 @@ function updateCustomer(cid) {
   const proNum = document.getElementById("pro_numU");
   const polNUm = document.getElementById("pol_numU");
 
-
-
-
   const mainDev = document.getElementById("customerDetailsCanvasBody");
   mainDev.innerHTML = "";
   mainDev.innerHTML =
@@ -202,6 +199,9 @@ function submitProposal(cid) {
         });
         proNum.value = "";
         polNum.value = "";
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
       } else {
         Swal.fire({
           icon: "warning",
@@ -276,12 +276,10 @@ function submitBtn() {
         timep.value = "";
         note.value = "";
         age.value = "";
-        
 
-        
-        
-
-        
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
       } else {
         alert(req.responseText);
         Swal.fire({
@@ -323,7 +321,6 @@ function uploadNic(cid) {
   req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
       if (req.responseText == "success") {
-        
         Swal.fire({
           icon: "success",
           title: "NIC Updated Successfully",
@@ -333,9 +330,7 @@ function uploadNic(cid) {
 
         // Clear the file input field
         nicp.value = "";
-        
       } else {
-        
         Swal.fire({
           icon: "warning",
           title: req.responseText,
@@ -358,41 +353,32 @@ function nicModalOpen(cid) {
   var req = new XMLHttpRequest();
   req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
-      
       modalBody.innerHTML = req.responseText;
     }
   };
   req.open("GET", "nicModal.php?cid=" + cid, true);
   req.send();
-
-
-
 }
 
 function signin() {
- 
-  
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-//   const checkbox = document.getElementById("checkbox");
-//   const alertbox = document.getElementById("alert-d");
+  //   const checkbox = document.getElementById("checkbox");
+  //   const alertbox = document.getElementById("alert-d");
 
   const form = new FormData();
   form.append("email", email);
   form.append("password", password);
-//   form.append("cResults", checkbox.checked);
+  //   form.append("cResults", checkbox.checked);
 
   const request = new XMLHttpRequest();
 
   request.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      
       if (this.responseText == "success") {
-        
         window.location.href = "index.php";
       } else {
         alert(this.responseText);
-        
       }
     }
   };
@@ -416,7 +402,7 @@ function signOut() {
   req.send();
 }
 
-function deletePol(cid){
+function deletePol(cid) {
   const mainDev = document.getElementById("customerDetailsCanvasBody");
   mainDev.innerHTML = "";
   mainDev.innerHTML =
@@ -431,20 +417,98 @@ function deletePol(cid){
         // setTimeout(function () {
         //   showCanvasModal(cid);
         // }, 1000);
-        
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
       } else {
         alert(req1.responseText);
       }
     }
   };
-  req1.open("GET", "deletePoliceProcess.php?cid="+cid, true);
+  req1.open("GET", "deletePoliceProcess.php?cid=" + cid, true);
   req1.send();
-
-
-
-
 }
 
 // function signin(){
 //   alert("ok");
 // }
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("Service Worker Registered"));
+}
+
+// cutomerleads php functions
+
+
+function getCustomerLeads() {
+  const cname = document.getElementById("cName");
+  const contact = document.getElementById("contact_cl");
+  const sname = document.getElementById("shopName");
+  const loc_cl = document.getElementById("loc_cl");
+
+
+
+  var req = new XMLHttpRequest();
+
+  var form = new FormData();
+  form.append("cname", cname.value);
+  form.append("contact", contact.value);
+  form.append("sname", sname.value);
+  form.append("loc_cl", loc_cl.value);
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+     
+      if(req.responseText == "success"){
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
+
+      }else{
+        alert(req.responseText);
+      }
+      
+     
+    }
+  };
+  req.open("POST", "addCustomerLeadsProcess.php", true);
+  req.send(form);
+}
+
+function searchLeadas(){
+  const dateIn = document.getElementById("dateInput");
+  alert(dateIn.value);
+}
+
+function performSearch(){
+  const contact = document.getElementById("contactInput");
+  const date = document.getElementById("dateInput");
+  const table = document.getElementById("searchResults");
+
+  table.innerHTML = "";
+  table.innerHTML ='<tr id="loadingRow" class="text-center"><td colspan="5"><div class="d-flex justify-content-center align-items-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><span class="ms-2 text-muted">Loading data...</span></div></td></tr>';
+
+
+
+  var req = new XMLHttpRequest();
+
+  var form = new FormData();
+  form.append("contact", contact.value);
+  form.append("date", date.value);
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      table.innerHTML = req.responseText;
+    }
+  };
+  req.open("POST", "searchCustomerLeadsProcess.php", true);
+  req.send(form);
+
+
+
+ 
+}
