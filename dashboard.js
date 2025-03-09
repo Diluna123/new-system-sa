@@ -433,20 +433,18 @@ function deletePol(cid) {
 //   alert("ok");
 // }
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
+  navigator.serviceWorker
+    .register("service-worker.js")
     .then(() => console.log("Service Worker Registered"));
 }
 
 // cutomerleads php functions
-
 
 function getCustomerLeads() {
   const cname = document.getElementById("cName");
   const contact = document.getElementById("contact_cl");
   const sname = document.getElementById("shopName");
   const loc_cl = document.getElementById("loc_cl");
-
-
 
   var req = new XMLHttpRequest();
 
@@ -457,8 +455,7 @@ function getCustomerLeads() {
   form.append("loc_cl", loc_cl.value);
   req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
-     
-      if(req.responseText == "success"){
+      if (req.responseText == "success") {
         Swal.fire({
           icon: "success",
           title: "Success",
@@ -468,32 +465,28 @@ function getCustomerLeads() {
         setTimeout(function () {
           window.location.reload();
         }, 1000);
-
-      }else{
+      } else {
         alert(req.responseText);
       }
-      
-     
     }
   };
   req.open("POST", "addCustomerLeadsProcess.php", true);
   req.send(form);
 }
 
-function searchLeadas(){
+function searchLeadas() {
   const dateIn = document.getElementById("dateInput");
   alert(dateIn.value);
 }
 
-function performSearch(){
+function performSearch() {
   const contact = document.getElementById("contactInput");
   const date = document.getElementById("dateInput");
   const table = document.getElementById("searchResults");
 
   table.innerHTML = "";
-  table.innerHTML ='<tr id="loadingRow" class="text-center"><td colspan="5"><div class="d-flex justify-content-center align-items-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><span class="ms-2 text-muted">Loading data...</span></div></td></tr>';
-
-
+  table.innerHTML =
+    '<tr id="loadingRow" class="text-center"><td colspan="5"><div class="d-flex justify-content-center align-items-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><span class="ms-2 text-muted">Loading data...</span></div></td></tr>';
 
   var req = new XMLHttpRequest();
 
@@ -507,8 +500,40 @@ function performSearch(){
   };
   req.open("POST", "searchCustomerLeadsProcess.php", true);
   req.send(form);
+}
 
+function leadsOffcanvas(clid) {
+  var myOffcanvas = document.getElementById("leadsOff");
+  var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+  bsOffcanvas.show();
 
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      performSearch();
+      document.getElementById("leadsOffBody").innerHTML = req.responseText;
+    }
+  };
+  req.open("GET", "leadsOffcanvasProcess.php?clid=" + clid, true);
+  req.send();
+}
 
- 
+function leadsUpdate(clid, sOrD) {
+
+  
+  var req = new XMLHttpRequest();
+  var form = new FormData();
+  form.append("clid", clid);
+  form.append("sOrD", sOrD);
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      if (req.responseText == "success") {
+        performSearch();
+      }else{
+        alert(req.responseText);
+      }
+    }
+  };
+  req.open("POST", "leadsUpdateProcess.php", true);
+  req.send(form);
 }

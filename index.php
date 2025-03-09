@@ -20,7 +20,7 @@
 
 
 
-  <? include "connection.php" ?>
+  <?php include "connection.php" ?>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
   <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -362,14 +362,17 @@
               <div class="row mt-5 m-2">
                 <div class="card ">
                   <div class="card-body">
-                    <?php
-
-
-                    ?>
+                    
                     <h6 class="text-warning m-0"><?php echo $_SESSION['user']['u_fname'] ?> <?php echo $_SESSION['user']['u_lname'] ?></h6>
                     <small class="m-0"><?php echo $_SESSION['user']['email']; ?></small>
                     <div>
-                      <span class="badge text-bg-warning"><?php echo $_SESSION['user']['position']; ?></span>
+                      <?php
+                      $positionD = Database::search("SELECT * FROM `position` WHERE `pid` = '" . $_SESSION['user']['position_pid'] . "'");
+                      $positionData = $positionD->fetch_assoc();
+                      
+                      
+                      ?>
+                      <span class="badge text-bg-warning"><?php echo $positionData['position'];?></span>
 
                     </div>
 

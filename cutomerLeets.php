@@ -369,14 +369,17 @@ include 'connection.php';
                             <div class="row mt-5 m-2">
                                 <div class="card ">
                                     <div class="card-body">
-                                        <?php
-
-
-                                        ?>
+                     
                                         <h6 class="text-warning m-0"><?php echo $_SESSION['user']['u_fname'] ?> <?php echo $_SESSION['user']['u_lname'] ?></h6>
                                         <small class="m-0"><?php echo $_SESSION['user']['email']; ?></small>
                                         <div>
-                                            <span class="badge text-bg-warning"><?php echo $_SESSION['user']['position']; ?></span>
+                                            <?php
+                                            $positionD = Database::search("SELECT * FROM `position` WHERE `pid` = '" . $_SESSION['user']['position_pid'] . "'");
+                                            $positionData = $positionD->fetch_assoc();
+
+
+                                            ?>
+                                            <span class="badge text-bg-warning"><?php echo $positionData['position']; ?></span>
 
                                         </div>
 
@@ -421,7 +424,7 @@ include 'connection.php';
                         <div class="row mt-3 mb-2">
                             <div class="col-12">
                                 <div>
-                                    <label for="" class="form-label">Cutomer Name :</label>
+                                    <label for="" class="form-label">Cutomer Name : <span class="text-danger">*</span></label>
                                 </div>
                                 <div>
                                     <input type="text" id="cName" class="form-control form-control-sm" placeholder="Ex: Jone Due">
@@ -433,7 +436,7 @@ include 'connection.php';
 
                             <div class="col-6">
                                 <div>
-                                    <label for="" class="form-label">Contact Number :</label>
+                                    <label for="" class="form-label">Contact Number : <span class="text-danger">*</span></label>
                                 </div>
                                 <div>
                                     <input type="tel" id="contact_cl" class="form-control form-control-sm" placeholder="Ex: 0771234567">
@@ -518,14 +521,16 @@ include 'connection.php';
                             <tbody id="searchResults">
 
                                 <?php
+                                $teamid = $_SESSION['user']['teams_tid'];
 
-                                $getLData = Database::search("SELECT * FROM `c_leads` WHERE `users_u_id` = '$uid' ORDER BY `date_cl` DESC");
+                                $getLData = Database::search("SELECT * FROM `c_leads` WHERE `teams_tid` = '$teamid' AND `status_s_id` != '3' ORDER BY `date_cl` DESC");
+
                                 if ($getLData->num_rows > 0) {
                                     for ($i = 0; $i < $getLData->num_rows; $i++) {
                                         $dataCl = $getLData->fetch_assoc();
 
                                 ?>
-                                        <tr>
+                                        <tr onclick="leadsOffcanvas(<?php echo $dataCl['clid']; ?>);">
                                             <td><?php echo $i + 1 ?></td>
                                             <td><?php echo $dataCl['cname']; ?></td>
                                             <td><?php echo $dataCl['contact_cl']; ?></td>
@@ -533,7 +538,9 @@ include 'connection.php';
                                             <td>
                                                 <?php
 
-                                                if ($dataCl['status_s_id'] == 4) {
+                                                if ($dataCl['status_s_id'] == 5) {
+                                                    echo "<span class='badge text-bg-primary'>New</span> ";
+                                                } else if ($dataCl['status_s_id'] == 4) {
                                                     echo "<span class='badge text-bg-warning'>Pending</span> ";
                                                 } else if ($dataCl['status_s_id'] == 1) {
                                                     echo "<span class='badge text-bg-success'>Closed</span> ";
@@ -591,6 +598,19 @@ include 'connection.php';
             </div>
         </div>
 
+        </div>
+
+        <!-- leads full details offcanvass -->
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="leadsOff" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Customer Leads</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body" id="leadsOffBody">
+
+
+            </div>
         </div>
 
         <script>

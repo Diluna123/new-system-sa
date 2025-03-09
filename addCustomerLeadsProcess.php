@@ -3,6 +3,7 @@ include 'connection.php';
 
 session_start();
 $uid = $_SESSION['user']['u_id'];
+$teamid = $_SESSION['user']['teams_tid'];
 
 $cname = $_POST['cname'];
 $contact = $_POST['contact'];
@@ -40,10 +41,10 @@ if (empty($cname)) {
     if (validateSriLankanPhone($contact)) {
         if (empty($sname)) {
             $sname = "N/A";
-        } else if (empty($loc)) {
+        }else if (empty($loc)) {
             $loc = "N/A";
         }
-        $bData = Database::search("SELECT * FROM `c_leads` WHERE `contact_cl` = '$contact'");
+        $bData = Database::search("SELECT * FROM `c_leads` WHERE `contact_cl` = '$contact' AND `teams_tid` = '$teamid'");
 
         if ($bData->num_rows > 0) {
             echo "already exist";
@@ -55,7 +56,7 @@ if (empty($cname)) {
             $udate = $d->format("Y-m-d");
 
 
-            Database::iud("INSERT INTO `c_leads`(`cname`, `contact_cl`,`date_cl`, `sh_name`, `loc_cl`,`status_s_id`,`users_u_id`) VALUES('$cname','$contact','$udate','$sname','$loc','4','$uid')");
+            Database::iud("INSERT INTO `c_leads`(`cname`, `contact_cl`,`date_cl`, `sh_name`, `loc_cl`,`status_s_id`,`users_u_id`,`teams_tid`) VALUES('$cname','$contact','$udate','$sname','$loc','5','$uid','$teamid')");
 
             echo "success";
         }
