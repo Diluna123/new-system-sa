@@ -537,3 +537,37 @@ function leadsUpdate(clid, sOrD) {
   req.open("POST", "leadsUpdateProcess.php", true);
   req.send(form);
 }
+
+function openAddTargetModal() {
+  $('#addTargetModal').modal('show');
+}
+
+function addTarget() {
+  var targetAmount = document.getElementById('targetAmount').value;
+  var monthSelect = document.getElementById('monthSelect').value;
+  var spoSelect = document.getElementById('spoSelect').value;
+
+  var req = new XMLHttpRequest();
+  var form = new FormData();
+  form.append("targetAmount", targetAmount);
+  form.append("monthSelect", monthSelect);
+  form.append("spoSelect", spoSelect);
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      if (req.responseText == "success") {
+       
+        $('#addTargetModal').modal('hide');
+        window.location.reload();
+      
+      }else{
+        alert(req.responseText);
+      }
+    }
+  };
+  req.open("POST", "addTargetProcess.php", true);
+  req.send(form);
+
+ 
+  
+  
+}
