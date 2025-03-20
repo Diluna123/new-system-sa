@@ -599,7 +599,7 @@
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center">
                                     <h5 class="text-secondary fw-bold">You have no SPOs to display.</h5>
-                                    <button class="btn btn-sm btn-outline-warning">Add SPO</button>
+                                
                                 </div>
                             </div>
                         <?php
