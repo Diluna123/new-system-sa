@@ -519,8 +519,6 @@ function leadsOffcanvas(clid) {
 }
 
 function leadsUpdate(clid, sOrD) {
-
-  
   var req = new XMLHttpRequest();
   var form = new FormData();
   form.append("clid", clid);
@@ -529,7 +527,7 @@ function leadsUpdate(clid, sOrD) {
     if (req.readyState == 4 && req.status == 200) {
       if (req.responseText == "success") {
         performSearch();
-      }else{
+      } else {
         alert(req.responseText);
       }
     }
@@ -539,13 +537,13 @@ function leadsUpdate(clid, sOrD) {
 }
 
 function openAddTargetModal() {
-  $('#addTargetModal').modal('show');
+  $("#addTargetModal").modal("show");
 }
 
 function addTarget() {
-  var targetAmount = document.getElementById('targetAmount').value;
-  var monthSelect = document.getElementById('monthSelect').value;
-  var spoSelect = document.getElementById('spoSelect').value;
+  var targetAmount = document.getElementById("targetAmount").value;
+  var monthSelect = document.getElementById("monthSelect").value;
+  var spoSelect = document.getElementById("spoSelect").value;
 
   var req = new XMLHttpRequest();
   var form = new FormData();
@@ -555,19 +553,134 @@ function addTarget() {
   req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
       if (req.responseText == "success") {
-       
-        $('#addTargetModal').modal('hide');
+        $("#addTargetModal").modal("hide");
         window.location.reload();
-      
-      }else{
+      } else {
         alert(req.responseText);
       }
     }
   };
   req.open("POST", "addTargetProcess.php", true);
   req.send(form);
+}
 
- 
-  
-  
+function addNewSpo() {
+  const sfname = document.getElementById("fName_sp").value.trim();
+  const slname = document.getElementById("lName_sp").value.trim();
+  const semail = document.getElementById("email_sp").value.trim();
+  const code = document.getElementById("code_sp").value.trim();
+  const pwd = document.getElementById("pwd_sp").value.trim();
+  const cpwd = document.getElementById("cpwd_sp").value.trim();
+
+  if (!sfname || !slname || !semail || !code || !pwd || !cpwd) {
+    alert("All fields are required!");
+    return;
+  }
+
+  if (pwd !== cpwd) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  const form = new FormData();
+  form.append("fname", sfname);
+  form.append("lname", slname);
+  form.append("email", semail);
+  form.append("code", code);
+  form.append("pwd", pwd);
+  form.append("cpwd", cpwd);
+
+  const req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState === 4 && req.status === 200) {
+      if (req.responseText.trim() === "success") {
+        alert("User added successfully!");
+        window.location.reload();
+      } else {
+        alert(req.responseText);
+      }
+    }
+  };
+  req.open("POST", "addNewSpoProcess.php", true);
+  req.send(form);
+}
+
+function getToggleValue(element, uid) {
+  let status = element.checked ? "1" : "2";
+
+  var req = new XMLHttpRequest();
+  var form = new FormData();
+  form.append("status", status);
+  form.append("uid", uid);
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      if (req.responseText == "success") {
+        window.location.reload();
+      } else {
+        alert(req.responseText);
+      }
+    }
+  };
+  req.open("POST", "toggleProcess.php", true);
+  req.send(form);
+}
+
+function verifyEmail(id) {
+  if (id == 1) {
+
+    window.location.reload();
+
+
+  } else {
+    const verifyInput = document.getElementById("verifyCode");
+    const vBtn = document.getElementById("vBtn");
+    const loading = document.getElementById("vSpinner");
+    const loText = document.getElementById("loText");
+
+    vBtn.className = "d-none";
+    loading.className = "d-block text-center";
+
+   
+
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function () {
+      if (req.readyState == 4 && req.status == 200) {
+        loText.innerHTML = req.responseText;
+        loading.className = "d-none";
+        verifyInput.className = "d-block mt-1";
+       
+
+      }
+    }
+    req.open("GET", "emailVerificationProcess.php", true);
+    req.send();
+
+
+
+  }
+}
+function changePass(){
+  const vcode = document.getElementById("vCode").value;
+  const npass = document.getElementById("newPass").value;
+
+  if(!vcode || !npass){
+    alert("All fields are required!");
+    return;
+  }
+  var req = new XMLHttpRequest();
+  var form = new FormData();
+  form.append("vcode", vcode);
+  form.append("npass", npass);
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      if (req.responseText == "success") {
+        alert("Password changed successfully!");
+        window.location.reload();
+      } else {
+        alert(req.responseText);
+      }
+    }
+  };
+  req.open("POST", "changePassProcess.php", true);
+  req.send(form);
 }
