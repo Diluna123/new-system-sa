@@ -1,30 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input with Tick</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        .input-container {
-            position: relative;
-            display: inline-block;
-        }
-        .form-control {
-            padding-right: 30px; /* Space for the icon */
-        }
-        .input-container .fa-check-circle {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: green;
-            font-size: 16px;
-        }
-    </style>
-</head>
-<body>
-  <div style="width: 100%; max-width: 800px; margin: auto; font-family: Arial, sans-serif; border: 1px solid #ddd; padding: 20px; background-color: #f9f9f9;">
+<?php
+include "connection.php";
+include "email_send/Exception.php";
+include "email_send/SMTP.php";
+include "email_send/PHPMailer.php";
+
+session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+
+if (isset($_SESSION['user']['email'])) {
+    $email = $_SESSION['user']['email'];
+
+
+
+
+    $code = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
+
+    Database::iud("UPDATE `users` SET `verification_code` ='" . $code . "' WHERE `email` ='" . $email . "'");
+
+    $mail = new PHPMailer;
+    $mail->IsSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'dilunasithija111@gmail.com';
+    $mail->Password = 'zuutgguqzhyaylpj';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+    $mail->setFrom('dilunasithija111@gmail.com', 'Reset Password');
+    $mail->addReplyTo('dilunasithija111@gmail.com', 'Reset Password');
+    $mail->addAddress($email);
+    $mail->isHTML(true);
+    $mail->Subject = 'Sanasa Easy Change Password Email Verification Code';
+    $bodyContent = '<div style="width: 100%; max-width: 800px; margin: auto; font-family: Arial, sans-serif; border: 1px solid #ddd; padding: 20px; background-color: #f9f9f9;">
         
     <!-- Letterhead with Logo -->
     <div style="background-color: #ffffff; padding: 15px; text-align: center; border-bottom: 2px solid #3d498a;">
@@ -44,8 +51,8 @@
         <div style="width: 200px; height: 50px; background-color: #3d498a; border-radius: 10px; 
             color: white; font-size: 22px; font-weight: bold; display: flex; 
             justify-content: center; align-items: center; text-align: center; 
-            margin: 20px auto 0 auto;">
-    ' . $code . '
+            margin: 20px auto 0 auto; text-align: center;">
+    <div>' . $code . '</div>
 </div>
 
         
@@ -60,7 +67,15 @@
         <p>© 2025 Sanasa Easy | All Rights Reserved</p>
     </div>
 
-</div>
+</div>';
+    $mail->Body    = $bodyContent;
 
-</body>
-</html>
+    if (!$mail->send()) {
+        echo ('verfication code sending failed');
+    } else {
+        echo ('verfication code sent, check your email');
+    }
+} else {
+
+    echo ('email not found');
+}

@@ -131,51 +131,7 @@
 
 
 
-        <?php
-        $spos = Database::search(("SELECT * FROM `users` WHERE `teams_tid` = '" . $_SESSION['user']['teams_tid'] . "' AND `u_id` != '" . $_SESSION['user']['u_id'] . "'"));
-        if ($spos->num_rows > 0) {
-            for ($i = 0; $i < $spos->num_rows; $i++) {
-                $sposData = $spos->fetch_assoc();
-                $maxValue = 10000000;
-
-                $result = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$sposData[u_id]' AND `status_s_id`='1'");
-
-                // Check if query executed successfully
-                if ($result) {
-                    $totammountNum = $result->num_rows;
-
-                    // Loop through each record and sum the amounts
-                    for ($i = 0; $i < $totammountNum; $i++) {
-                        $totammountData = $result->fetch_assoc();
-                        $totammount += (float) $totammountData['ammount'];
-                        $totprestage = ($totammount > 0) ? floor($totammount * 100 / $maxValue) : 0; // Convert to float to avoid errors
-                    }
-                }
-
-                // Ensure no division by zero
-
-
-
-        ?>.progress-bar<?php echo $i; ?> {
-            animation: progressAnimation 2s ease-in-out;
-        }
-
-        @keyframes progressAnimation<?php echo $i; ?> {
-            from {
-                height: 0%;
-            }
-
-            to {
-                height: <?php echo $totprestage; ?>%;
-            }
-        }
-
-
-        <?php
-            }
-        }
-
-        ?>
+        
     </style>
 
 
@@ -312,7 +268,7 @@
                         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link d-flex align-items-center gap-2" data-bs-toggle="collapse" data-bs-target="#adminDropdown" aria-expanded="false">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 active" data-bs-toggle="collapse" data-bs-target="#adminDropdown" aria-expanded="false">
                                         <svg class="bi">
                                             <use xlink:href="#admin" />
                                         </svg>
@@ -365,7 +321,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2 active" href="mbileDay.php">
+                                    <a class="nav-link d-flex align-items-center gap-2 " href="mbileDay.php">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bus-front" viewBox="0 0 16 16">
                                             <path d="M5 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0m8 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-6-1a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2zm1-6c-1.876 0-3.426.109-4.552.226A.5.5 0 0 0 3 4.723v3.554a.5.5 0 0 0 .448.497C4.574 8.891 6.124 9 8 9s3.426-.109 4.552-.226A.5.5 0 0 0 13 8.277V4.723a.5.5 0 0 0-.448-.497A44 44 0 0 0 8 4m0-1c-1.837 0-3.353.107-4.448.22a.5.5 0 1 1-.104-.994A44 44 0 0 1 8 2c1.876 0 3.426.109 4.552.226a.5.5 0 1 1-.104.994A43 43 0 0 0 8 3" />
                                             <path d="M15 8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1V2.64c0-1.188-.845-2.232-2.064-2.372A44 44 0 0 0 8 0C5.9 0 4.208.136 3.064.268 1.845.408 1 1.452 1 2.64V4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v3.5c0 .818.393 1.544 1 2v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V14h6v1.5a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2c.607-.456 1-1.182 1-2zM8 1c2.056 0 3.71.134 4.822.261.676.078 1.178.66 1.178 1.379v8.86a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 11.5V2.64c0-.72.502-1.301 1.178-1.379A43 43 0 0 1 8 1" />
@@ -448,7 +404,7 @@
 
                             <ul class="nav flex-column mb-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                    <a class="nav-link d-flex align-items-center gap-2" href="settings.php">
                                         <svg class="bi">
                                             <use xlink:href="#gear-wide-connected" />
                                         </svg>
@@ -494,13 +450,15 @@
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-dev">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">TL Admin Panel</h1>
-                        <div class="btn-toolbar mb-2 mb-md-0"></div>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <button class="btn btn-sm btn-outline-warning mt-2" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSpoModal">SPO <i class="fas fa-plus"></i></button>
+                        </div>
                     </div>
 
                     <div class="row mt-2">
                         <h5>Your SPOs</h5>
                         <?php
-                        $spos = Database::search("SELECT * FROM `users` WHERE `teams_tid` = '" . $_SESSION['user']['teams_tid'] . "' AND `u_id` != '" . $_SESSION['user']['u_id'] . "'");
+                        $spos = Database::search("SELECT * FROM `users` WHERE `teams_tid` = '" . $_SESSION['user']['teams_tid'] . "' AND `position_pid` = '1'");
 
                         if ($spos && $spos->num_rows > 0) {
                             while ($sposData = $spos->fetch_assoc()) {
@@ -532,7 +490,7 @@
 
                                     $maxValue = 5000;
                                 }
-                               
+
 
                                 $result = Database::search("SELECT * FROM `police_t` 
     WHERE `users_u_id` = '" . $sposData['u_id'] . "' 
@@ -547,7 +505,7 @@
                                     }
                                 }
 
-                                if($maxValue <= $totammount) {
+                                if ($maxValue <= $totammount) {
                                     Database::iud("UPDATE `targets` SET `status_s_id` = '1' WHERE `users_u_id` = '" . $sposData['u_id'] . "' AND MONTH(`date`) = '$currentMonth' AND YEAR(`date`) = '$currentYear'");
                                 }
 
@@ -615,7 +573,7 @@
 
                                                 </div>
                                                 <div>
-                                                    <small>Achivment: <span class="badge text-bg-info"><?php echo $result->num_rows;?></span> </small>
+                                                    <small>Achivment: <span class="badge text-bg-info"><?php echo $result->num_rows; ?></span> </small>
                                                     <div>
                                                         <span class="text-secondary">Rs. <?php echo $totammount ?> /= (<?= $totprestage; ?>%)</span>
                                                     </div>
@@ -641,6 +599,7 @@
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center">
                                     <h5 class="text-secondary fw-bold">You have no SPOs to display.</h5>
+                                
                                 </div>
                             </div>
                         <?php
@@ -690,11 +649,11 @@
                                                 <td><?= $dataT['u_fname']; ?></td>
                                                 <td>Rs. <?= $dataT['target']; ?></td>
                                                 <?php
-                                                if($dataT['status_s_id'] == 4){
+                                                if ($dataT['status_s_id'] == 4) {
                                                     $totammount = 0;
                                                 }
-                                                
-                                                
+
+
                                                 ?>
                                                 <td>Rs. <?= $totammount; ?></td>
                                                 <td>Rs. <?= $dataT['target'] - $totammount; ?></td>
@@ -705,20 +664,20 @@
                                                         <span class="badge text-bg-success">Completed</span>
                                                     <?php } else if ($dataT['status_s_id'] == 2) { ?>
                                                         <span class="badge text-bg-secondary">Incomplete</span>
-                                                    <?php 
-                                                    } else if($dataT['status_s_id'] == 4) {
-                                                        ?>
+                                                    <?php
+                                                    } else if ($dataT['status_s_id'] == 4) {
+                                                    ?>
                                                         <span class="badge text-bg-warning">Pending</span>
 
 
 
-                                                        
-                                                        <?php
-                                                        
+
+                                                    <?php
+
                                                     }
-                                                    
-                                                    
-                                                    
+
+
+
                                                     ?>
                                                 </td>
                                             </tr>
@@ -792,6 +751,59 @@
 
 
 
+        </div>
+
+        <div class="modal fade" id="addSpoModal" tabindex="-1" aria-labelledby="addSpoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addSpoModalLabel">New Sales Promotion Officer (SPO)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="fName_sp" required>
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="lName_sp" required>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="code" class="form-label">Code </label>
+                            <input type="text" class="form-control form-control-sm" id="code_sp" >
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control form-control-sm" id="email_sp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control form-control-sm" id="pwd_sp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control form-control-sm" id="cpwd_sp" required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                       
+                        <button type="button" class="btn btn-warning btn-sm" onclick="addNewSpo()">Save</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <script>
             document.querySelector('a[href="#targets"]').addEventListener("click", function(event) {
