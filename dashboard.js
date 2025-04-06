@@ -627,10 +627,7 @@ function getToggleValue(element, uid) {
 
 function verifyEmail(id) {
   if (id == 1) {
-
     window.location.reload();
-
-
   } else {
     const verifyInput = document.getElementById("verifyCode");
     const vBtn = document.getElementById("vBtn");
@@ -640,30 +637,23 @@ function verifyEmail(id) {
     vBtn.className = "d-none";
     loading.className = "d-block text-center";
 
-   
-
     var req = new XMLHttpRequest();
     req.onreadystatechange = function () {
       if (req.readyState == 4 && req.status == 200) {
         loText.innerHTML = req.responseText;
         loading.className = "d-none";
         verifyInput.className = "d-block mt-1";
-       
-
       }
-    }
+    };
     req.open("GET", "emailVerificationProcess.php", true);
     req.send();
-
-
-
   }
 }
-function changePass(){
+function changePass() {
   const vcode = document.getElementById("vCode").value;
   const npass = document.getElementById("newPass").value;
 
-  if(!vcode || !npass){
+  if (!vcode || !npass) {
     alert("All fields are required!");
     return;
   }
@@ -683,4 +673,58 @@ function changePass(){
   };
   req.open("POST", "changePassProcess.php", true);
   req.send(form);
+}
+
+function searchPolicyReport() {
+  var planTy = document.getElementById("PlanType").value;
+  var base = document.getElementById("reportSearchPre");
+
+  var fdate = document.getElementById("fromDate").value;
+  var tdate = document.getElementById("toDate").value;
+
+  var form = new FormData();
+  form.append("planTy", planTy);
+  form.append("fdate", fdate);
+  form.append("tdate", tdate);
+
+  var req = new XMLHttpRequest();
+
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      base.innerHTML = req.responseText;
+    }
+  };
+  req.open("POST", "policyReportProcess.php", true);
+  req.send(form);
+}
+
+//report printing
+
+function printReport() {
+
+
+  var planTy = document.getElementById("PlanType").value;
+  var fdate = document.getElementById("fromDate").value;
+  var tdate = document.getElementById("toDate").value;
+
+  var form = document.createElement("form");
+  form.method = "POST";
+  form.action = "pdfGenarate.php";
+  form.target = "_blank";
+
+  const data = { planTy, fdate, tdate };
+  for (let key in data) {
+    let input = document.createElement("input");
+    input.type = "hidden";
+    input.name = key;
+    input.value = data[key];
+    form.appendChild(input);
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+
+
+
 }

@@ -18,22 +18,13 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
     <link rel="manifest" href="manifest.json">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 
-    <?php include "connection.php";
+    <?php
     session_start();
 
-    $uid = $_SESSION['user']['u_id'];
 
-    $totammount = 0;
-
-    // Fetch data from the database
-
-
-
-
-    ?>
+    include "connection.php"; ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -118,20 +109,6 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
-
-        .progress {
-            /* height: 3px; */
-            border-radius: 50px;
-            box-shadow: 0 0 10px rgba(73, 87, 80, 0.5);
-            overflow: hidden;
-            margin-left: 2px;
-            width: 3px;
-        }
-
-
-
-
-        
     </style>
 
 
@@ -221,15 +198,6 @@
             <symbol id="search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </symbol>
-            <symbol id="admin" viewBox="0 0 16 16">
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-            </symbol>
-            <symbol id="target" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12" />
-                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8" />
-                <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
-            </symbol>
         </svg>
 
         <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
@@ -267,34 +235,6 @@
                         </div>
                         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                             <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link d-flex align-items-center gap-2 active" data-bs-toggle="collapse" data-bs-target="#adminDropdown" aria-expanded="false">
-                                        <svg class="bi">
-                                            <use xlink:href="#admin" />
-                                        </svg>
-                                        Admin Panel
-                                    </a>
-                                    <div class="collapse ms-3" id="adminDropdown">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link text-warning d-flex align-items-center gap-2">
-                                                    <svg class="bi">
-                                                        <use xlink:href="#people" />
-                                                    </svg>
-                                                    My SPOs
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#targets" class="nav-link text-warning d-flex align-items-center gap-2">
-                                                    <svg class="bi">
-                                                        <use xlink:href="#target" />
-                                                    </svg>
-                                                    Targets
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
                                 <li class="nav-item">
                                     <a href="index.php" class="nav-link d-flex align-items-center gap-2 " aria-current="page" onclick="">
                                         <svg class="bi">
@@ -340,7 +280,7 @@
 
 
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2" href="reports.php">
+                                    <a class="nav-link d-flex align-items-center gap-2 active" href="reports.php">
                                         <svg class="bi">
                                             <use xlink:href="#graph-up" />
                                         </svg>
@@ -448,299 +388,149 @@
                 </div>
 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-dev">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">TL Admin Panel</h1>
-                        <div class="btn-toolbar mb-2 mb-md-0">
-                            <button class="btn btn-sm btn-outline-warning mt-2" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSpoModal">SPO <i class="fas fa-plus"></i></button>
+                    <div class="row ">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Reports</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                                <div class="btn-group me-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
+                                    <svg class="bi">
+                                        <use xlink:href="#calendar3" />
+                                    </svg>
+                                    This week
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row mt-2">
-                        <h5>Your SPOs</h5>
-                        <?php
-                        $spos = Database::search("SELECT * FROM `users` WHERE `teams_tid` = '" . $_SESSION['user']['teams_tid'] . "' AND `position_pid` = '1'");
-
-                        if ($spos && $spos->num_rows > 0) {
-                            while ($sposData = $spos->fetch_assoc()) {
-
-                                $totammount = 0;
-
-                                date_default_timezone_set("Asia/Colombo");
-                                $currentMonth = date("m"); // Get current month (e.g., 03 for March)
-                                $currentYear = date("Y");  // Get current year (e.g., 2025)
-
-                                // Query to select only incomplete targets from the current month
-                                $targets = Database::search("
-    SELECT * FROM `targets` 
-    WHERE `users_u_id` = '" . $sposData['u_id'] . "' 
-    AND MONTH(`date`) = '$currentMonth' 
-    AND YEAR(`date`) = '$currentYear' 
-    AND `status_s_id` = '2'
-");
-
-
-
-                                if ($targets && $targets->num_rows > 0) {
-                                    $targetsData = $targets->fetch_assoc();
-                                    $maxValue = $targetsData['target'];
-                                    $targetStId = $targetsData['status_s_id'];
-                                } else {
-                                    $targetStId = 0;
-
-
-                                    $maxValue = 5000;
-                                }
-
-
-                                $result = Database::search("SELECT * FROM `police_t` 
-    WHERE `users_u_id` = '" . $sposData['u_id'] . "' 
-    AND `status_s_id` = '1' 
-    AND YEAR(`date`) = '$currentYear' 
-    AND MONTH(`date`) = '$currentMonth'");
-
-
-                                if ($result && $result->num_rows > 0) {
-                                    while ($totammountData = $result->fetch_assoc()) {
-                                        $totammount += (float) $totammountData['ammount'];
-                                    }
-                                }
-
-                                if ($maxValue <= $totammount) {
-                                    Database::iud("UPDATE `targets` SET `status_s_id` = '1' WHERE `users_u_id` = '" . $sposData['u_id'] . "' AND MONTH(`date`) = '$currentMonth' AND YEAR(`date`) = '$currentYear'");
-                                }
-
-
-
-
-                                $totprestage = ($totammount > 0) ? floor($totammount * 100 / $maxValue) : 0; // Calculate percentage
-                        ?>
-                                <div class="col-6 mb-2">
-                                    <div class="card border-warning-subtle">
-                                        <div class="card-body d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <div class="mb-2">
-
-                                                    <?php
-                                                    if ($targets && $targets->num_rows > 0) {
-
-                                                        if ($targetStId == 1) {
-                                                    ?>
-                                                            <span class="badge text-bg-success">Completed</span>
-
-                                                        <?php
-                                                        } else if ($targetStId == 2) {
-                                                        ?>
-                                                            <small><span class="badge  text-bg-secondary">Incomplete</span></small>
-
-
-                                                        <?php
-                                                        }
-                                                    } else {
-
-                                                        if ($totammount >= $maxValue) {
-                                                        ?>
-                                                            <small><span class="badge text-bg-success">Completed</span></small>
-
-                                                        <?php
-                                                        } else {
-                                                        ?>
-                                                            <small><span class="badge  text-bg-secondary">Incomplete</span></small>
-
-
-                                                    <?php
-                                                        }
-                                                    }
-
-                                                    ?>
-
-
-
-                                                </div>
-                                                <div>
-                                                    <h6 class="text-warning">
-                                                        <?= empty($sposData['code']) ? 'N/A' : '#' . $sposData['code']; ?>
-                                                    </h6>
-                                                </div>
-                                                <div>
-                                                    <label for="" class="form-label"><?= $sposData['u_fname'] . " " . $sposData['u_lname']; ?></label>
-                                                </div>
-                                                <div class="mt-2">
-                                                    <small>Target: </small>
-                                                    <div>
-                                                        <span class="text-secondary">Rs. <?php echo $maxValue ?> /= </span>
-                                                    </div>
-
-
-                                                </div>
-                                                <div>
-                                                    <small>Achivment: <span class="badge text-bg-info"><?php echo $result->num_rows; ?></span> </small>
-                                                    <div>
-                                                        <span class="text-secondary">Rs. <?php echo $totammount ?> /= (<?= $totprestage; ?>%)</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-column align-items-center">
-                                                <small></small>
-                                                <div class="progress bg-dark" style="width: 10px; height: 100px; position: relative;">
-                                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
-                                                        role="progressbar"
-                                                        style="width: 100%; height: <?= $totprestage; ?>%; position: absolute; bottom: 0;"
-                                                        aria-valuenow="<?= $totprestage; ?>" aria-valuemin="0" aria-valuemax="100">
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="policy-tab" data-bs-toggle="tab" data-bs-target="#policyReport" type="button" role="tab">Policy Report</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="leads-tab" data-bs-toggle="tab" data-bs-target="#leadsReport" type="button" role="tab">Leads Report</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-3" id="myTabContent">
+                            <div class="tab-pane fade show active" id="policyReport" role="tabpanel">
+                                <div class="row mt-3">
+                                    <div class="col-4">
+                                        <div>
+                                            <label for="type" class="form-label mb-1">Type :</label>
+                                            <select name="type" id="PlanType" class="form-control form-control-sm" onchange="searchPolicyReport();">
+                                                <option value="all">ALL</option>
+                                                <option value="MCFP">MCFP</option>
+                                                <option value="FP">FP</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <label for="fromDate" class="form-label mb-1">From :</label>
+                                            <input type="month" class="form-control form-control-sm" id="fromDate" value="" onchange="searchPolicyReport();">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <label for="toDate" class="form-label mb-1">To :</label>
+                                            <input type="month" class="form-control form-control-sm" id="toDate" onchange="searchPolicyReport();">
                                         </div>
                                     </div>
                                 </div>
-                            <?php
-                            }
-                        } else {
-                            ?>
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-center">
-                                    <h5 class="text-secondary fw-bold">You have no SPOs to display.</h5>
-                                
+                                <div class="row mt-5">
+                                    <div id ="reportSearchPre">
+                                        <table class="table table-striped table-hover table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Proposal/ Policy</th>
+                                                    <th scope="col">Date</th>
+                                                    <th scope="col">MCFP</th>
+                                                    <th scope="col">FP</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $rDataP = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '" . $_SESSION['user']['u_id'] . "' AND `status_s_id` = '1'");
+                                                $rDataPCount = $rDataP->num_rows;
+                                                $totalMCFP = 0;
+                                                $totalFP = 0;
+
+                                                if ($rDataPCount == 0) {
+                                                    echo '<tr><td colspan="5" class="text-center">No data found</td></tr>';
+                                                } else {
+                                                    for ($i = 0; $i < $rDataPCount; $i++) {
+                                                        $rDataPData = $rDataP->fetch_assoc();
+                                                ?>
+                                                        <tr>
+                                                            <th scope="row"><?php echo $i + 1; ?></th>
+                                                            <td> <?php echo $rDataPData['pro_num']; ?> / <?php echo $rDataPData['pol_num']; ?></td>
+                                                            <td><?php echo $rDataPData['date']; ?></td>
+                                                            <?php
+                                                            if ($rDataPData['payments_pay_id'] == '1' || $rDataPData['payments_pay_id'] == '2' || $rDataPData['payments_pay_id'] == '4') {
+                                                                $totalMCFP += $rDataPData['ammount'];
+                                                            ?>
+                                                                <td class="text-end"><?php echo $rDataPData['ammount']; ?></td>
+                                                                <td></td>
+                                                            <?php
+                                                            } else {
+                                                                $totalFP += $rDataPData['ammount'];
+                                                            ?>
+                                                                <td></td>
+                                                                <td class="text-end"><?php echo $rDataPData['ammount']; ?></td>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th colspan="3" class="text-start text-warning-emphasis">Sub Total:</th>
+                                                    <th class="text-warning text-end"><?php echo $totalMCFP; ?></th>
+                                                    <th class="text-warning text-end"><?php echo $totalFP; ?></th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="3" class="text-start text-warning-emphasis">Total:</th>
+                                                    <th></th>
+                                                    <th class="bg-warning-subtle text-end "><?php echo $totalMCFP + $totalFP; ?></th>
+                                                   
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button class="btn btn-sm btn-warning col-2" onclick="printReport();">Print</button>
+                                    </div>
+
                                 </div>
                             </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-
-                    <div class="row mt-5" id="targets">
-                        <h5>SPO Targets</h5>
-                        <div class="table-responsive small table-scroll" style="max-height: 150px; overflow-y: auto;">
-                            <table class="table table-striped table-sm">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Month</th>
-                                        <th scope="col">SPO</th>
-                                        <th scope="col">Target</th>
-                                        <th scope="col">Achievement</th>
-                                        <th scope="col">Due</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $targetss = Database::search("SELECT * FROM `users` JOIN `targets` ON `users`.`u_id` = `targets`.`users_u_id` WHERE `users`.`teams_tid` = '" . $_SESSION['user']['teams_tid'] . "' AND `users`.`u_id` != '" . $_SESSION['user']['u_id'] . "'");
-
-                                    if ($targetss->num_rows > 0) {
-                                        for ($i = 0; $i < $targetss->num_rows; $i++) {
-                                            $dataT = $targetss->fetch_assoc();
-                                            $totammount = 0; // Reset total amount for each user
-
-                                            $result = Database::search("SELECT * FROM `police_t` 
-                                            WHERE `users_u_id` = '" . $dataT['u_id'] . "' 
-                                            AND `status_s_id` = '1' 
-                                            AND YEAR(`date`) = '$currentYear' 
-                                            AND MONTH(`date`) = '$currentMonth'");
-                                            if ($result && $result->num_rows > 0) {
-                                                while ($totammountData = $result->fetch_assoc()) {
-                                                    $totammount += (float) $totammountData['ammount'];
-                                                }
-                                            }
-                                    ?>
-                                            <tr>
-                                                <th scope="row"><?= $i + 1; ?></th>
-                                                <td><?= date("F", strtotime($dataT['date'])); ?></td>
-                                                <!-- Extract Year and Month -->
-                                                <td><?= $dataT['u_fname']; ?></td>
-                                                <td>Rs. <?= $dataT['target']; ?></td>
-                                                <?php
-                                                if ($dataT['status_s_id'] == 4) {
-                                                    $totammount = 0;
-                                                }
-
-
-                                                ?>
-                                                <td>Rs. <?= $totammount; ?></td>
-                                                <td>Rs. <?= $dataT['target'] - $totammount; ?></td>
-
-
-                                                <td>
-                                                    <?php if ($dataT['status_s_id'] == 1) { ?>
-                                                        <span class="badge text-bg-success">Completed</span>
-                                                    <?php } else if ($dataT['status_s_id'] == 2) { ?>
-                                                        <span class="badge text-bg-secondary">Incomplete</span>
-                                                    <?php
-                                                    } else if ($dataT['status_s_id'] == 4) {
-                                                    ?>
-                                                        <span class="badge text-bg-warning">Pending</span>
-
-
-
-
-                                                    <?php
-
-                                                    }
-
-
-
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        }
-                                    } else {
-                                        ?>
-                                        <tr class="text-center">
-                                            <td colspan="7" class="fw-bold text-muted mt-2">NO TARGETS ADDED</td>
-                                        </tr>
-                                    <?php
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                            <div class="tab-pane fade" id="leadsReport" role="tabpanel">
+                                <h2>Leads Report</h2>
+                                <p>Details about the leads report go here.</p>
+                            </div>
                         </div>
 
-                        <!-- Centered "Add Target" Button Outside the Table -->
-                        <div class="text-center mt-3 mb-5">
-                            <button class="btn btn-sm btn-outline-warning" onclick="openAddTargetModal();">Add Target</button>
-                        </div>
+
+
+
+
+
+
+
+
 
                     </div>
                 </main>
-
-                <div class="modal fade" id="addTargetModal" tabindex="-1" aria-labelledby="addTargetModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addTargetModalLabel">Add Target</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="targetAmount" class="form-label">Target Amount:</label>
-                                        <input type="number" class="form-control" id="targetAmount" placeholder="Enter target amount">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="monthSelect" class="form-label">Month:</label>
-                                        <input type="month" class="form-control" id="monthSelect">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="spoSelect" class="form-label">SPO:</label>
-                                        <select id="spoSelect" class="form-control form-control-sm">
-                                            <option value="00">--Select SPO--</option>
-                                            <?php
-                                            $sposList = Database::search("SELECT * FROM `users` WHERE `teams_tid` = '" . $_SESSION['user']['teams_tid'] . "' AND `u_id` != '" . $_SESSION['user']['u_id'] . "'");
-                                            while ($spoData2 = $sposList->fetch_assoc()) {
-                                                echo "<option value='" . $spoData2['u_id'] . "'>" . $spoData2['u_fname'] . " " . $spoData2['u_lname'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-warning btn-sm" onclick="addTarget();">Assign Target</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
         <div class="row">
@@ -749,73 +539,8 @@
             </div>
         </div>
 
-
-
         </div>
-
-        <div class="modal fade" id="addSpoModal" tabindex="-1" aria-labelledby="addSpoModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addSpoModalLabel">New Sales Promotion Officer (SPO)</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="firstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control form-control-sm" id="fName_sp" required>
-                                </div>
-
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="lastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control form-control-sm" id="lName_sp" required>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="code" class="form-label">Code </label>
-                            <input type="text" class="form-control form-control-sm" id="code_sp" >
-                        </div>
-
-
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control form-control-sm" id="email_sp" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control form-control-sm" id="pwd_sp" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control form-control-sm" id="cpwd_sp" required>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                       
-                        <button type="button" class="btn btn-warning btn-sm" onclick="addNewSpo()">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            document.querySelector('a[href="#targets"]').addEventListener("click", function(event) {
-                event.preventDefault();
-                document.getElementById("targets").scrollIntoView({
-                    behavior: "smooth"
-                });
-            });
-        </script>
-
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
         <script src="script.js"></script>
 
@@ -824,6 +549,20 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script src="dashboard.js"></script>
+        <script>
+            document.getElementById("fromDate").addEventListener("change", function() {
+                let fromDate = this.value;
+                let toDateInput = document.getElementById("toDate");
+
+                // Set the minimum selectable date for "To" input
+                toDateInput.min = fromDate;
+
+                // Reset the value of "To" if it's before the selected "From" date
+                if (toDateInput.value && toDateInput.value < fromDate) {
+                    toDateInput.value = fromDate;
+                }
+            });
+        </script>
 
 
 
