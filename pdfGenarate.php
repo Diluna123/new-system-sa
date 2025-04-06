@@ -9,7 +9,8 @@ $fdate = $_POST['fdate'] ?? '';
 $tdate = $_POST['tdate'] ?? '';
 
 // Extend FPDF with custom header
-class PDF extends FPDF
+if(isset($_SESSION['user'])) {
+    class PDF extends FPDF
 {
     function Header()
     {
@@ -178,3 +179,7 @@ if ($result->num_rows == 0) {
 
 // Output the PDF
 $pdf->Output();
+}else{
+    header("Location: index.php?error=Please login first.");
+    exit();
+}

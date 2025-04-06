@@ -410,7 +410,7 @@
                                 <button class="nav-link active" id="policy-tab" data-bs-toggle="tab" data-bs-target="#policyReport" type="button" role="tab">Policy Report</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="leads-tab" data-bs-toggle="tab" data-bs-target="#leadsReport" type="button" role="tab">Leads Report</button>
+                                <button class="nav-link" id="leads-tab" data-bs-toggle="tab" data-bs-target="#leadsReport" type="button" role="tab">Monthly Summery</button>
                             </li>
                         </ul>
                         <div class="tab-content mt-3" id="myTabContent">
@@ -515,8 +515,9 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="leadsReport" role="tabpanel">
-                                <h2>Leads Report</h2>
+                                <h2>Monthlty Summery</h2>
                                 <p>Details about the leads report go here.</p>
+                                <button class="btn btn-sm btn-warning" onclick="window.location.href='salesAnalizeReport.php';">Get Monthly Summery Report</button>
                             </div>
                         </div>
 
