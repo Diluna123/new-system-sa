@@ -509,7 +509,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button class="btn btn-sm btn-warning col-2" onclick="printReport();">Print</button>
+                                        <button class="btn btn-sm btn-warning col-3" onclick="printReport();">Get Report</button>
                                     </div>
 
                                 </div>
