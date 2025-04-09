@@ -10,13 +10,16 @@
     type: "line",
     data: {
       labels: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
+        "Janu",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
       ],
       datasets: [
         {
@@ -724,6 +727,36 @@ function printReport() {
   document.body.appendChild(form);
   form.submit();
   document.body.removeChild(form);
+
+
+
+}
+
+const schedule = require('node-schedule');
+
+// Schedule a job at 23:59 on the last day of each month
+const job = schedule.scheduleJob('59 23 28-31 * *', function(){
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  
+  if (tomorrow.getDate() === 1) {
+    // It's the last day of the month
+    runMonthlySummary();
+  }
+});
+
+function runMonthlySummary() {
+  console.log("Running monthly summary function...");
+  // Your logic here (e.g., DB ops, file write, API call, etc.)
+  var req = new XMLHttpRequest();
+
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      console.log(req.responseText);
+    }
+  };
+  req.open("GET", "monthlySummaryProcess.php", true);
+  req.send();
 
 
 
