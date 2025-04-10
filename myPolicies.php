@@ -1002,10 +1002,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                 </main>
             </div>
         </div>
-        <div class="row">
-            <div class=" fixed-bottom" style="height: 30px; width: 100%;">
-                <p class="text-center text-secondary">Copyright &copy; 2025 D. Sithija Sulakshana</p>
-            </div>
+        <div class="mt-5">
+            <?php include 'footer.php'; ?>
         </div>
 
         </div>

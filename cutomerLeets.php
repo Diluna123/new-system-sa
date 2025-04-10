@@ -238,7 +238,7 @@ include 'connection.php';
 
         <div class="container-fluid">
             <div class="row">
-                <?php include 'sideMenu.php'?>
+                <?php include 'sideMenu.php' ?>
 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-dev">
 
@@ -438,10 +438,8 @@ include 'connection.php';
                 </main>
             </div>
         </div>
-        <div class="row">
-            <div class=" fixed-bottom" style="height: 30px; width: 100%;">
-                <p class="text-center text-secondary">Copyright &copy; 2025 D. Sithija Sulakshana</p>
-            </div>
+        <div class="mt-5">
+            <?php include 'footer.php'; ?>
         </div>
 
         </div>
