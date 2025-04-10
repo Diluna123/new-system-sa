@@ -385,11 +385,62 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-dev">
           <div class="row ">
-            <div class="d-flex justify-content-center align-items-center h-100">
-
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">Products</h1>
+              <div class="btn-toolbar mb-2 mb-md-0">
+                <!-- <div class="btn-group me-2">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
+                  <svg class="bi">
+                    <use xlink:href="#calendar3" />
+                  </svg>
+                  This week
+                </button> -->
+              </div>
             </div>
 
-            <h4 class="text-center mt-5">Comming Soon!</h4>
+            <div class="row mt-2">
+              <h6>Select you want Product and preview more details</h6>
+
+              <div class="col-12">
+                <div class="accordion" id="accordionExample">
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        31 Plane
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="accordion" id="accordionExample2">
+
+                  <div class="accordion-item mt-2">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo">
+                        Penstion Plane
+                      </button>
+                    </h2>
+                    <div id="collapseTwo2" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                      <div class="accordion-body">
+                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+            </div>
 
 
 
@@ -397,10 +448,8 @@
         </main>
       </div>
     </div>
-    <div class="row">
-      <div class=" fixed-bottom" style="height: 30px; width: 100%;">
-        <p class="text-center text-secondary">Copyright &copy; 2025 D. Sithija Sulakshana</p>
-      </div>
+    <div class="mt-5">
+      <?php include 'footer.php'; ?>
     </div>
 
     </div>

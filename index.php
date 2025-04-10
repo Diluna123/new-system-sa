@@ -13,7 +13,8 @@
   <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <?php include "connection.php"; session_start(); ?>
+  <?php include "connection.php";
+  session_start(); ?>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
@@ -166,10 +167,15 @@
 </head>
 
 <body>
-  <?php if (isset($_SESSION['user'])) { ?>
+  <?php if (isset($_SESSION['user'])) {
+
+
+
+  ?>
     <?php include 'logos.php'; ?>
+
     <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">SANASA LIFE</a>
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">SANASA LIFE &nbsp; <small class="text-secondary fw-light"> version 2.0.4</small></a>
       <ul class="navbar-nav flex-row d-md-none">
         <li class="nav-item text-nowrap">
           <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
@@ -197,7 +203,33 @@
             <h1 class="h2">Dashboard</h1>
           </div>
 
-          <canvas class="my-4 w-100" id="myChart" style="width: 100%; height: 350px"></canvas>
+          <div class="row mb-3">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+              <div class="card">
+                <div class="card-title">
+                  <h6 class="card-header">Monthly Progress Chart</h6>
+                </div>
+                <div class="card-body">
+                  <canvas class="my-4 w-100" id="myChart" style="width: 100%; height: 350px"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-6 mt-sm-2 mt-lg-0 mt-md-0 mt-2">
+              <div class="card">
+                <div class="card-body">
+                  <canvas id="pieChart" width="100%" height="100"></canvas>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-6 mt-sm-2 mt-lg-0 mt-md-0 mt-2">
+              <div class="card">
+                <div class="card-body">
+
+                </div>
+              </div>
+            </div>
+          </div>
 
           <h2>Monthly Progress</h2>
           <div class="table-responsive small">
@@ -235,19 +267,21 @@
             </table>
           </div>
 
+
         </main>
       </div>
     </div>
 
-    <div class="row">
-      <div class="fixed-bottom" style="height: 30px; width: 100%;">
-        <p class="text-center text-secondary">Copyright &copy; 2025 D. Sithija Sulakshana</p>
-      </div>
+
+    <div class="mt-5">
+      <?php include 'footer.php'; ?>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+    <script src="dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script>
 
     <script>
@@ -275,12 +309,19 @@
         type: 'bar',
         data: {
           labels: months,
-          datasets: [
-            {
+          datasets: [{
               label: 'MCFP Total',
               data: mcfpTotals,
               backgroundColor: 'rgba(72, 158, 240, 0.11)',
               borderColor: 'rgba(36, 163, 248, 0.78)',
+              borderWidth: 1
+            },
+
+            {
+              label: 'Grand Total',
+              data: grandTotals,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1
             },
             {
@@ -288,13 +329,6 @@
               data: fpTotals,
               backgroundColor: 'rgba(255, 159, 64, 0.2)',
               borderColor: 'rgba(255, 159, 64, 1)',
-              borderWidth: 1
-            },
-            {
-              label: 'Grand Total',
-              data: grandTotals,
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1
             }
           ]
@@ -324,8 +358,87 @@
           }
         }
       });
+
+      const toastTrigger = document.getElementById('liveToastBtn')
+      const toastLiveExample = document.getElementById('liveToast')
+
+      if (toastTrigger) {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        toastTrigger.addEventListener('click', () => {
+          toastBootstrap.show()
+        })
+      }
     </script>
-  <?php } ?>
+
+    <script>
+      const pieCtx = document.getElementById('pieChart').getContext('2d');
+      <?php
+      // ✅ MODIFIED: Get last month's date
+      $lastMonth = date('Y-m', strtotime('first day of last month'));
+
+      // ✅ MODIFIED: Fetch last month's summary instead of current month
+      $lastMonthDataQ = Database::search("SELECT * FROM `summery_t` WHERE `users_u_id` = " . $_SESSION['user']['u_id'] . " AND `month` = '" . $lastMonth . "'");
+      $lastMonthData = $lastMonthDataQ->fetch_assoc();
+      $lastMCFP = $lastMonthData['mcfp'] ?? 0;
+      $lastFP = $lastMonthData['fp'] ?? 0;
+      ?>
+
+      new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+          labels: ['MCFP', 'FP'],
+          datasets: [{
+            data: [<?php echo $lastMCFP; ?>, <?php echo $lastFP; ?>],
+            backgroundColor: [
+              'rgba(90, 178, 236, 0.7)', // Soft Blue for MCFP
+              'rgba(252, 204, 133, 0.7)' // Soft Red for FP
+            ],
+            borderColor: [
+              'rgb(26, 156, 243)',
+              'rgb(233, 155, 38)'
+            ],
+            hoverBackgroundColor: [
+              'rgba(54, 162, 235, 0.9)',
+              'rgba(255, 174, 99, 0.9)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: '#f0f0f0' // Light font color for dark background
+              }
+            },
+            title: {
+              display: true,
+              // ✅ MODIFIED: Update chart title to reflect last month
+              text: 'MCFP vs FP - <?php echo $lastMonth; ?>',
+              color: '#ffffff',
+              font: {
+                size: 14
+              }
+            }
+          }
+        }
+      });
+    </script>
+
+  <?php } else {
+
+  ?>
+    <script>
+      window.location = "login.php";
+    </script>
+
+  <?php
+  }
+
+
+  ?>
 </body>
 
 </html>

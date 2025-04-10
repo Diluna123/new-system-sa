@@ -440,7 +440,7 @@
                                     </div>
                                 </div>
                                 <div class="row mt-5">
-                                    <div id ="reportSearchPre">
+                                    <div id="reportSearchPre">
                                         <table class="table table-striped table-hover table-sm">
                                             <thead>
                                                 <tr>
@@ -499,7 +499,7 @@
                                                     <th colspan="3" class="text-start text-warning-emphasis">Total:</th>
                                                     <th></th>
                                                     <th class="bg-warning-subtle text-end "><?php echo $totalMCFP + $totalFP; ?></th>
-                                                   
+
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -534,10 +534,8 @@
                 </main>
             </div>
         </div>
-        <div class="row">
-            <div class=" fixed-bottom" style="height: 30px; width: 100%;">
-                <p class="text-center text-secondary">Copyright &copy; 2025 D. Sithija Sulakshana</p>
-            </div>
+        <div class="mt-5">
+            <?php include 'footer.php'; ?>
         </div>
 
         </div>

@@ -106,7 +106,11 @@
 
   <div class="container">
     <div class="login-container">
-      <h4 class="text-center text-light">Sansa Easy</h4>
+      <div>
+        <h4 class="text-center text-light">Sansa Easy</h4> 
+        <small class="text-secondary text-center fw-light"> @version 2.0.4</small>
+
+      </div>
       <div class="mb-3">
         <label for="email" class="form-label text-light">Email address</label>
         <input type="email" class="form-control" id="email" placeholder="Enter email" />
