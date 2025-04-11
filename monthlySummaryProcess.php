@@ -9,7 +9,14 @@ require 'fpdf/fpdf.php';
 use PHPMailer\PHPMailer\PHPMailer;
 
 // Custom PDF class
-class CustomPDF extends FPDF {
+class CustomPDF extends FPDF
+{
+    private $userData;
+
+    public function setUserData($data) {
+        $this->userData = $data;
+    }
+
     function Header() {
         $this->SetFont('Arial', '', 10);
         $this->SetY(8);
@@ -18,14 +25,16 @@ class CustomPDF extends FPDF {
         $valueWidth = 60;
         $this->Image('sansa.png', 170, 5, 30);
 
-        $positionId = $_SESSION["user"]["position_pid"] ?? 0;
+        // Use passed user data
+        $positionId = $this->userData["position_pid"] ?? 0;
         $designation = ($positionId == 1) ? "SPO" : (($positionId == 2) ? "TL" : "Staff");
-        date_default_timezone_set('Asia/Colombo');
 
+        date_default_timezone_set('Asia/Colombo');
         $date = date('Y-m-d') . " " . date('h:i A');
-        $name = $_SESSION["user"]["u_fname"] . " " . $_SESSION["user"]["u_lname"];
-        $code = $_SESSION["user"]["code"];
-        $branch = "Madampe";
+
+        $name = $this->userData["u_fname"] . " " . $this->userData["u_lname"];
+        $code = $this->userData["code"] ?? 'N/A';
+        $branch ='Madampe';
 
         $this->Cell($labelWidth, $lineHeight, 'Designation:', 0, 0);
         $this->Cell($valueWidth, $lineHeight, $designation, 0, 1);
@@ -43,14 +52,20 @@ class CustomPDF extends FPDF {
 }
 
 // Function to generate PDF
-function generateMonthlyPDF($user_id, $month, $name) {
+function generateMonthlyPDF($userData, $month)
+
+{
+    $user_id = $userData["u_id"];
+    $name = $userData["u_fname"] . ' ' . $userData["u_lname"];
+
     $start_date = date("Y-m-01", strtotime($month));
     $end_date = date("Y-m-t", strtotime($month));
     $filename = "monthly_summary_user_{$user_id}_{$month}.pdf";
 
     // Create the custom PDF
     $pdf = new CustomPDF();
-    $pdf->AddPage();
+    $pdf->setUserData($userData); // ⬅️ this sets the data used in Header()
+    $pdf->AddPage();;
     $pdf->SetFont('Arial', 'B', 14);
     $pdf->Cell(0, 10, "Monthly Sales Summary for $name", 0, 1, 'C');
     $pdf->SetFont('Arial', '', 12);
@@ -67,11 +82,13 @@ function generateMonthlyPDF($user_id, $month, $name) {
 
     // Fetch data
     $result = Database::search("
-        SELECT pro_num, pol_num, date, payments_pay_id, ammount 
-        FROM police_t 
-        WHERE users_u_id = '$user_id' AND date BETWEEN '$start_date' AND '$end_date'
-        ORDER BY date ASC
-    ");
+    SELECT pro_num, pol_num, date, payments_pay_id, ammount 
+    FROM police_t 
+    WHERE users_u_id = '$user_id' 
+        AND date BETWEEN '$start_date' AND '$end_date'
+        AND status_s_id = 1
+    ORDER BY date ASC
+");
 
     $totalMCFP = 0;
     $totalFP = 0;
@@ -113,7 +130,8 @@ function generateMonthlyPDF($user_id, $month, $name) {
 }
 
 // Function to send email with PDF attachment
-function sendEmailWithPDF($email, $name, $month, $pdfFile) {
+function sendEmailWithPDF($email, $name, $month, $pdfFile)
+{
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
@@ -152,7 +170,7 @@ $end_date = date("Y-m-t", strtotime($month));
 
 // Step 2: Get users who had sales last month
 $users = Database::search("
-    SELECT DISTINCT u.u_id, u.u_fname, u.email 
+    SELECT DISTINCT u.u_id, u.u_fname, u.u_lname, u.email, u.code, u.position_pid
     FROM police_t p
     JOIN users u ON u.u_id = p.users_u_id
     WHERE p.date BETWEEN '$start_date' AND '$end_date'
@@ -192,7 +210,6 @@ while ($user = $users->fetch_assoc()) {
     }
 
     // Generate PDF and send email
-    $pdfFile = generateMonthlyPDF($user_id, $month, $name);
+    $pdfFile = generateMonthlyPDF($user, $month);
     sendEmailWithPDF($email, $name, $month, $pdfFile);
 }
-?>
