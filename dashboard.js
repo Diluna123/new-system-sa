@@ -704,6 +704,33 @@ function searchPolicyReport() {
   req.send(form);
 }
 
+
+function updateUserInfo(){
+  const fname = document.getElementById("SfirstName").value;
+  const lname = document.getElementById("SlastName").value;
+  const code = document.getElementById("Scode").value;
+
+  var req = new XMLHttpRequest();
+  var form = new FormData();
+  form.append("fname", fname);
+  form.append("lname", lname);
+  form.append("code", code);
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      if (req.responseText == "success") {
+        alert("User Info Updated Successfully");
+        window.location.reload();
+      } else {
+        alert(req.responseText);
+      }
+    }
+  };
+  req.open("POST", "updateUserInfoProcess.php", true);
+  req.send(form);
+}
+
+
+
 //report printing
 
 function printReport() {
