@@ -366,12 +366,16 @@ function nicModalOpen(cid) {
 function signin() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  var rpw = document.getElementById("rpw");
+
   //   const checkbox = document.getElementById("checkbox");
   //   const alertbox = document.getElementById("alert-d");
 
   const form = new FormData();
   form.append("email", email);
   form.append("password", password);
+  form.append("rpw", rpw.checked);
+
   //   form.append("cResults", checkbox.checked);
 
   const request = new XMLHttpRequest();
