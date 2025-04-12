@@ -4,6 +4,8 @@ include "connection.php";
 
 $email = $_POST["email"];
 $psw = $_POST["password"];
+$rpw = $_POST["rpw"];
+
 // $checkRes = $_POST["cResults"];
 
 
@@ -34,6 +36,17 @@ if(empty($email)){
         }
         else{
             $_SESSION["user"] = $data;
+
+            if($rpw == "true"){
+                setcookie("email",$email,time()+(60*60*24*365));
+                setcookie("password",$psw,time()+(60*60*24*365));
+    
+            }else{
+                setcookie("email","",-1);
+                setcookie("password","",-1);
+    
+            }
+
            
             // if($checkRes == "true"){
                

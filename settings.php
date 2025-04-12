@@ -254,12 +254,18 @@
 
                                     <div class="row mb-3">
                                         <div class="col-6">
+                                            <?php
+                                            $UData = Database::search("SELECT * FROM `users` WHERE `u_id` = '" . $_SESSION['user']['u_id'] . "'");
+                                            $UData = $UData->fetch_assoc();
+                                            
+                                            
+                                            ?>
                                             <label for="firstName" class="form-label text-secondary-emphasis">First Name</label>
-                                            <input type="text" class="form-control form-control-sm" id="firstName" placeholder="Enter first name" value="<?php echo $_SESSION['user']['u_fname']; ?>">
+                                            <input type="text" class="form-control form-control-sm" id="SfirstName" placeholder="Enter first name" value="<?php echo $UData['u_fname']; ?>">
                                         </div>
                                         <div class="col-6">
                                             <label for="lastName" class="form-label text-secondary-emphasis">Last Name</label>
-                                            <input type="text" class="form-control form-control-sm" id="lastName" placeholder="Enter last name" value="<?php echo $_SESSION['user']['u_lname']; ?>">
+                                            <input type="text" class="form-control form-control-sm" id="SlastName" placeholder="Enter last name" value="<?php echo $UData['u_lname']; ?>">
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -280,11 +286,11 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="code" class="form-label text-secondary-emphasis">Code</label>
-                                        <input type="text" class="form-control form-control-sm" id="code" value="<?php echo $_SESSION['user']['code']; ?>" placeholder="Enter code">
+                                        <input type="text" class="form-control form-control-sm" id="Scode" value="<?php echo $UData['code']; ?>" placeholder="Enter code">
                                     </div>
 
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="" class="btn btn-primary btn-sm col-4">Update</button>
+                                        <button type="" class="btn btn-primary btn-sm col-4" onclick="updateUserInfo();">Update</button>
                                     </div>
 
                                 </div>
@@ -337,7 +343,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title ">Delete Your Account</h5>
                                     <p class="card-text text-danger-emphasis">Once you delete your account, there is no going back. Please be certain.</p>
-                                    <a href="#" class="btn btn-sm btn-outline-danger">Delete Account</a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger disabled" >Delete Account</a>
                                 </div>
                             </div>
                         </div>

@@ -61,13 +61,16 @@
         transform: scale(0.3);
         opacity: 0;
       }
+
       50% {
         transform: scale(1.05);
         opacity: 1;
       }
+
       70% {
         transform: scale(0.9);
       }
+
       100% {
         transform: scale(1);
       }
@@ -77,6 +80,7 @@
       from {
         width: 0;
       }
+
       to {
         width: 22.7ch;
       }
@@ -107,17 +111,43 @@
   <div class="container">
     <div class="login-container">
       <div>
-        <h4 class="text-center text-light">Sansa Easy</h4> 
+        <h4 class="text-center text-light">Sansa Easy</h4>
         <small class="text-secondary text-center fw-light"> @version 2.0.4</small>
 
       </div>
+      <?php
+
+                    $email = "";
+                    $psw = "";
+
+                    if (isset($_COOKIE["email"])) {
+                        $email = $_COOKIE["email"];
+                    }
+                    if (isset($_COOKIE["password"])) {
+                        $psw = $_COOKIE["password"];
+                    }
+
+
+                    ?>
+
+
+
       <div class="mb-3">
         <label for="email" class="form-label text-light">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" />
+        <input type="email" class="form-control" id="email" placeholder="Enter email" value="<?php echo $email; ?>" />
       </div>
       <div class="mb-3">
         <label for="password" class="form-label text-light">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Enter password" />
+        <input type="password" class="form-control" id="password" placeholder="Enter password"  value="<?php echo $psw; ?>" />
+      </div>
+      <div class="row mt-1">
+        <div class="col-6">
+
+          <input type="checkbox" id="rpw" class="form-label mt-1" <?php if(isset($_COOKIE["password"])){echo 'checked';} ?>>
+          <label for="rpw" class="form-label " >Remember me</label>
+
+        </div>
+        
       </div>
       <button class="btn btn-warning w-100" onclick="signin();">Login</button>
     </div>
