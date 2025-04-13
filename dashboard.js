@@ -146,6 +146,7 @@ function updateCustomer(cid) {
         setTimeout(function () {
           showCanvasModal(cid);
         }, 1000);
+        window.location.reload();
         // setTimeout(showCanvasModal(cid), 30000);
 
         // setTimeout(() => {
@@ -386,9 +387,6 @@ function signin() {
         window.location.href = "index.php";
       } else {
         alert(this.responseText);
-       
-        
-        
       }
     }
   };
@@ -708,8 +706,7 @@ function searchPolicyReport() {
   req.send(form);
 }
 
-
-function updateUserInfo(){
+function updateUserInfo() {
   const fname = document.getElementById("SfirstName").value;
   const lname = document.getElementById("SlastName").value;
   const code = document.getElementById("Scode").value;
@@ -733,13 +730,9 @@ function updateUserInfo(){
   req.send(form);
 }
 
-
-
 //report printing
 
 function printReport() {
-
-
   var planTy = document.getElementById("PlanType").value;
   var fdate = document.getElementById("fromDate").value;
   var tdate = document.getElementById("toDate").value;
@@ -761,18 +754,15 @@ function printReport() {
   document.body.appendChild(form);
   form.submit();
   document.body.removeChild(form);
-
-
-
 }
 
-const schedule = require('node-schedule');
+const schedule = require("node-schedule");
 
 // Schedule a job at 23:59 on the last day of each month
-const job = schedule.scheduleJob('59 23 28-31 * *', function(){
+const job = schedule.scheduleJob("59 23 28-31 * *", function () {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  
+
   if (tomorrow.getDate() === 1) {
     // It's the last day of the month
     runMonthlySummary();
@@ -791,7 +781,92 @@ function runMonthlySummary() {
   };
   req.open("GET", "monthlySummaryProcess.php", true);
   req.send();
+}
 
+function addMCustomer() {
+  const fname = document.getElementById("Mfname").value;
+  const lname = document.getElementById("Mlname").value;
+  const contact = document.getElementById("Mcnum").value;
+  const ammount = document.getElementById("Mammount").value;
+  const plan = document.getElementById("Mplan").value;
+  const loc = document.getElementById("Mloc").value;
 
+  const payId = document.getElementById("Mpayment").value;
 
+  var form = new FormData();
+  form.append("fname", fname);
+  form.append("lname", lname);
+  form.append("contact", contact);
+  form.append("ammount", ammount);
+  form.append("plan", plan);
+  form.append("loc", loc);
+  form.append("payId", payId);
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      if (req.responseText == "success") {
+        alert("Customer Added Successfully");
+        window.location.reload();
+      } else {
+        alert(req.responseText);
+      }
+    }
+  };
+  req.open("POST", "addMCustomerProcess.php", true);
+  req.send(form);
+}
+
+function searchMD() {
+  var indate = document.getElementById("searchInputMD").value;
+  var table = document.getElementById("searchResultsMD");
+
+  table.innerHTML = "";
+  table.innerHTML =
+    '<tr id="loadingRow" class="text-center"><td colspan="7"><div class="d-flex justify-content-center align-items-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><span class="ms-2 text-muted">Loading data...</span></div></td></tr>';
+
+  var req = new XMLHttpRequest();
+
+  var form = new FormData();
+  form.append("indate", indate);
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      table.innerHTML = req.responseText;
+    }
+  };
+  req.open("POST", "searchMDProcess.php", true);
+  req.send(form);
+}
+
+function getMDPolicysDetails(cid) {
+  var myOffcanvas = document.getElementById("detailsViewCanvasMobile");
+  var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+  bsOffcanvas.show();
+
+  var canvasBody = document.getElementById("detailsViewCanvasMobileBody");
+
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      canvasBody.innerHTML = req.responseText;
+    }
+  };
+  req.open("GET", "getMDPolicysDetailsProcess.php?cid=" + cid, true);
+  req.send();
+}
+
+function policyAssign(cid) {
+
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      if (req.responseText == "success") {
+        alert("Policy Assigned Successfully");
+        window.location.reload();
+      }else{
+        alert(req.responseText);
+      }
+    }
+  };
+  req.open("GET", "policyAssignProcess.php?cid=" + cid, true);
+  req.send();
 }
