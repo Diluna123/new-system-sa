@@ -30,6 +30,55 @@
       font-weight: bold;
     }
 
+    /* Card hover effects */
+    .myCard,
+    .card.border-info-subtle,
+    .card.border-danger-subtle,
+    .card.border-warning-subtle {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .myCard:hover,
+    .card.border-info-subtle:hover,
+    .card.border-danger-subtle:hover,
+    .card.border-warning-subtle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+
+    /* Hidden details initially */
+    .card-details {
+      display: none;
+      font-size: 0.8rem;
+      color: #bbb;
+    }
+
+    /* Show on hover */
+    .myCard:hover .card-details,
+    .card.border-info-subtle:hover .card-details,
+    .card.border-danger-subtle:hover .card-details,
+    .card.border-warning-subtle:hover .card-details {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
     @media (max-width: 768px) {
 
       .card-body input,
@@ -44,6 +93,9 @@
       .form-label {
         font-size: 0.85rem;
       }
+
+
+
     }
   </style>
 </head>
@@ -105,36 +157,60 @@
           ?>
 
           <!-- Cards Section -->
+          <!-- Cards Section -->
           <div class="row g-3 mb-3">
+            <!-- MCFP Card -->
             <div class="col-6 col-sm-4 col-lg-3">
-              <div class="card border-success-subtle h-100">
+              <div class="card myCard border-success-subtle h-100">
                 <div class="card-body">
                   <small>MCFP:</small>
                   <div><label><?= number_format($mcfp, 2) ?> /=</label></div>
+                  <div class="card-details mt-2">
+                    <small><i class="bi bi-cash-stack me-1"></i>Types: 1, 2, 4</small><br>
+                    <small><i class="bi bi-calendar3 me-1"></i>Date: <?= $today ?></small>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <!-- FP Card -->
             <div class="col-6 col-sm-4 col-lg-3">
               <div class="card border-info-subtle h-100">
                 <div class="card-body">
                   <small>FP:</small>
                   <div><label><?= number_format($fp, 2) ?> /=</label></div>
+                  <div class="card-details mt-2">
+                    <small><i class="bi bi-cash-coin me-1"></i>Types: 3, 5</small><br>
+                    <small><i class="bi bi-calendar3 me-1"></i>Date: <?= $today ?></small>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <!-- Nops Card -->
             <div class="col-6 col-sm-4 col-lg-3">
               <div class="card border-danger-subtle h-100">
                 <div class="card-body">
                   <small>Nops:</small>
                   <div><label><?= $nops ?></label></div>
+                  <div class="card-details mt-2">
+                    <small><i class="bi bi-person-lines-fill me-1"></i>Total policies added</small><br>
+                    <small><i class="bi bi-calendar3 me-1"></i>Date: <?= $today ?></small>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <!-- Grand Total Card -->
             <div class="col-6 col-sm-12 col-lg-3">
               <div class="card border-warning-subtle h-100">
                 <div class="card-body">
                   <small>Total:</small>
                   <div><label><?= number_format($grandTotal, 2) ?> /=</label></div>
+                  <div class="card-details mt-2">
+                    <small><i class="bi bi-graph-up me-1"></i>MCFP + FP</small><br>
+                    <small><i class="bi bi-calendar3 me-1"></i>Date: <?= $today ?></small>
+                  </div>
                 </div>
               </div>
             </div>
@@ -161,7 +237,7 @@
                   </div>
                   <div class="mb-2">
                     <label class="form-label">Amount:</label>
-                    <input type="number" class="form-control form-control-sm" id="Mammount" placeholder="Amount">
+                    <input type="number" class="form-control form-control-sm" id="Mammount" placeholder="Amount" min="0" step="0.01">
                   </div>
                   <div class="mb-2">
                     <label class="form-label">Plan:</label>
@@ -232,10 +308,10 @@
 
                     $getMDPolicys = Database::search("SELECT * FROM `mobiled` JOIN `plans` ON `mobiled`.`plans_p_id`=`plans`.`p_id` WHERE `m_date` = '$today'  ORDER BY `mobiled`.`m_date` DESC");
                     if ($getMDPolicys->num_rows > 0) {
-                      for ($counter = 0; $counter< $getMDPolicys->num_rows ; $counter++) {
+                      for ($counter = 0; $counter < $getMDPolicys->num_rows; $counter++) {
                         $dataMDPolicys = $getMDPolicys->fetch_assoc();
 
-                        ?>
+                    ?>
                         <tr onclick="getMDPolicysDetails(<?php echo $dataMDPolicys['m_id']; ?>);">
                           <td><?php echo ($counter + 1); ?></td>
                           <td><?php echo $dataMDPolicys["M_fname"] . " " . $dataMDPolicys["M_lname"]; ?></td>
@@ -252,15 +328,15 @@
                         </tr>
 
 
-                        
-                        
-                        <?php
-                      
 
-                        
+
+                    <?php
+
+
+
                       }
                     } else {
-                      echo "<tr><td colspan='6' class='text-center text-muted fw-bold'>NO CUSTOMER LEADS</td></tr>";
+                      echo "<tr><td colspan='7' class='text-center text-muted fw-bold'>NO CUSTOMER LEADS</td></tr>";
                     }
                     ?>
                   </tbody>
@@ -276,6 +352,18 @@
             <div class="offcanvas-body" id="detailsViewCanvasMobileBody">
             </div>
           </div>
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+            <div id="liveToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body" id="toastBody">
+
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>
+
 
 
         </main>
@@ -292,6 +380,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
   <?php
   } else { ?>

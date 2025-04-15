@@ -108,6 +108,7 @@ if ($cid === null) {
                 <div class="col-12 text-center">
                     <button class="btn btn-outline-warning btn-sm" onclick="policyAssign(<?php echo $cid; ?>);">Transfer to My Policies</button>
                 </div>
+                
 
             <?php
 

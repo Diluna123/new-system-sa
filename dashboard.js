@@ -855,18 +855,35 @@ function getMDPolicysDetails(cid) {
 }
 
 function policyAssign(cid) {
+  const tostBody = document.getElementById("toastBody");
+  const toastLiveExample = document.getElementById("liveToast");
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
 
-  var req = new XMLHttpRequest();
+  const myOffcanvas = document.getElementById("detailsViewCanvasMobile");
+  const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(myOffcanvas);
+
+  const req = new XMLHttpRequest();
   req.onreadystatechange = function () {
-    if (req.readyState == 4 && req.status == 200) {
-      if (req.responseText == "success") {
-        alert("Policy Assigned Successfully");
-        window.location.reload();
-      }else{
+    if (req.readyState === 4 && req.status === 200) {
+      if (req.responseText === "success") {
+        tostBody.innerHTML = "Policy Assigned Successfully!";
+        bsOffcanvas.hide(); // Close the offcanvas
+        toastBootstrap.show(); // Show the toast
+
+        // Reload after 2 seconds to give user time to see the toast
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } else {
         alert(req.responseText);
       }
     }
   };
+
   req.open("GET", "policyAssignProcess.php?cid=" + cid, true);
   req.send();
 }
+
+
+
+

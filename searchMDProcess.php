@@ -59,5 +59,5 @@ if($indate !== $today){
 
     
 } else {
-    echo "<tr><td colspan='6' class='text-center text-muted fw-bold'>NO CUSTOMER LEADS</td></tr>";
+    echo "<tr><td colspan='7' class='text-center text-muted fw-bold'>NO CUSTOMER LEADS</td></tr>";
 }
