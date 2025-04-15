@@ -62,7 +62,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-2" href="Products.php">
+          <a class="nav-link d-flex align-items-center gap-2 " href="Products.php" >
             <svg class="bi">
               <use xlink:href="#cart" />
             </svg>
@@ -80,7 +80,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-2" href="#">
+          <a class="nav-link d-flex align-items-center gap-2" href="salery.php">
             <svg class="bi">
               <use xlink:href="#puzzle" />
             </svg>
