@@ -42,10 +42,10 @@ new-system-sa/
 ├── index.php             # Login or dashboard
 ├── README.md             # ← This file!
 ```
-🧪 How It Works
+## 🧪 How It Works
 ✅ Users input sales data (police_t)
 
-📆 At the end of the month, script:
+### 📆 At the end of the month, script:
 
 Queries users with sales last month
 
@@ -57,16 +57,15 @@ Sends it via email
 
 Logs the report in summery_t
 
-📬 Each user receives a detailed monthly PDF with totals.
+## 📬 Each user receives a detailed monthly PDF with totals.
 
-🖥️ Setup Instructions
+## 🖥️ Setup Instructions
 Clone the repository
 
-bash
-Copy
-Edit
+```
 git clone https://github.com/Diluna123/new-system-sa.git
 cd new-system-sa
+```
 Setup the database
 
 Import your SQL schema (make sure users, police_t, summery_t tables exist)
@@ -77,32 +76,39 @@ Configure Email
 
 In generate_report.php, set your Gmail SMTP credentials:
 
-php
-Copy
-Edit
+```
 $mail->Username = 'your_email@gmail.com';
 $mail->Password = 'your_app_password';
 Run report generator
+
+```
 
 Either schedule it with a CRON job
 
 Or manually run via browser or CLI:
 
-nginx
-Copy
-Edit
-php generate_report.php
-📷 Screenshots (Optional)
+
+```generate_report.php```
+## 📷 Screenshots (Optional)
 Add screenshots of the dashboard, reports, or email preview here.
 
-🙌 Credits
+**Dashboard :**
+
+![Screenshot 2025-04-19 182448](https://github.com/user-attachments/assets/edaf38db-e50e-49a5-8b34-1d9e7c354d6c)
+
+**Policy Report :**
+
+![Screenshot 2025-04-19 182536](https://github.com/user-attachments/assets/2b0b284a-dd0f-4beb-873f-f7125db73bce)
+
+
+## 🙌 Credits
 Developed by Diluna
 
 PDF engine: FPDF
 
 Mailer: PHPMailer
 
-📬 Contact
+## 📬 Contact
 Got questions or feedback?
 
 📧 Email: dilunasithija111@gmail.com
@@ -112,10 +118,3 @@ Got questions or feedback?
 📄 License
 This project is licensed under the MIT License. See LICENSE for details.
 
-yaml
-Copy
-Edit
-
----
-
-Let me know if you want me to help you **add this directly to the repo**, or generate a `LICENSE` file too!
