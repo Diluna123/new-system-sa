@@ -131,7 +131,7 @@
     if (isset($_SESSION['user'])) {
 
     ?>
-        <?php include 'logos.php';?>
+        <?php include 'logos.php'; ?>
 
         <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">SANASA LIFE</a>
@@ -173,6 +173,7 @@
                     $tz = new DateTimeZone("Asia/Colombo");
                     $d->setTimezone($tz);
                     $currentdate = $d->format("Y-m-d");
+                    
 
 
                     $dataForTot = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`!='3' AND `date`= '$currentdate'");
@@ -214,6 +215,49 @@
                             </button>
                         </div>
                     </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <?php
+
+                                        $dataForTotAll = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1'");
+                                        $dataForTotAllNum = $dataForTotAll->num_rows;
+
+                                        $targetQ = Database::search("SELECT * FROM `targets` WHERE `users_u_id` = '$uid' AND `status_s_id`='2' AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'");
+                                        $targetQNum = $targetQ->num_rows;
+                                        if ($targetQNum > 0) {
+                                            $targetQData = $targetQ->fetch_assoc();
+                                            $targetAmmount = $targetQData['target'];
+                                        } else {
+                                            $targetAmmount = 5000;
+                                        }
+
+                                        if ($dataForTotAllNum > 0) {
+
+                                            $totalAll = 0;
+                                            for ($i = 0; $i < $dataForTotAllNum; $i++) {
+                                                $dataFortotAll = $dataForTotAll->fetch_assoc();
+                                                $totalAll += $dataFortotAll['ammount'];
+                                            }
+                                      
+
+                                        }else{
+                                            $totalAll = 0;
+                                        }
+
+
+
+                                        ?>
+                                        <div class="col-6 text-warning">Monthly Target :</div>
+                                        <div class="col-6 text-end text-success"> <?php echo $totalAll; ?>  / <span class="text-secondary"><?php echo $targetAmmount;?></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
                             <div class="card bg-success">
