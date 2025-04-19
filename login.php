@@ -112,7 +112,7 @@
     <div class="login-container">
       <div>
         <h4 class="text-center text-light">Sansa Easy</h4>
-        <small class="text-secondary text-center fw-light"> @version 2.0.5</small>
+        <small class="text-secondary text-center fw-light"> @version 2.0.6</small>
 
       </div>
       <?php
