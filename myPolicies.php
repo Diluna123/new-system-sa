@@ -173,7 +173,7 @@
                     $tz = new DateTimeZone("Asia/Colombo");
                     $d->setTimezone($tz);
                     $currentdate = $d->format("Y-m-d");
-                    
+
 
 
                     $dataForTot = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`!='3' AND `date`= '$currentdate'");
@@ -227,6 +227,17 @@
 
                                         $targetQ = Database::search("SELECT * FROM `targets` WHERE `users_u_id` = '$uid' AND `status_s_id`='2' AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'");
                                         $targetQNum = $targetQ->num_rows;
+                                        $dataForTotMonth1 = Database::search("
+    SELECT * FROM `police_t` 
+    WHERE `users_u_id` = '$uid' 
+    AND `status_s_id` = '1' 
+    AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
+");
+$dataForTotMonthNum1 = $dataForTotMonth1->num_rows;
+
+
+
+
                                         if ($targetQNum > 0) {
                                             $targetQData = $targetQ->fetch_assoc();
                                             $targetAmmount = $targetQData['target'];
@@ -234,24 +245,24 @@
                                             $targetAmmount = 5000;
                                         }
 
-                                        if ($dataForTotAllNum > 0) {
+                                        if ($dataForTotMonthNum1 > 0) {
 
-                                            $totalAll = 0;
-                                            for ($i = 0; $i < $dataForTotAllNum; $i++) {
-                                                $dataFortotAll = $dataForTotAll->fetch_assoc();
-                                                $totalAll += $dataFortotAll['ammount'];
+                                            $totalMonthly1 = 0;
+                                            for ($i = 0; $i < $dataForTotMonthNum1; $i++) {
+
+                                                $dataFortotMonth1 = $dataForTotMonth1->fetch_assoc();
+
+                                                $totalMonthly1 += $dataFortotMonth1['ammount'];
                                             }
-                                      
-
-                                        }else{
-                                            $totalAll = 0;
+                                        } else {
+                                            $totalMonthly1 = 0;
                                         }
 
 
 
                                         ?>
                                         <div class="col-6 text-warning">Monthly Target :</div>
-                                        <div class="col-6 text-end text-success"> <?php echo $totalAll; ?>  / <span class="text-secondary"><?php echo $targetAmmount;?></span> </div>
+                                        <div class="col-6 text-end text-success"> <?php echo $totalMonthly1; ?> / <span class="text-secondary"><?php echo $targetAmmount; ?></span> </div>
                                     </div>
                                 </div>
                             </div>
