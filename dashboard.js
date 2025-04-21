@@ -710,12 +710,14 @@ function updateUserInfo() {
   const fname = document.getElementById("SfirstName").value;
   const lname = document.getElementById("SlastName").value;
   const code = document.getElementById("Scode").value;
+  const contact = document.getElementById("contactNum").value;
 
   var req = new XMLHttpRequest();
   var form = new FormData();
   form.append("fname", fname);
   form.append("lname", lname);
   form.append("code", code);
+  form.append("contact", contact);
   req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
       if (req.responseText == "success") {

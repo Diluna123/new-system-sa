@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+  <link rel="stylesheet" href="css/border.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 
   <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.4/dist/kute.min.js"></script>
@@ -161,7 +162,7 @@
           <div class="row g-3 mb-3">
             <!-- MCFP Card -->
             <div class="col-6 col-sm-4 col-lg-3">
-              <div class="card myCard border-success-subtle h-100">
+              <div class="card myCard border-left-success h-100">
                 <div class="card-body">
                   <small>MCFP:</small>
                   <div><label><?= number_format($mcfp, 2) ?> /=</label></div>
@@ -175,7 +176,7 @@
 
             <!-- FP Card -->
             <div class="col-6 col-sm-4 col-lg-3">
-              <div class="card border-info-subtle h-100">
+              <div class="card myCard  border-left-info h-100">
                 <div class="card-body">
                   <small>FP:</small>
                   <div><label><?= number_format($fp, 2) ?> /=</label></div>
@@ -189,7 +190,7 @@
 
             <!-- Nops Card -->
             <div class="col-6 col-sm-4 col-lg-3">
-              <div class="card border-danger-subtle h-100">
+              <div class="card myCard border-left-danger h-100">
                 <div class="card-body">
                   <small>Nops:</small>
                   <div><label><?= $nops ?></label></div>
@@ -203,7 +204,7 @@
 
             <!-- Grand Total Card -->
             <div class="col-6 col-sm-12 col-lg-3">
-              <div class="card border-warning-subtle h-100">
+              <div class="card myCard  border-left-warning h-100">
                 <div class="card-body">
                   <small>Total:</small>
                   <div><label><?= number_format($grandTotal, 2) ?> /=</label></div>

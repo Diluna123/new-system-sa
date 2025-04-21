@@ -244,58 +244,7 @@
 
                     </div>
                     <div class="row mt-3">
-                        <div class="col-12 mb-3">
-                            <div class="card">
-                                <div class="card-header text-secondary">
-                                    User Profile Settings
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">User Profile</h5>
-
-                                    <div class="row mb-3">
-                                        <div class="col-6">
-                                            <?php
-                                            $UData = Database::search("SELECT * FROM `users` WHERE `u_id` = '" . $_SESSION['user']['u_id'] . "'");
-                                            $UData = $UData->fetch_assoc();
-                                            
-                                            
-                                            ?>
-                                            <label for="firstName" class="form-label text-secondary-emphasis">First Name</label>
-                                            <input type="text" class="form-control form-control-sm" id="SfirstName" placeholder="Enter first name" value="<?php echo $UData['u_fname']; ?>">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="lastName" class="form-label text-secondary-emphasis">Last Name</label>
-                                            <input type="text" class="form-control form-control-sm" id="SlastName" placeholder="Enter last name" value="<?php echo $UData['u_lname']; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label text-secondary-emphasis">Email</label>
-                                        <input type="email" class="form-control form-control-sm" id="email" value="<?php echo $_SESSION['user']['email']; ?>" disabled>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="position" class="form-label text-secondary-emphasis">Position</label>
-                                        <?php
-                                        if ($_SESSION['user']['position_pid'] == 1) {
-                                            $position = 'SPO';
-                                        } else if ($_SESSION['user']['position_pid'] == 2) {
-                                            $position = 'TL';
-                                        }
-
-                                        ?>
-                                        <input type="text" class="form-control form-control-sm" id="position" value="<?php echo $position; ?>" disabled>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="code" class="form-label text-secondary-emphasis">Code</label>
-                                        <input type="text" class="form-control form-control-sm" id="Scode" value="<?php echo $UData['code']; ?>" placeholder="Enter code">
-                                    </div>
-
-                                    <div class="col-12 d-flex justify-content-end">
-                                        <button type="" class="btn btn-primary btn-sm col-4" onclick="updateUserInfo();">Update</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                        <!-- //removed user profile settings -->
 
 
                         <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">

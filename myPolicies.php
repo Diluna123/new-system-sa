@@ -15,6 +15,9 @@
 
 
     <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+  
+    <link href="css/border.css" rel="stylesheet">
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
     <link rel="manifest" href="manifest.json">
@@ -217,7 +220,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-12">
-                            <div class="card">
+                            <div class="card .border-left-warning">
                                 <div class="card-body">
                                     <div class="row">
                                         <?php
@@ -455,7 +458,7 @@ $dataForTotMonthNum1 = $dataForTotMonth1->num_rows;
 
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
-                            <div class="card">
+                            <div class="card border-left-primary">
                                 <div class="card-body">
                                     <small>MCFP: </small>
 
@@ -512,7 +515,7 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
 
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
-                            <div class="card">
+                            <div class="card border-left-success">
                                 <div class="card-body">
                                     <small>FP: </small>
                                     <div>
