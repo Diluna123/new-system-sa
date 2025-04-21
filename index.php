@@ -200,8 +200,51 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-dev">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
+            <h1 class="h2 mb-0">Dashboard</h1>
+            <div class="btn-toolbar mb-2 mb-md-0 dropdown">
+              <button class="btn btn-sm border-0 d-flex align-items-center text-white px-2"
+                type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="me-2 d-none d-md-inline"><?php echo $_SESSION['user']['u_fname'] . " " . $_SESSION['user']['u_lname']; ?></span>
+                <div class="proPic bg-secondary d-flex justify-content-center align-items-center"
+                  style="width: 32px; height: 32px; border-radius: 50%;">
+                  <span class="text-white  fw-bold"> <img src="my.JPG"  class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
+                  
+                </div>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow rounded border-0" aria-labelledby="userDropdown" style="min-width: 200px;">
+                <li class="px-3 py-2">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-secondary d-flex justify-content-center align-items-center rounded-circle me-2" style="width: 40px; height: 40px;">
+                    <span class="text-white  fw-bold"> <img src="my.JPG"  class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
+                      
+                    </div>
+                    <div>
+                      <div class="fw-semibold"><?php echo $_SESSION['user']['u_fname'] . " " . $_SESSION['user']['u_lname']; ?></div>
+                      <small class="text-muted">
+                        <?php
+                        $positionD = Database::search("SELECT * FROM `position` WHERE `pid` = '" . $_SESSION['user']['position_pid'] . "'");
+                        $positionData = $positionD->fetch_assoc();
+
+
+                        ?>
+                        <?php echo $positionData['position']; ?>
+                      </small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <hr class="dropdown-divider my-1">
+                </li>
+                <li><a class="dropdown-item py-2" href="usreProfile.php">Profile</a></li>
+                <li><a class="dropdown-item py-2" href="settings.php">Settings</a></li>
+                <li><a class="dropdown-item py-2 text-danger" href="#" onclick="signOut();">Logout</a></li>
+              </ul>
+            </div>
           </div>
+
+
+
+
 
           <div class="row mb-3">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">

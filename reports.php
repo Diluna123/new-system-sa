@@ -290,6 +290,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="leadsReport" role="tabpanel">
+                                
                                 <h2>Monthlty Summery</h2>
                                 <p>Details about the leads report go here.</p>
                                 <button class="btn btn-sm btn-warning" onclick="window.location.href='salesAnalizeReport.php';">Get Monthly Summery Report</button>
