@@ -281,6 +281,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                            <div class="card">
+                                <div class="card-header text-secondary">
+                                    Genarate Your Agent Activation Code
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <?php
+
+                                        $lactVcode = Database::search("SELECT `referalCode` FROM `users` WHERE `u_id`='" . $_SESSION["user"]["u_id"] . "' ORDER BY `u_id` DESC LIMIT 1;")->fetch_assoc();
+                                        
+                                        ?>
+                                        <div class="col-8"><label for="" class="form-label">Activation Code:</label></div>
+                                        <div class="col-4"><input type="text" class="form-control form-control-sm text-center" value="<?php echo $lactVcode["referalCode"]; ?>"  id="GVcode" disabled></div>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-sm btn-warning col-3" onclick="genarateCode();">Genarate</button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
                         <div>
                             <hr>
                         </div>
@@ -292,7 +315,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title ">Delete Your Account</h5>
                                     <p class="card-text text-danger-emphasis">Once you delete your account, there is no going back. Please be certain.</p>
-                                    <a href="#" class="btn btn-sm btn-outline-danger disabled" >Delete Account</a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger disabled">Delete Account</a>
                                 </div>
                             </div>
                         </div>

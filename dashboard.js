@@ -887,5 +887,19 @@ function policyAssign(cid) {
 }
 
 
+// genarate verification code
 
+function genarateCode(){
+  var codeIn = document.getElementById("GVcode");
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+     
+        codeIn.value = req.responseText;
+      
+    }
+  };
+  req.open("GET", "genarateCodeProcess.php", true);
+  req.send();
+}
 
