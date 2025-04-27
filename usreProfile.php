@@ -271,7 +271,7 @@
                                     <!-- Profile Picture -->
                                     <div class="col-lg-3 text-center position-relative">
                                         <div class="profile-img-wrapper position-relative mx-auto">
-                                            <img src="my.JPG" alt="Profile" class="rounded-circle border border-3 border-light shadow" style="width: 180px; height: 180px; object-fit: cover;">
+                                            <img src="pro.png" alt="Profile" class="rounded-circle border border-3 border-light shadow" style="width: 180px; height: 180px; object-fit: cover;">
                                             <button class="edit-btn btn btn-sm btn-light position-absolute bottom-0 end-0 rounded-circle" style="transform: translate(20%, 20%);">
                                                 <i class="fa fa-camera text-dark"></i>
                                             </button>

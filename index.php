@@ -207,7 +207,7 @@
                 <span class="me-2 d-none d-md-inline"><?php echo $_SESSION['user']['u_fname'] . " " . $_SESSION['user']['u_lname']; ?></span>
                 <div class="proPic bg-secondary d-flex justify-content-center align-items-center"
                   style="width: 32px; height: 32px; border-radius: 50%;">
-                  <span class="text-white  fw-bold"> <img src="my.JPG"  class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
+                  <span class="text-white  fw-bold"> <img src="pro.png"  class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
                   
                 </div>
               </button>
@@ -215,7 +215,7 @@
                 <li class="px-3 py-2">
                   <div class="d-flex align-items-center">
                     <div class="bg-secondary d-flex justify-content-center align-items-center rounded-circle me-2" style="width: 40px; height: 40px;">
-                    <span class="text-white  fw-bold"> <img src="my.JPG"  class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
+                    <span class="text-white  fw-bold"> <img src="pro.png"  class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
                       
                     </div>
                     <div>
