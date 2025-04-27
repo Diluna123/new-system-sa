@@ -259,7 +259,7 @@
             </div>
             <div class="right-section col-md-7">
                 <h2 id="loginHeader">Login</h2>
-                <form id="loginForm">
+               
                     <div class="form-group">
                         <input type="text" id="contactNum" name="contactNum" required />
                         <label for="contactNum" id="contactNumLabel">Contact Number</label>
@@ -268,8 +268,8 @@
                         <input type="password" id="password" name="password" required />
                         <label for="password" id="passwordLabel">Password</label>
                     </div>
-                    <button type="submit">Login</button>
-                </form>
+                    <button onclick="afLogin();">Login</button>
+               
                 <div class="mt-3">
                     <button id="langToggle" class="btn border-0 text-secondary text-center">
                       <span id="langText">Switch to Sinhala</span>
@@ -335,6 +335,9 @@
         // Initial call to update text when the page loads
         updateTexts();
     </script>
+    <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <?php
+  include '../connection.php';
+  session_start();
+  ?>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sanasa Easy Affiliate Program Registration</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
@@ -24,81 +27,56 @@
       background-color: #fff;
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
       display: flex;
-      width: 100%;
       max-width: 900px;
+      width: 100%;
       flex-direction: row;
-      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-      opacity: 0;
-      transform: scale(0.95);
-      animation: fadeIn 0.8s forwards;
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .left-section,
+    .right-section {
+      padding: 40px;
+      width: 50%;
     }
 
     .left-section {
       background-color: #007bff;
       color: white;
-      padding: 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      animation: slideInLeft 1s ease-out;
     }
 
     .left-section h2 {
       font-size: 2.5em;
       margin-bottom: 20px;
       font-weight: 600;
-      animation: slideInLeft 1s ease-out;
-    }
-
-    .left-section p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      opacity: 0.8;
-      animation: slideInLeft 1s ease-out 0.5s;
     }
 
     .right-section {
-      padding: 40px;
+      background: white;
       animation: slideInRight 1s ease-out;
-    }
-
-    .right-section h2 {
-      color: #333;
-      margin-bottom: 30px;
-      font-size: 2em;
-      font-weight: 600;
-      text-align: left;
     }
 
     .form-group {
       position: relative;
       margin-bottom: 30px;
-      transition: transform 0.3s ease;
     }
 
     .form-group input,
-    .form-group textarea {
-      width: calc(100% - 20px);
+    .form-group select {
+      width: 100%;
       padding: 15px;
       border: 1px solid #ddd;
       border-radius: 6px;
-      box-sizing: border-box;
       font-size: 1em;
+      background-color: white;
       outline: none;
-      transition: border-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .form-group textarea {
-      resize: vertical;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      transform: translateY(-3px);
-      border-color: #007bff;
     }
 
     .form-group label {
@@ -111,10 +89,10 @@
       transition: all 0.3s ease;
     }
 
-    .form-group input:focus + label,
-    .form-group input:not(:placeholder-shown) + label,
-    .form-group textarea:focus + label,
-    .form-group textarea:not(:placeholder-shown) + label {
+    .form-group input:focus+label,
+    .form-group input:not(:placeholder-shown)+label,
+    .form-group select:focus+label,
+    .form-group select:valid+label {
       top: -10px;
       left: 10px;
       font-size: 0.8em;
@@ -124,16 +102,12 @@
       border-radius: 2px;
     }
 
-    .optional::after {
-      content: " (optional)";
-      color: #999;
-      font-size: 0.8em;
+    .form-step {
+      display: none;
     }
 
-    .required::after {
-      content: " (required)";
-      color: #dc3545;
-      font-size: 0.8em;
+    .form-step.active {
+      display: block;
     }
 
     button {
@@ -153,90 +127,42 @@
       transform: scale(1.05);
     }
 
-    .error-message {
-      color: #dc3545;
-      font-size: 0.9em;
-      margin-top: 5px;
-    }
-
-    /* Animation for container fade-in */
     @keyframes fadeIn {
-      0% {
+      from {
         opacity: 0;
         transform: scale(0.95);
       }
-      100% {
+
+      to {
         opacity: 1;
         transform: scale(1);
       }
     }
 
-    /* Slide-in from left */
     @keyframes slideInLeft {
-      0% {
+      from {
         opacity: 0;
         transform: translateX(-100px);
       }
-      100% {
+
+      to {
         opacity: 1;
         transform: translateX(0);
       }
     }
 
-    /* Slide-in from right */
     @keyframes slideInRight {
-      0% {
+      from {
         opacity: 0;
         transform: translateX(100px);
       }
-      100% {
+
+      to {
         opacity: 1;
         transform: translateX(0);
       }
     }
 
-    /* Adjustments for desktop screen */
-    @media (min-width: 992px) {
-      .left-section h2 {
-        font-size: 2em;
-      }
-
-      .left-section p {
-        font-size: 1em;
-      }
-
-      .right-section h2 {
-        font-size: 1.6em;
-      }
-
-      .form-group input,
-      .form-group textarea {
-        padding: 12px;
-        font-size: 0.95em;
-      }
-
-      .form-group label {
-        font-size: 0.9em;
-      }
-
-      .form-group input:focus + label,
-      .form-group input:not(:placeholder-shown) + label,
-      .form-group textarea:focus + label,
-      .form-group textarea:not(:placeholder-shown) + label {
-        font-size: 0.75em;
-      }
-
-      button {
-        padding: 12px 20px;
-        font-size: 1em;
-      }
-
-      .registration-container {
-        max-width: 800px;
-      }
-    }
-
-    /* Responsive adjustment for smaller screens */
     @media (max-width: 768px) {
       .registration-container {
         flex-direction: column;
@@ -245,86 +171,203 @@
       .left-section,
       .right-section {
         width: 100%;
-      }
-
-      .left-section {
-        padding: 30px 20px;
-      }
-
-      .right-section {
         padding: 30px 20px;
       }
     }
+
+    .progress-bar-container {
+      width: 100%;
+    }
+
+    .step-labels {
+      font-weight: 600;
+      font-size: 1em;
+      margin-bottom: 8px;
+      color: #555;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .step-label {
+      width: 50%;
+      text-align: center;
+    }
+
+    .progress {
+      height: 8px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background-color: #007bff;
+      transition: width 0.4s ease;
+    }
+
+    #loadingOverlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="registration-container row mx-auto">
-      <div class="left-section col-md-5">
-        <h2>Join the Sanasa Life Affiliate Program</h2>
-        <p>Unlock exciting opportunities and start earning by partnering with Sanasa. Our easy-to-use platform makes affiliate marketing simple and rewarding.</p>
+  <!-- Loading Spinner -->
+  <div id="loadingOverlay">
+    <div class="spinner-border text-light" role="status" style="width: 4rem; height: 4rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div id="registrationForm" class="registration-container">
+    <div class="left-section">
+      <h2>Join the Sanasa Life Affiliate Program</h2>
+      <p>Unlock exciting opportunities and start earning by partnering with Sanasa. Our easy-to-use platform makes affiliate marketing simple and rewarding.</p>
+    </div>
+    <div class="right-section">
+      <div class="progress-bar-container mb-4">
+        <div class="step-labels">
+          <div class="step-label" id="label-step1">Step 1</div>
+          <div class="step-label" id="label-step2">Step 2</div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" id="progressBar" style="width: 50%;"></div>
+        </div>
       </div>
-      <div class="right-section col-md-7">
-        <h2>Registration</h2>
-        <form id="registrationForm">
-          <div class="form-group">
-            <input type="text" id="firstName" name="firstName" required placeholder=" " />
-            <label for="firstName">First Name</label>
-          </div>
-          <div class="form-group">
-            <input type="text" id="lastName" name="lastName" required placeholder=" " />
-            <label for="lastName">Last Name</label>
-          </div>
-          <div class="form-group">
-            <input type="email" id="email" name="email" placeholder=" " />
-            <label for="email">Email <span class="optional"></span></label>
-          </div>
-          <div class="form-group">
-            <input type="text" id="nic" name="nic" placeholder=" " />
-            <label for="nic">NIC</label>
-          </div>
-          <div class="form-group">
-            <input type="text" id="contactNum" name="contactNum" required placeholder=" " />
-            <label for="contactNum">Contact Number <span class="required"></span></label>
-          </div>
-          <div class="form-group">
-            <input type="password" id="password" name="password" required placeholder=" " />
-            <label for="password">Password</label>
-          </div>
-          <div class="form-group">
-            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder=" " />
-            <label for="confirmPassword">Confirm Password</label>
-          </div>
-          <div class="form-group">
-            <textarea id="address" name="address" rows="3" placeholder=" "></textarea>
-            <label for="address">Address</label>
-          </div>
-          <button type="submit">Register</button>
-        </form>
+
+      <!-- Step 1 -->
+      <div id="step1" class="form-step active">
+        <h2>Step 1: Basic Info</h2>
+        <div class="form-group">
+          <input type="text" id="afnic" name="nic" required placeholder=" " />
+          <label for="afnic">NIC</label>
+        </div>
+        <div class="form-group">
+          <input type="password" id="afpassword" name="password" required placeholder=" " />
+          <label for="afpassword">Password</label>
+        </div>
+        <div class="form-group">
+          <input type="password" id="afconfirmPassword" name="confirmPassword" required placeholder=" " />
+          <label for="afconfirmPassword">Confirm Password</label>
+        </div>
+        <button type="button" onclick="goToStep2()">Next</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step2" class="form-step">
+        <h2>Step 2: Payment Info</h2>
+        <div class="form-group">
+          <select name="bankName" id="bankName" required>
+            <option value="" disabled selected hidden></option>
+            <?php
+            $bankD = Database::search("SELECT * FROM `banks`");
+            while ($bankR = $bankD->fetch_assoc()) {
+              echo '<option value="' . $bankR["idBanks"] . '">' . $bankR["bank_name"] . '</option>';
+            }
+            ?>
+          </select>
+          <label for="bankName">Bank Name</label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="branch" name="branch" required placeholder=" " />
+          <label for="branch">Branch</label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="accountHolder" name="accountHolder" required placeholder=" " />
+          <label for="accountHolder">Account Holder Name</label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="accountNumber" name="accountNumber" required placeholder=" " />
+          <label for="accountNumber">Account Number</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="agree" onchange="checkAgreement();" required>
+          <label class="form-check-label" for="agree">
+            I agree to the <a href="termsAndConditions.php">terms and conditions</a>.
+          </label>
+        </div>
+        <button type="button" class="mb-3" onclick="goToStep1()">Back</button>
+        <button onclick="afRegister();" disabled id="registerBtnAf" style="background-color: #ccc; cursor: not-allowed;">Register</button>
+        <div class="mt-2">
+          <small>Already have an account? <a href="login.php">Login</a></small>
+        </div>
       </div>
     </div>
   </div>
 
+  
+  <script src="script.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('registrationForm');
+    function goToStep2() {
+      const password = document.getElementById('afpassword').value;
+      const confirmPassword = document.getElementById('afconfirmPassword').value;
 
-      form.addEventListener('submit', (event) => {
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const contactNum = document.getElementById('contactNum').value;
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
 
-        if (password !== confirmPassword) {
-          alert("Passwords do not match.");
-          event.preventDefault();
-        }
+      document.getElementById('step1').classList.remove('active');
+      document.getElementById('step2').classList.add('active');
+      document.getElementById('progressBar').style.width = '100%';
+      document.getElementById('label-step1').style.opacity = '0.6';
+      document.getElementById('label-step2').style.opacity = '1';
+    }
 
-        if (!/^\d{10}$/.test(contactNum)) {
-          alert("Please enter a valid 10-digit contact number.");
-          event.preventDefault();
-        }
-      });
+    function goToStep1() {
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('step1').classList.add('active');
+      document.getElementById('progressBar').style.width = '50%';
+      document.getElementById('label-step1').style.opacity = '1';
+      document.getElementById('label-step2').style.opacity = '0.6';
+    }
+
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+      const accountNumber = document.getElementById('accountNumber').value;
+      const agree = document.getElementById('agree');
+
+      if (!/^\d{6,20}$/.test(accountNumber)) {
+        alert("Please enter a valid account number (6-20 digits).");
+        e.preventDefault();
+        return;
+      }
+
+      if (!agree.checked) {
+        alert("You must agree to the terms and conditions.");
+        e.preventDefault();
+        return;
+      }
+
+      document.getElementById('loadingOverlay').style.display = 'flex';
     });
+
+    function checkAgreement(){
+      var rbtn = document.getElementById("registerBtnAf");
+      var agree = document.getElementById("agree").checked;
+      if(agree){
+        rbtn.style.backgroundColor = "#007bff";
+        rbtn.style.cursor = "pointer";
+        rbtn.disabled = false;
+      }else{
+        rbtn.style.backgroundColor = "#ccc";
+        rbtn.style.cursor = "not-allowed";
+        rbtn.disabled = true;
+      }
+
+    }
+
+
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
+
 </html>
