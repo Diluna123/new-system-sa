@@ -621,6 +621,9 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                     <button class="btn btn-sm btn-outline-secondary text-warning mt-2 mb-3" onclick="showModal();">Add New &nbsp<i class="fas fa-plus"></i></button>
 
                     <h2>Pending Policies</h2>
+                    <div class="mb-2">
+                        <input type="text" id="searchPending" class="form-control form-control-sm" placeholder="Search by Customer Name, Policy Number, Proposal Number, NIC, or Contact Number..." onkeyup="searchPendingPolicies()">
+                    </div>
                     <div class="table-responsive small mb-3 d-block" style="max-height: 250px; overflow-y: auto;">
                         <table class="table table-striped table-sm">
                             <thead class="sticky-top">
@@ -631,9 +634,11 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                     <th scope="col">Contact</th>
                                     <th scope="col">Plane</th>
                                     <th scope="col">Ammount</th>
+                                    <th scope="col">Policy #</th>
+                                    <th scope="col">Proposal #</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="pendingPoliciesTable">
                                 <?php
 
 
@@ -650,6 +655,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                             <td><?php echo $datap['contact'] ?></td>
                                             <td><?php echo $datap['plane'] ?></td>
                                             <td>Rs. <?php echo $datap['ammount'] ?></td>
+                                            <td><?php echo $datap['pol_num'] ?? 'N/A' ?></td>
+                                            <td><?php echo $datap['pro_num'] ?? 'N/A' ?></td>
                                         </tr>
 
 
@@ -663,7 +670,9 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                     <tr>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
                                         <td>No Pending Policies</td>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -682,6 +691,9 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                     </div>
 
                     <h2>Previous Policies</h2>
+                    <div class="mb-2">
+                        <input type="text" id="searchPrevious" class="form-control form-control-sm" placeholder="Search by Customer Name, Policy Number, Proposal Number, NIC, or Contact Number..." onkeyup="searchPreviousPolicies()">
+                    </div>
                     <div id="policiesTable">
                         <div class="table-responsive small" style="max-height: 250px; overflow-y: auto;">
                             <table class="table table-striped table-sm table-hover">
@@ -693,9 +705,11 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                         <th scope="col">Contact</th>
                                         <th scope="col">Plane</th>
                                         <th scope="col">Ammount</th>
+                                        <th scope="col">Policy #</th>
+                                        <th scope="col">Proposal #</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="previousPoliciesTable">
                                     <?php
 
 
@@ -713,6 +727,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                                 <td><?php echo $data['contact'] ?></td>
                                                 <td><?php echo $data['plane'] ?></td>
                                                 <td>Rs. <?php echo $data['ammount'] ?></td>
+                                                <td><?php echo $data['pol_num'] ?? 'N/A' ?></td>
+                                                <td><?php echo $data['pro_num'] ?? 'N/A' ?></td>
 
 
                                             </tr>
@@ -728,7 +744,9 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                         <tr>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
                                             <td>No Active Policies</td>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -1002,6 +1020,13 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script src="dashboard.js"></script>
+        <script>
+            // Load initial data on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                searchPendingPolicies();
+                searchPreviousPolicies();
+            });
+        </script>
 
 
 

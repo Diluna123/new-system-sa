@@ -856,6 +856,40 @@ function getMDPolicysDetails(cid) {
   req.send();
 }
 
+function searchPendingPolicies() {
+  var searchTerm = document.getElementById("searchPending").value;
+  var table = document.getElementById("pendingPoliciesTable");
+
+  var req = new XMLHttpRequest();
+  var form = new FormData();
+  form.append("searchTerm", searchTerm);
+
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      table.innerHTML = req.responseText;
+    }
+  };
+  req.open("POST", "searchPendingPoliciesProcess.php", true);
+  req.send(form);
+}
+
+function searchPreviousPolicies() {
+  var searchTerm = document.getElementById("searchPrevious").value;
+  var table = document.getElementById("previousPoliciesTable");
+
+  var req = new XMLHttpRequest();
+  var form = new FormData();
+  form.append("searchTerm", searchTerm);
+
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      table.innerHTML = req.responseText;
+    }
+  };
+  req.open("POST", "searchPreviousPoliciesProcess.php", true);
+  req.send(form);
+}
+
 function policyAssign(cid) {
   const tostBody = document.getElementById("toastBody");
   const toastLiveExample = document.getElementById("liveToast");
