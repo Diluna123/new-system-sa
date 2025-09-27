@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" href="../sansalogo.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -259,20 +261,20 @@
             </div>
             <div class="right-section col-md-7">
                 <h2 id="loginHeader">Login</h2>
-               
-                    <div class="form-group">
-                        <input type="text" id="contactNum" name="contactNum" required />
-                        <label for="contactNum" id="contactNumLabel">Contact Number</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="password" name="password" required />
-                        <label for="password" id="passwordLabel">Password</label>
-                    </div>
-                    <button onclick="afLogin();">Login</button>
-               
+
+                <div class="form-group">
+                    <input type="tel" id="contactNum" name="contactNum" required />
+                    <label for="contactNum" id="contactNumLabel">Contact Number</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" required />
+                    <label for="password" id="passwordLabel">Password</label>
+                </div>
+                <button onclick="afLogin();">Login</button>
+
                 <div class="mt-3">
                     <button id="langToggle" class="btn border-0 text-secondary text-center">
-                      <span id="langText">Switch to Sinhala</span>
+                        <span id="langText">Switch to Sinhala</span>
                     </button>
                 </div>
                 <!-- Affiliate Program link -->
@@ -336,7 +338,7 @@
         updateTexts();
     </script>
     <script src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

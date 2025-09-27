@@ -3,6 +3,10 @@
 <?php
 include '../connection.php';
 session_start();
+if (!isset($_SESSION['afuser'])) {
+    header("Location: login.php");
+    exit();
+}
 ?>
 
 <head>
@@ -135,9 +139,59 @@ session_start();
                     </button>
                 </div>
 
+
                 <div class="mb-4">
                     <input type="text" class="form-control form-control-lg" placeholder="Search affiliates by name or email...">
                 </div>
+                <div class="alert alert-warning" role="alert">
+                    <h6>Commission Alert:</h6>
+                    <ul>
+                        <li><strong>31 Plan:</strong> Earn 10% commission on the amount for each 31 Plan.</li>
+                        <li><strong>Pension Plan:</strong> Earn 7% commission on the amount for each Pension Plan.</li>
+                    </ul>
+                    <h6>කමිෂන් දැනුම්දීම:</h6>
+                    <ul>
+                        <li><strong>31 සැලැස්ම:</strong> 10% කමිෂන් ලබාගන්න, සෑම 31 සැලැස්මකටම මුදලෙන්.</li>
+                        <li><strong>විශ්‍රාම සැලැස්ම:</strong> 7% කමිෂන් ලබාගන්න, සෑම පැන්ෂන් සැලැස්මකටම මුදලෙන්.</li>
+                    </ul>
+                    <hr>
+                    <h6>Examples:</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Example 1 (31 Plan) -->
+                            <div class="card bg-secondary text-white mb-3">
+                                <div class="card-header">
+                                    <h5>Example 1: 31 Plan Commission</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6>English:</h6>
+                                    <p>If the amount for the 31 Plan is <strong>LKR 10,000</strong>, the commission will be <strong>LKR 10,000 x 10% = LKR 1000</strong>.</p>
+                                    <h6>Sinhala:</h6>
+                                    <p>31 සැලැස්මට <strong>LKR 10,000</strong> මුදලක් නම්, කමිෂන් වනුයේ <strong>LKR 10,000 x 10% = LKR 1000</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Example 2 (Pension Plan) -->
+                            <div class="card bg-secondary text-white mb-3">
+                                <div class="card-header">
+                                    <h5>Example 2: Pension Plan Commission</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6>English:</h6>
+                                    <p>If the amount for the Pension Plan is <strong>LKR 5,000</strong>, the commission will be <strong>LKR 5,000 x 7% = LKR 350</strong>.</p>
+                                    <h6>Sinhala:</h6>
+                                    <p>පැන්ෂන් සැලැස්මට <strong>LKR 5,000</strong> මුදලක් නම්, කමිෂන් වනුයේ <strong>LKR 5,000 x 7% = LKR 350</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+
+
+                </div>
+
 
                 <div class="table-responsive">
                     <table class="table table-dark table-hover">
@@ -170,7 +224,24 @@ session_start();
                                         <td><?php echo $searchAfData["plane"]; ?></td>
                                         <td><?php echo $searchAfData["af_amount"]; ?> LKR</td>
                                         <td><span class="badge bg-<?php echo ($searchAfData["afStatuses"] == 'Active') ? 'success' : (($searchAfData["afStatuses"] == 'Pending') ? 'warning text-black' : (($searchAfData["afStatuses"] == 'Verify') ? 'info' : 'danger')); ?> "><?php echo ucfirst($searchAfData["afStatuses"]); ?></span></td>
-                                        <td>0 LKR</td>
+                                        <td>
+                                        <?php
+
+                                        $com = 0;
+                                        if ($searchAfData["afStatuses"] == 'Verify' || $searchAfData["afStatuses"] == 'Active') {
+                                            if ($searchAfData["plans_p_id"] == 1) { // 31 Plan
+                                                $com = $searchAfData["af_amount"] * 0.1; // 5% commission
+                                            } elseif ($searchAfData["plans_p_id"] == 2) { // Pension Plan
+                                                $com = $searchAfData["af_amount"] * 0.07; // 2% commission
+                                            }
+                                        }
+                                        
+                                        ?>
+                                            
+                                        
+                                        <?php echo $com; ?> LKR
+                                    
+                                    </td>
                                     </tr>
                             <?php
 
@@ -182,7 +253,7 @@ session_start();
                             }
 
                             ?>
-                            
+
 
 
                         </tbody>

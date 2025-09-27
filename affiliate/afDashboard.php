@@ -4,6 +4,11 @@
 <?php include '../connection.php';
 session_start();
 
+if(!isset($_SESSION['afuser'])) {
+    header("Location: login.php");
+    exit();
+}
+
 ?>
 
 <head>
@@ -121,14 +126,7 @@ session_start();
 </head>
 
 <body onload="userAorIcheck('<?php echo $_SESSION['afuser']['u_id']; ?>');">
-    <?php
-
-    if (!isset($_SESSION['afuser'])) {
-        header("Location: login.php");
-        exit();
-    }
-
-    ?>
+    
     <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
     <div class="container-fluid">
         <div class="row">
@@ -162,7 +160,7 @@ session_start();
                         <div class="d-flex justify-content-end align-items-center mb-3">
                             <div class="dropdown">
                                 <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../sansalogo.png" alt="profile" width="40" height="40" class="rounded-circle me-2">
+                                    <img src="../pro.png" alt="profile" width="40" height="40" class="rounded-circle me-2">
                                     <strong><?php echo $_SESSION['afuser']['fname']; ?></strong>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="profileDropdown">

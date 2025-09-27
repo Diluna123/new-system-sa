@@ -58,22 +58,38 @@ function afLogin() {
   var req = new XMLHttpRequest();
   req.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      if (this.responseText == "success") {
-        window.location.href = "afDashboard.php";
+      if (this.responseText.trim() === "success") {
+
+        // ✅ Clear localStorage and sessionStorage
+        localStorage.clear();
+        sessionStorage.clear();
+
+        // ✅ Delete Service Worker cache if supported
+        if ('caches' in window) {
+          caches.keys().then(function (names) {
+            for (let name of names) {
+              caches.delete(name);
+            }
+          });
+        }
+
+        // ✅ Redirect with cache-busting timestamp
+        window.location.href = "afDashboard.php?nocache=" + new Date().getTime();
+
       } else {
-        // alert(this.responseText);
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: this.responseText,
         });
-        //
+        console.log(this.responseText);
       }
     }
   };
   req.open("POST", "afLoginProcess.php", true);
   req.send(form);
 }
+
 
 function afsignOut() {
   var req = new XMLHttpRequest();
@@ -183,3 +199,32 @@ function afActivate(uid){
   req.send(form);
 }
 
+
+function verifyAf(afuid, status){
+  var form = new FormData();
+  form.append("afuid", afuid);
+  form.append("status", status);
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == "success") {
+        Swal.fire({
+          icon: "success",
+          title: "success",
+          text: "Account Verified!",
+        });
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: this.responseText,
+        });
+      }
+    }
+  };
+  req.open("POST", "afVerifyProcess.php", true);
+  req.send(form);
+}

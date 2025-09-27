@@ -886,20 +886,93 @@ function policyAssign(cid) {
   req.send();
 }
 
-
 // genarate verification code
 
-function genarateCode(){
+function genarateCode() {
   var codeIn = document.getElementById("GVcode");
   var req = new XMLHttpRequest();
   req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
-     
-        codeIn.value = req.responseText;
-      
+      codeIn.value = req.responseText;
     }
   };
   req.open("GET", "genarateCodeProcess.php", true);
   req.send();
 }
 
+function verifyAf(afuid, status) {
+  if (status == 6) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Are your want to Band this business?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var form = new FormData();
+        form.append("afuid", afuid);
+        form.append("status", status);
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == "success") {
+              Swal.fire({
+                icon: "success",
+                title: "Banded",
+                text: "Business Banded!",
+              });
+              setTimeout(function () {
+                window.location.reload();
+              }, 2000);
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: this.responseText,
+              });
+            }
+          }
+        };
+        req.open("POST", "afVerifyProcess.php", true);
+        req.send(form);
+      }
+    });
+  } else {
+    var form = new FormData();
+    form.append("afuid", afuid);
+    form.append("status", status);
+
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        if (this.responseText == "success") {
+          Swal.fire({
+            icon: "success",
+            title: "success",
+            text: "Business Verified!",
+          });
+          setTimeout(function () {
+            window.location.reload();
+          }, 2000);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: this.responseText,
+          });
+        }
+      }
+    };
+    req.open("POST", "afVerifyProcess.php", true);
+    req.send(form);
+  }
+}
+
+function afUserDetailsCanvas(afid){
+  var myOffcanvas = document.getElementById("offCanvasAf");
+  var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+  bsOffcanvas.show();
+}

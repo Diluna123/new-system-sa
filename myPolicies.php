@@ -661,13 +661,11 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                 } else {
                                     ?>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td>No Pending Policies</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+    <td colspan="6" style="text-align: center; font-weight: bold; padding: 10px;">
+        No Pending Policies
+    </td>
+</tr>
+
 
 
                                 <?php
@@ -681,7 +679,12 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                         </table>
                     </div>
 
-                    <h2>Previous Policies</h2>
+                    <div class="row">
+                        <div class="col-6"><h2>Previous Policies</h2></div>
+                        <diiv class="col-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Search by First Name, NIC, Contact" onkeyup="searchPolicy(this.value);">
+                        </diiv>
+                    </div>
                     <div id="policiesTable">
                         <div class="table-responsive small" style="max-height: 250px; overflow-y: auto;">
                             <table class="table table-striped table-sm table-hover">
@@ -726,13 +729,11 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                     } else {
                                         ?>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td>No Active Policies</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+    <td colspan="6" style="text-align: center; font-weight: bold; padding: 10px;">
+        No Actve Policies
+    </td>
+</tr>
+
 
 
 

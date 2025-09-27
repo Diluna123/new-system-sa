@@ -163,7 +163,7 @@ if (!isset($_SESSION['afuser'])) {
                 <div class="card p-4">
                     <div class="text-center mb-4">
                         <div class="position-relative d-inline-block">
-                            <img src="../sansa.png" alt="Profile Image" class="rounded-circle profile-img" id="profileImage">
+                            <img src="../pro.png" alt="Profile Image" class="rounded-circle profile-img" id="profileImage">
                             <label for="uploadImage" class="upload-label">
                                 <i class="fas fa-camera"></i>
                             </label>
