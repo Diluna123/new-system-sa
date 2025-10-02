@@ -265,13 +265,72 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 mt-sm-2 mt-lg-0 mt-md-0 mt-2">
-              <div class="card">
-                <div class="card-body">
+            <!-- new section in dashboard -->
+           <div class="col-lg-3 col-md-3 col-sm-6 col-6 mt-2">
+ <div class="card shadow-sm border-0 rounded-3">
+  <div class="card-body">
+    <div class="row g-3 text-center">
 
-                </div>
-              </div>
-            </div>
+      <!-- Left Section -->
+      <div class="col-12 col-md-6 border-md-end">
+        <h6 class="text-muted mb-1">Total</h6>
+        <h4 class="fw-bold text-primary mb-2">31</h4>
+        <?php
+        $planData31 = Database::search("SELECT * FROM `police_t` WHERE `plans_p_id` = 1 AND `status_s_id` = '1' AND `users_u_id` = '" . $_SESSION['user']['u_id'] . "'");
+        $nop = $planData31->num_rows;
+ $premium1 = 0;
+        if ($nop > 0) {
+         
+          for ($i = 0; $i < $nop; $i++) {
+
+           
+            
+          $planData31data = $planData31->fetch_assoc();
+          $premium1 = $premium1 + $planData31data['ammount'];
+
+
+          }
+        }
+        ?>
+        <p class="mb-1 small"><strong>NOP:</strong> <?php echo $nop; ?></p>
+        <p class="mb-0 small"><strong>Premium:</strong> <?php echo $premium1; ?></p>
+      </div>
+
+      <!-- Right Section -->
+      <div class="col-12 col-md-6">
+        <h6 class="text-muted mb-1">Total</h6>
+        <h4 class="fw-bold mb-2 text-primary">18</h4>
+        <?php
+        $planData18 = Database::search("SELECT * FROM `police_t` WHERE `plans_p_id` = 2  AND `status_s_id` = '1' AND `users_u_id` = '" . $_SESSION['user']['u_id'] . "'");
+        $nop2 = $planData18->num_rows;
+        $premium2 = 0;
+
+        if ($nop2 > 0) {
+          
+          for ($j = 0; $j < $nop2; $j++) {
+
+           
+            
+          $planData18data = $planData18->fetch_assoc();
+          $premium2 = $premium2 + $planData18data['ammount'];
+
+
+          }
+        }
+        ?>
+
+
+        <p class="mb-1 small"><strong>NOP:</strong> <?php echo $nop2; ?></p>
+        <p class="mb-0 small"><strong>Premium:</strong> <?php echo $premium2; ?></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- new section in dashboard end -->
+
+</div>
+
           </div>
 
           <h2>Monthly Progress</h2>
