@@ -1,6 +1,6 @@
 <div class="row mt-4">
     <div class="fixed-bottom bg-secondary-subtle" style="height: 30px; width: 100%;">
-        <p class="text-center text-secondary">Copyright &copy; 2025 D. Sithija Sulakshana <small class="text-secondary text-center "> @ version 2.0.6</small></p>
+        <p class="text-center text-secondary">Copyright &copy; 2025 D. Sithija Sulakshana <small class="text-secondary text-center "> @ version 2.0.7.1</small></p>
 
     </div>
 </div>

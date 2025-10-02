@@ -87,6 +87,14 @@
             Salery
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="afProgram.php">
+            <svg class="bi">
+              <use xlink:href="#puzzle" />
+            </svg>
+            Affiliate
+          </a>
+        </li>
       </ul>
 
       <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">

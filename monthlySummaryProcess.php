@@ -162,7 +162,7 @@ function sendEmailWithPDF($email, $name, $month, $pdfFile)
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'dilunasithija111@gmail.com';
-        $mail->Password = 'egwpikpqbqywmgor';
+        $mail->Password = 'cycmnvlaWMqvZuwm';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 

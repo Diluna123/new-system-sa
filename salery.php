@@ -192,18 +192,8 @@
     WHERE users_u_id = '$userId' AND status_s_id = 1
 ");
                             $monthCountRow = $monthCountResult->fetch_assoc();
-                            
                             $monthCount = $monthCountRow['month_count'] ?? 0;
-                            if($monthCount >1 ){
-                                $monthCount = $monthCount -1;
-
-                            }else{
-                                $monthCount = $monthCount+1;
-                            }
-                    
-
-
-                         
+                           
                             ?>
 
                             <div class="accordion" id="commissionAccordion">
@@ -225,7 +215,7 @@
 
                                     // Type 2 (15%)
                                     $type2Result = Database::search("SELECT SUM(ammount) AS total FROM police_t 
-            WHERE users_u_id = '$userId' AND plans_p_id = 2 AND status_s_id = 1 
+            WHERE users_u_id = '$userId' AND plans_p_id = 2 AND status_s_id = 1 AND `payments_pay_id` NOT IN (3,5)
             AND date BETWEEN '$monthStart' AND '$monthEnd'");
                                     $type2Row = $type2Result->fetch_assoc();
                                     $type2Total = $type2Row['total'] ?? 0;
@@ -327,7 +317,7 @@
 
                             // Plan 2 (15%)
                             $currentType2 = Database::search("SELECT SUM(ammount) AS total FROM police_t 
-    WHERE users_u_id = '$userId' AND plans_p_id = 2 AND status_s_id = 1 
+    WHERE users_u_id = '$userId' AND plans_p_id = 2 AND status_s_id = 1 AND `payments_pay_id` NOT IN (3,5)
     AND date BETWEEN '$currentMonthStart' AND '$currentMonthEnd'");
                             $currentType2Row = $currentType2->fetch_assoc();
                             $currentType2Total = $currentType2Row['total'] ?? 0;
@@ -372,6 +362,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 
         <script src="dashboard.js"></script>
 

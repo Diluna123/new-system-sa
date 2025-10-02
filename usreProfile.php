@@ -142,6 +142,32 @@
             height: 40px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
+        .stat-card {
+    border-radius: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
+}
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+}
+.bg-gradient-success {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+}
+.bg-gradient-warning {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+}
+.bg-gradient-info {
+    background: linear-gradient(135deg, #17a2b8, #117a8b);
+}
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
     </style>
 
 
@@ -204,14 +230,14 @@
                                 <span class="me-2 d-none d-md-inline"><?php echo $_SESSION['user']['u_fname'] . " " . $_SESSION['user']['u_lname']; ?></span>
                                 <div class="proPic bg-secondary d-flex justify-content-center align-items-center"
                                     style="width: 32px; height: 32px; border-radius: 50%;">
-                                    <span class="text-white  fw-bold"> <img src="my.JPG"  class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
+                                    <span class="text-white  fw-bold"> <img src="my.JPG" class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
                                 </div>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow rounded border-0" aria-labelledby="userDropdown" style="min-width: 200px;">
                                 <li class="px-3 py-2">
                                     <div class="d-flex align-items-center">
                                         <div class="bg-secondary d-flex justify-content-center align-items-center rounded-circle me-2" style="width: 40px; height: 40px;">
-                                            <span class="text-white fw-bold"> <img src="my.JPG"  class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
+                                            <span class="text-white fw-bold"> <img src="my.JPG" class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
                                         </div>
                                         <div>
                                             <div class="fw-semibold"><?php echo $_SESSION['user']['u_fname'] . " " . $_SESSION['user']['u_lname']; ?></div>
@@ -245,26 +271,26 @@
                                     <!-- Profile Picture -->
                                     <div class="col-lg-3 text-center position-relative">
                                         <div class="profile-img-wrapper position-relative mx-auto">
-                                            <img src="my.JPG" alt="Profile" class="rounded-circle border border-3 border-light shadow" style="width: 180px; height: 180px; object-fit: cover;">
+                                            <img src="pro.png" alt="Profile" class="rounded-circle border border-3 border-light shadow" style="width: 180px; height: 180px; object-fit: cover;">
                                             <button class="edit-btn btn btn-sm btn-light position-absolute bottom-0 end-0 rounded-circle" style="transform: translate(20%, 20%);">
                                                 <i class="fa fa-camera text-dark"></i>
                                             </button>
                                         </div>
                                         <?php
-                                            $UData = Database::search("SELECT * FROM `users` WHERE `u_id` = '" . $_SESSION['user']['u_id'] . "'");
-                                            $UData = $UData->fetch_assoc();
+                                        $UData = Database::search("SELECT * FROM `users` WHERE `u_id` = '" . $_SESSION['user']['u_id'] . "'");
+                                        $UData = $UData->fetch_assoc();
 
-                                            
+
                                         if ($_SESSION['user']['position_pid'] == 1) {
                                             $position = 'SPO';
                                         } else if ($_SESSION['user']['position_pid'] == 2) {
                                             $position = 'TL';
                                         }
 
-                                     
-                                            
-                                            
-                                            ?>
+
+
+
+                                        ?>
                                         <h5 class="mt-3 mb-0 fw-bold"><?php echo $UData['u_fname'] . " " . $UData['u_lname']; ?></h5>
                                         <p class="text-secondary mb-0"><?php echo $position; ?> - Sanasa Life</p>
                                     </div>
@@ -273,39 +299,95 @@
                                     <div class="col-lg-9">
                                         <h3 class="mb-4 border-bottom pb-2 fw-semibold">Profile Information</h3>
 
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label class="form-label">First Name</label>
-                                                    <input type="text" class="form-control input-glass" placeholder="Diluna" id="SfirstName" value="<?php echo $UData['u_fname']; ?>">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Last Name</label>
-                                                    <input type="text" class="form-control input-glass" placeholder="Perera" id="SlastName" value ="<?php echo $UData['u_lname']; ?>">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control input-glass" placeholder="you@email.com" value="<?php echo $UData['email']; ?>" disabled>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Contact Number</label>
-                                                    <input type="tel" id="contactNum" class="form-control input-glass" placeholder="+94xxxxxxxxx" value="<?php echo $UData['con_num']; ?>">
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <label class="form-label">Code </label>
-                                                    <input type="tel" class="form-control input-glass" id="Scode" placeholder="SPO2000xxx" value="<?php echo $UData['code']; ?>">
-                                                </div>
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">First Name</label>
+                                                <input type="text" class="form-control input-glass" placeholder="Diluna" id="SfirstName" value="<?php echo $UData['u_fname']; ?>">
                                             </div>
-                                            <div class="text-end mt-4">
-                                                <button onclick="updateUserInfo();" class="btn btn-warning px-4 py-2 rounded-3">
-                                                    <i class="fa fa-floppy-disk me-2"></i>Save Changes
-                                                </button>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Last Name</label>
+                                                <input type="text" class="form-control input-glass" placeholder="Perera" id="SlastName" value="<?php echo $UData['u_lname']; ?>">
                                             </div>
-                                        
+                                            <div class="col-md-6">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control input-glass" placeholder="you@email.com" value="<?php echo $UData['email']; ?>" disabled>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Contact Number</label>
+                                                <input type="tel" id="contactNum" class="form-control input-glass" placeholder="+94xxxxxxxxx" value="<?php echo $UData['con_num']; ?>">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="form-label">Code </label>
+                                                <input type="tel" class="form-control input-glass" id="Scode" placeholder="SPO2000xxx" value="<?php echo $UData['code']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="text-end mt-4">
+                                            <button onclick="updateUserInfo();" class="btn btn-warning px-4 py-2 rounded-3">
+                                                <i class="fa fa-floppy-disk me-2"></i>Save Changes
+                                            </button>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <h4 class="mb-4 border-bottom border-secondary pb-2 text-info">📊 Policy / Agent Stats</h4>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card stat-card text-center bg-gradient-primary text-light border-0 shadow-lg">
+                                <div class="card-body">
+                                    <div class="icon mb-3">
+                                        <i class="fa-solid fa-file-shield fa-2x"></i>
+                                    </div>
+                                    <h6>Total Policies</h6>
+                                    <h3 class="fw-bold count">154</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card stat-card text-center bg-gradient-success text-light border-0 shadow-lg">
+                                <div class="card-body">
+                                    <div class="icon mb-3">
+                                        <i class="fa-solid fa-check-double fa-2x"></i>
+                                    </div>
+                                    <h6>Active Policies</h6>
+                                    <h3 class="fw-bold count">121</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card stat-card text-center bg-gradient-warning text-dark border-0 shadow-lg">
+                                <div class="card-body">
+                                    <div class="icon mb-3">
+                                        <i class="fa-solid fa-calendar-week fa-2x"></i>
+                                    </div>
+                                    <h6>Policies This Month</h6>
+                                    <h3 class="fw-bold count">18</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card stat-card text-center bg-gradient-info text-light border-0 shadow-lg">
+                                <div class="card-body">
+                                    <div class="icon mb-3">
+                                        <i class="fa-solid fa-coins fa-2x"></i>
+                                    </div>
+                                    <h6>Commission Earned</h6>
+                                    <h3 class="fw-bold count">Rs. 74,500</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
 
 
 
