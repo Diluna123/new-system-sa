@@ -572,22 +572,22 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
 
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-12">
+                    <div class="row mt-3">
+                        <div class="col-6">
                             <div class="card border-warning">
                                 <div class="card-body text-warning">
                                     <?php
 
-                                    $dataForTotAll = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1'");
+                                    $dataForTotAll = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1' AND `payments_pay_id` IN (1, 2, 4)");
                                     $dataForTotAllNum = $dataForTotAll->num_rows;
 
                                     ?>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="" class="form-labe fw-bold">Full Total :</label>
+                                    <div class="row ">
+                                        <div class="ol-lg-3 col-12 col-md-3 col-sm-12">
+                                            <label for="" class="form-labe fw-bold">MCFP:</label>
 
                                         </div>
-                                        <div class="col-6 d-flex justify-content-end">
+                                        <div class="col-lg-9 col-12 col-md-9 col-sm-12 d-flex justify-content-lg-end justify-content-md-end justify-content-sm-start justify-content-start">
                                             <?php
                                             if ($dataForTotAllNum > 0) {
 
@@ -597,7 +597,51 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                                     $totalAll += $dataFortotAll['ammount'];
                                                 }
                                             ?>
-                                                <label for="" class="form-labe fw-bold">Rs. <?php echo $totalAll; ?>.00/=</label>
+                                                <label for="" class="form-labe fw-bold"><?php echo $totalAll; ?>.00/=</label>
+                                            <?php
+
+                                            } else {
+                                            ?>
+                                                <label for="" class="form-labe fw-bold">Rs. 00.00/=</label>
+                                            <?php
+
+                                            }
+
+                                            ?>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--  -->
+                        <div class="col-6">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <?php
+
+                                    $dataForTotAll = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1' AND `payments_pay_id` IN (3, 5)");
+                                    $dataForTotAllNum = $dataForTotAll->num_rows;
+
+                                    ?>
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-12 col-md-3 col-sm-12">
+                                            <label for="" class="form-labe fw-bold">FP:</label>
+
+                                        </div>
+                                        <div class="col-lg-9 col-12 col-md-9 col-sm-12 d-flex justify-content-lg-end justify-content-md-end justify-content-sm-start justify-content-start">
+                                            <?php
+                                            if ($dataForTotAllNum > 0) {
+
+                                                $totalAll = 0;
+                                                for ($i = 0; $i < $dataForTotAllNum; $i++) {
+                                                    $dataFortotAll = $dataForTotAll->fetch_assoc();
+                                                    $totalAll += $dataFortotAll['ammount'];
+                                                }
+                                            ?>
+                                                <label for="" class="form-labe fw-bold text-success"><?php echo $totalAll; ?>.00/=</label>
                                             <?php
 
                                             } else {
@@ -617,8 +661,9 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
 
                         </div>
 
+
                     </div>
-                    <button class="btn btn-sm btn-outline-secondary text-warning mt-2 mb-3" onclick="showModal();">Add New &nbsp<i class="fas fa-plus"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary text-warning mt-3 mb-3" onclick="showModal();">Add New &nbsp<i class="fas fa-plus"></i></button>
 
                     <h2>Pending Policies</h2>
                     <div class="table-responsive small mb-3 d-block" style="max-height: 250px; overflow-y: auto;">

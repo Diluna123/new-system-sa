@@ -1,1 +1,106 @@
-<html><body><script type="text/javascript" src="/aes.js" ></script><script>function toNumbers(d){var e=[];d.replace(/(..)/g,function(d){e.push(parseInt(d,16))});return e}function toHex(){for(var d=[],d=1==arguments.length&&arguments[0].constructor==Array?arguments[0]:arguments,e="",f=0;f<d.length;f++)e+=(16>d[f]?"0":"")+d[f].toString(16);return e.toLowerCase()}var a=toNumbers("f655ba9d09a112d4968c63579db590b4"),b=toNumbers("98344c2eee86c3994890592585b49f80"),c=toNumbers("a0e582e02164c358f972cb8bae2be139");document.cookie="__test="+toHex(slowAES.decrypt(c,2,a,b))+"; max-age=21600; expires=Thu, 31-Dec-37 23:55:55 GMT; path=/"; location.href="https://www.sanasaeasy.infinityfreeapp.com/monthlySummaryProcess.php?i=1";</script><noscript>This site requires Javascript to work, please enable Javascript in your browser or use a browser with Javascript support</noscript></body></htm
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Reminder</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+    }
+    .card {
+      border-radius: 12px;
+    }
+    .today {
+      background-color: #198754 !important;
+      color: white !important;
+    }
+  </style>
+</head>
+<body class="d-flex flex-column align-items-center p-4">
+
+  <div class="container" style="max-width: 600px;">
+    <h2 class="text-center mb-4">🎉 Birthday Reminder</h2>
+    
+    <div class="card p-3 mb-4 shadow-sm">
+      <div class="card-body">
+        <form id="birthdayForm" class="row g-3">
+          <div class="col-md-7">
+            <input type="text" id="name" class="form-control" placeholder="Enter Name" required>
+          </div>
+          <div class="col-md-5">
+            <input type="date" id="date" class="form-control" required>
+          </div>
+          <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary w-100">Add Reminder</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="mb-3">Saved Birthdays 🎂</h5>
+        <ul id="birthdayList" class="list-group"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('birthdayForm');
+    const nameInput = document.getElementById('name');
+    const dateInput = document.getElementById('date');
+    const list = document.getElementById('birthdayList');
+
+    // Load birthdays from localStorage
+    let birthdays = JSON.parse(localStorage.getItem('birthdays')) || [];
+
+    function saveToLocal() {
+      localStorage.setItem('birthdays', JSON.stringify(birthdays));
+    }
+
+    function renderList() {
+      list.innerHTML = '';
+      const today = new Date();
+      const todayStr = `${today.getMonth()+1}-${today.getDate()}`;
+
+      birthdays.forEach((b, i) => {
+        const bDate = new Date(b.date);
+        const bStr = `${bDate.getMonth()+1}-${bDate.getDate()}`;
+        const li = document.createElement('li');
+        li.className = `list-group-item d-flex justify-content-between align-items-center ${bStr === todayStr ? 'today' : ''}`;
+        li.innerHTML = `
+          <span>${b.name} - ${bDate.toDateString().slice(4, 10)}</span>
+          <button class="btn btn-sm btn-danger" onclick="removeBirthday(${i})">Delete</button>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = nameInput.value.trim();
+      const date = dateInput.value;
+      if (name && date) {
+        birthdays.push({ name, date });
+        saveToLocal();
+        renderList();
+        form.reset();
+      }
+    });
+
+    function removeBirthday(index) {
+      birthdays.splice(index, 1);
+      saveToLocal();
+      renderList();
+    }
+
+    renderList();
+  </script>
+
+</body>
+</html>
