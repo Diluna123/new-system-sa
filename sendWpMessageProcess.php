@@ -1,0 +1,8 @@
+<?php
+
+$send_whatsapp_msg="https://sendingtool.com/api/send.php?number=94764393083&type=media&message=helloworld&instance_id=698459879945459&access_token=EAAJ7Pt0ItPMBPjeF1h7XHLQWZCdw9tMUdoUB3LICe2ZAtHMIqUz4BZBK49BDTZA3RAHA5hSyoCIX3SgfO9OXR0WrO3WHrZBOKH1ZAbkh3mwoEIXYjviAdpXC0kuZCfnRoY4y0p8ded5Q0oCqG6wRlwX8W1zEmQBXG7VdyqgR0xxr5K3ncqZCN7xafibFH89OAdnHHZAWFNTmo2qKxquamvXhLNV2dd3oeHbEbE3JRUTd1CwZDZD";
+file_get_contents($send_whatsapp_msg);
+echo "success";
+
+
+?>

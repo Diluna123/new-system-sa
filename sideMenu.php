@@ -88,6 +88,14 @@
           </a>
         </li>
         <li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-2" href="reminders.php">
+    <i class="bi bi-bell"></i>
+    Reminders
+  </a>
+</li>
+
+
+        <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="afProgram.php">
             <svg class="bi">
               <use xlink:href="#puzzle" />

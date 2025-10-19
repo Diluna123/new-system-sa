@@ -976,3 +976,9 @@ function afUserDetailsCanvas(afid){
   var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
   bsOffcanvas.show();
 }
+
+function sendWpMessage() {
+  alert("ok");
+
+
+}
