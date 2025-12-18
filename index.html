@@ -1,106 +1,55 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Reminder</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Location | Company Name</title>
   <style>
     body {
-      background-color: #121212;
-      color: #fff;
+      margin: 0;
       font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
+      background-color: #0b1220;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
-    .card {
+
+    h1 {
+      margin-bottom: 20px;
+      color: #1db954;
+    }
+
+    .map-container {
+      width: 90%;
+      max-width: 900px;
+      height: 500px;
       border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .today {
-      background-color: #198754 !important;
-      color: white !important;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
-<body class="d-flex flex-column align-items-center p-4">
+<body>
+  <h1>Find Us Here</h1>
 
-  <div class="container" style="max-width: 600px;">
-    <h2 class="text-center mb-4">🎉 Birthday Reminder</h2>
-    
-    <div class="card p-3 mb-4 shadow-sm">
-      <div class="card-body">
-        <form id="birthdayForm" class="row g-3">
-          <div class="col-md-7">
-            <input type="text" id="name" class="form-control" placeholder="Enter Name" required>
-          </div>
-          <div class="col-md-5">
-            <input type="date" id="date" class="form-control" required>
-          </div>
-          <div class="col-12 text-end">
-            <button type="submit" class="btn btn-primary w-100">Add Reminder</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <h5 class="mb-3">Saved Birthdays 🎂</h5>
-        <ul id="birthdayList" class="list-group"></ul>
-      </div>
-    </div>
+  <div class="map-container">
+    <!-- Replace the src URL below with your company’s actual map link -->
+    <iframe 
+      src="https://www.google.com/maps?q=7.495193,79.838043&hl=en&z=15&output=embed"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
   </div>
-
-  <script>
-    const form = document.getElementById('birthdayForm');
-    const nameInput = document.getElementById('name');
-    const dateInput = document.getElementById('date');
-    const list = document.getElementById('birthdayList');
-
-    // Load birthdays from localStorage
-    let birthdays = JSON.parse(localStorage.getItem('birthdays')) || [];
-
-    function saveToLocal() {
-      localStorage.setItem('birthdays', JSON.stringify(birthdays));
-    }
-
-    function renderList() {
-      list.innerHTML = '';
-      const today = new Date();
-      const todayStr = `${today.getMonth()+1}-${today.getDate()}`;
-
-      birthdays.forEach((b, i) => {
-        const bDate = new Date(b.date);
-        const bStr = `${bDate.getMonth()+1}-${bDate.getDate()}`;
-        const li = document.createElement('li');
-        li.className = `list-group-item d-flex justify-content-between align-items-center ${bStr === todayStr ? 'today' : ''}`;
-        li.innerHTML = `
-          <span>${b.name} - ${bDate.toDateString().slice(4, 10)}</span>
-          <button class="btn btn-sm btn-danger" onclick="removeBirthday(${i})">Delete</button>
-        `;
-        list.appendChild(li);
-      });
-    }
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const name = nameInput.value.trim();
-      const date = dateInput.value;
-      if (name && date) {
-        birthdays.push({ name, date });
-        saveToLocal();
-        renderList();
-        form.reset();
-      }
-    });
-
-    function removeBirthday(index) {
-      birthdays.splice(index, 1);
-      saveToLocal();
-      renderList();
-    }
-
-    renderList();
-  </script>
-
 </body>
 </html>

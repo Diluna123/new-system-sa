@@ -15,13 +15,14 @@
 
 
     <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-  
+
     <link href="css/border.css" rel="stylesheet">
 
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
     <link rel="manifest" href="manifest.json">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 
     <?php include "connection.php";
@@ -31,6 +32,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 
 
@@ -112,6 +115,107 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
+
+        /* Smooth hover effect */
+        .clickable-row:hover {
+            background-color: rgba(0, 123, 255, 0.15) !important;
+            transform: scale(1.01);
+        }
+
+        /* Scrollbar styling for modern dark UI */
+        #policiesTable .table-responsive::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #policiesTable .table-responsive::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 10px;
+        }
+
+        #policiesTable .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+
+        /* Sticky header visual fix */
+        thead.sticky-top th {
+            background-color: #222 !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- Modern Card & Animation Styles --- */
+        .summary-card,
+        .card.bg-dark {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .summary-card:hover,
+        .card.bg-dark:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Gradients */
+        .gradient-green {
+            background: linear-gradient(135deg, #00c851, #007e33);
+        }
+
+        .gradient-red {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+        }
+
+        .gradient-blue {
+            background: linear-gradient(135deg, #33b5e5, #0099cc);
+        }
+
+        .gradient-yellow {
+            background: linear-gradient(135deg, #fbc02d, #f57f17);
+            color: #212529;
+        }
+
+        /* Glowing borders */
+        .glow-yellow {
+            border: 1px solid #fdd835;
+            box-shadow: 0 0 10px rgba(253, 216, 53, 0.5);
+        }
+
+        .glow-green {
+            border: 1px solid #00e676;
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.5);
+        }
+
+        /* Faster animation timing */
+        .animate__animated {
+            --animate-duration: 0.6s;
+        }
+
+        .animate__delay-1s {
+            --animate-delay: 0.1s;
+        }
+
+        .animate__delay-2s {
+            --animate-delay: 0.2s;
+        }
+
+        .animate__delay-3s {
+            --animate-delay: 0.3s;
+        }
+
+        .animate__delay-4s {
+            --animate-delay: 0.4s;
+        }
+
+        .animate__delay-5s {
+            --animate-delay: 0.5s;
+        }
+
+        .card-body small {
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+        }
     </style>
 
 
@@ -119,10 +223,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"
+        integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.4/dist/kute.min.js"></script>
 </head>
@@ -141,14 +250,18 @@
 
             <ul class="navbar-nav flex-row d-md-none">
                 <li class="nav-item text-nowrap">
-                    <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
+                    <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false"
+                        aria-label="Toggle search">
                         <svg class="bi">
                             <use xlink:href="#search" />
                         </svg>
                     </button>
                 </li>
                 <li class="nav-item text-nowrap">
-                    <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                        aria-label="Toggle navigation">
                         <svg class="bi">
                             <use xlink:href="#list" />
                         </svg>
@@ -203,14 +316,16 @@
 
 
                     ?>
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <div
+                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">My Policies</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group me-2">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
                             </div>
-                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
+                            <button type="button"
+                                class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
                                 <svg class="bi">
                                     <use xlink:href="#calendar3" />
                                 </svg>
@@ -218,452 +333,204 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-12">
-                            <div class="card .border-left-warning">
-                                <div class="card-body">
-                                    <div class="row">
+                    <!-- ================== Monthly Target ================== -->
+                    <div class="card bg-dark border-0 shadow-lg mb-3 rounded-4 animate__animated animate__fadeInDown">
+                        <div class="card-body d-flex justify-content-between align-items-center px-4 py-3">
+                            <?php
+                            $dataForTotAll = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1'");
+                            $dataForTotAllNum = $dataForTotAll->num_rows;
+
+                            $targetQ = Database::search("SELECT * FROM `targets` WHERE `users_u_id` = '$uid' AND `status_s_id`='2' AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'");
+                            $targetQNum = $targetQ->num_rows;
+
+                            $dataForTotMonth1 = Database::search("
+        SELECT * FROM `police_t`
+        WHERE `users_u_id` = '$uid'
+        AND `status_s_id` = '1'
+        AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
+    ");
+                            $dataForTotMonthNum1 = $dataForTotMonth1->num_rows;
+
+                            if ($targetQNum > 0) {
+                                $targetQData = $targetQ->fetch_assoc();
+                                $targetAmmount = $targetQData['target'];
+                            } else {
+                                $targetAmmount = 5000;
+                            }
+
+                            if ($dataForTotMonthNum1 > 0) {
+                                $totalMonthly1 = 0;
+                                for ($i = 0; $i < $dataForTotMonthNum1; $i++) {
+                                    $dataFortotMonth1 = $dataForTotMonth1->fetch_assoc();
+                                    $totalMonthly1 += $dataFortotMonth1['ammount'];
+                                }
+                            } else {
+                                $totalMonthly1 = 0;
+                            }
+                            ?>
+                            <h6 class="text-warning mb-0 fw-semibold">🎯 Monthly Target</h6>
+                            <h6 class="mb-0 text-success fw-bold">
+                                Rs. <?php echo number_format($totalMonthly1); ?> /
+                                <span class="text-secondary"><?php echo number_format($targetAmmount); ?></span>
+                            </h6>
+                        </div>
+                    </div>
+
+                    <!-- ================== Summary Cards ================== -->
+                    <div class="row g-3">
+                        <!-- Daily Total -->
+                        <div class="col-6 col-md-3">
+                            <div class="summary-card gradient-green animate__animated animate__fadeInUp">
+                                <div class="card-body text-center text-white">
+                                    <small>Daily Total</small>
+                                    <h5 class="fw-bold mt-2 mb-0">
                                         <?php
-
-                                        $dataForTotAll = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1'");
-                                        $dataForTotAllNum = $dataForTotAll->num_rows;
-
-                                        $targetQ = Database::search("SELECT * FROM `targets` WHERE `users_u_id` = '$uid' AND `status_s_id`='2' AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'");
-                                        $targetQNum = $targetQ->num_rows;
-                                        $dataForTotMonth1 = Database::search("
-    SELECT * FROM `police_t` 
-    WHERE `users_u_id` = '$uid' 
-    AND `status_s_id` = '1' 
-    AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
-");
-$dataForTotMonthNum1 = $dataForTotMonth1->num_rows;
-
-
-
-
-                                        if ($targetQNum > 0) {
-                                            $targetQData = $targetQ->fetch_assoc();
-                                            $targetAmmount = $targetQData['target'];
-                                        } else {
-                                            $targetAmmount = 5000;
-                                        }
-
-                                        if ($dataForTotMonthNum1 > 0) {
-
-                                            $totalMonthly1 = 0;
-                                            for ($i = 0; $i < $dataForTotMonthNum1; $i++) {
-
-                                                $dataFortotMonth1 = $dataForTotMonth1->fetch_assoc();
-
-                                                $totalMonthly1 += $dataFortotMonth1['ammount'];
+                                        if ($dataForTotNum > 0) {
+                                            $totalDaily = 0;
+                                            for ($i = 0; $i < $dataForTotNum; $i++) {
+                                                $dataFortot = $dataForTot->fetch_assoc();
+                                                $totalDaily += $dataFortot['ammount'];
                                             }
+                                            echo "Rs. " . number_format($totalDaily);
                                         } else {
-                                            $totalMonthly1 = 0;
+                                            echo "Rs. 0.00";
                                         }
-
-
-
                                         ?>
-                                        <div class="col-6 text-warning">Monthly Target :</div>
-                                        <div class="col-6 text-end text-success"> <?php echo $totalMonthly1; ?> / <span class="text-secondary"><?php echo $targetAmmount; ?></span> </div>
-                                    </div>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending -->
+                        <div class="col-6 col-md-3">
+                            <div class="summary-card gradient-red animate__animated animate__fadeInUp animate__delay-1s">
+                                <div class="card-body text-center text-white">
+                                    <small>Pending</small>
+                                    <h5 class="fw-bold mt-2 mb-0">
+                                        <?php
+                                        if ($dataForTotNumPending > 0) {
+                                            $totalDailypending = 0;
+                                            for ($i = 0; $i < $dataForTotNumPending; $i++) {
+                                                $dataFortotpending = $dataForTotPending->fetch_assoc();
+                                                $totalDailypending += $dataFortotpending['ammount'];
+                                            }
+                                            echo "Rs. " . number_format($totalDailypending);
+                                        } else {
+                                            echo "Rs. 0.00";
+                                        }
+                                        ?>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Closed -->
+                        <div class="col-6 col-md-3">
+                            <div class="summary-card gradient-blue animate__animated animate__fadeInUp animate__delay-2s">
+                                <div class="card-body text-center text-white">
+                                    <small>Closed</small>
+                                    <h5 class="fw-bold mt-2 mb-0">
+                                        <?php
+                                        if ($dataForTotNumClosed > 0) {
+                                            $totalDailyclosed = 0;
+                                            for ($i = 0; $i < $dataForTotNumClosed; $i++) {
+                                                $dataFortotclosed = $dataForTotClosed->fetch_assoc();
+                                                $totalDailyclosed += $dataFortotclosed['ammount'];
+                                            }
+                                            echo "Rs. " . number_format($totalDailyclosed);
+                                        } else {
+                                            echo "Rs. 0.00";
+                                        }
+                                        ?>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Monthly Total -->
+                        <div class="col-6 col-md-3">
+                            <div class="summary-card gradient-yellow animate__animated animate__fadeInUp animate__delay-3s">
+                                <div class="card-body text-center text-dark">
+                                    <small>Monthly Total</small>
+                                    <h5 class="fw-bold mt-2 mb-0">
+                                        <?php
+                                        $totalMonthly = 0;
+                                        if ($dataForTotMonthNum > 0) {
+                                            for ($i = 0; $i < $dataForTotMonthNum; $i++) {
+                                                $dataFortotMonth = $dataForTotMonth->fetch_assoc();
+                                                $totalMonthly += $dataFortotMonth['ammount'];
+                                            }
+                                            echo "Rs. " . number_format($totalMonthly);
+                                        } else {
+                                            echo "Rs. 0.00";
+                                        }
+                                        ?>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
-                            <div class="card bg-success">
-                                <div class="card-body">
-                                    <small>D.Total: </small>
-                                    <?php
-                                    if ($dataForTotNum > 0) {
-                                        $totalDaily = 0;
-
-                                        for ($i = 0; $i < $dataForTotNum; $i++) {
-
-                                            $dataFortot = $dataForTot->fetch_assoc();
-
-                                            $totalDaily += $dataFortot['ammount'];
-                                        }
-
-                                    ?>
-                                        <div>
-                                            <label for="" class="form-labe fw-bold"> <?php echo $totalDaily ?></label>
-
-                                        </div>
-
-
-                                    <?php
-
-
-                                    } else {
-
-                                    ?>
-                                        <div>
-                                            <label for="" class="form-labe fw-bold"> 0/=</label>
-
-                                        </div>
-
-                                    <?php
-                                    }
-
-                                    ?>
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
-                            <div class="card bg-danger">
-                                <div class="card-body">
-                                    <small>Pandings: </small>
-                                    <?php
-                                    if ($dataForTotNumPending > 0) {
-                                        $totalDailypending = 0;
-
-                                        for ($i = 0; $i < $dataForTotNumPending; $i++) {
-
-                                            $dataFortotpending = $dataForTotPending->fetch_assoc();
-
-                                            $totalDailypending += $dataFortotpending['ammount'];
-                                        }
-
-                                    ?>
-                                        <div>
-                                            <label for="" class="form-labe fw-bold"> <?php echo $totalDailypending ?></label>
-
-                                        </div>
-
-
-                                    <?php
-
-
-                                    } else {
-
-                                    ?>
-                                        <div>
-                                            <label for="" class="form-labe fw-bold"> 0/=</label>
-
-                                        </div>
-
-                                    <?php
-                                    }
-
-                                    ?>
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
-                            <div class="card bg-info">
-                                <div class="card-body">
-                                    <small>Closed: </small>
-                                    <?php
-                                    if ($dataForTotNumClosed > 0) {
-                                        $totalDailyclosed = 0;
-
-                                        for ($i = 0; $i < $dataForTotNumClosed; $i++) {
-
-                                            $dataFortotclosed = $dataForTotClosed->fetch_assoc();
-
-                                            $totalDailyclosed += $dataFortotclosed['ammount'];
-                                        }
-
-                                    ?>
-                                        <div>
-
-                                            <label for="" class="form-labe fw-bold"> <?php echo $totalDailyclosed ?></label>
-                                        </div>
-
-
-                                    <?php
-
-
-                                    } else {
-
-                                    ?>
-                                        <div>
-                                            <label for="" class="form-labe fw-bold"> 0/=</label>
-
-                                        </div>
-
-                                    <?php
-                                    }
-
-                                    ?>
-
-
-
-
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
-                            <div class="card bg-warning">
-                                <div class="card-body text-dark">
-                                    <small>M. Total: </small>
-                                    <?php
-                                    $totalMonthly = 0;
-
-                                    if ($dataForTotMonthNum > 0) {
-
-                                        for ($i = 0; $i < $dataForTotMonthNum; $i++) {
-
-                                            $dataFortotMonth = $dataForTotMonth->fetch_assoc();
-
-                                            $totalMonthly += $dataFortotMonth['ammount'];
-                                        }
-                                    ?>
-                                        <div>
-                                            <label for="" class="form-labe fw-bold"> <?php echo $totalMonthly ?></label>
-
-                                        </div>
-
-
-                                    <?php
-
-
-                                    } else {
-                                    ?>
-                                        <div>
-                                            <label for="" class="form-labe fw-bold"> 0</label>
-
-                                        </div>
-
-                                    <?php
-
-
-                                    }
-
-
-
-
-                                    ?>
-
-
-
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
-                            <div class="card border-left-primary">
-                                <div class="card-body">
-                                    <small>MCFP: </small>
-
-                                    <?php
-
-                                    $dataForTotMCFP = Database::search("
-SELECT * FROM `police_t` 
-WHERE `users_u_id` = '$uid' 
-AND `status_s_id` = '1' 
-AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
-");
-
-                                    $dataForTotMCFPNum = $dataForTotMCFP->num_rows;
-
-                                    if ($dataForTotMCFPNum > 0) {
-
+                    <!-- ================== Breakdown (All Time) ================== -->
+                    <div class="row g-3 mt-3">
+                        <!-- MCFP -->
+                        <div class="col-6 col-md-3">
+                            <div class="summary-card glow-yellow animate__animated animate__fadeInUp animate__delay-4s">
+                                <div class="card-body text-center text-warning">
+                                    <small>MCFP (All Time)</small>
+                                    <h5 class="fw-bold mt-2 mb-0">
+                                        <?php
+                                        $dataForTotMCFP = Database::search("
+              SELECT * FROM `police_t`
+              WHERE `users_u_id` = '$uid'
+              AND `status_s_id` = '1'
+              AND `payments_pay_id` IN (1, 2, 4)
+          ");
                                         $totalMCFP = 0;
-                                        for ($i = 0; $i < $dataForTotMCFPNum; $i++) {
-
-                                            $dataFortotMCFP = $dataForTotMCFP->fetch_assoc();
-                                            if ($dataFortotMCFP['payments_pay_id'] == 1 || $dataFortotMCFP['payments_pay_id'] == 2 || $dataFortotMCFP['payments_pay_id'] == 4) {
-
-                                                $totalMCFP += $dataFortotMCFP['ammount'];
+                                        if ($dataForTotMCFP->num_rows > 0) {
+                                            while ($row = $dataForTotMCFP->fetch_assoc()) {
+                                                $totalMCFP += $row['ammount'];
                                             }
-                                        }
-                                    ?>
-                                        <div>
-
-                                            <label for="" class="form-labe fw-bold"> <?php echo $totalMCFP; ?></label>
-                                        </div>
-
-                                    <?php
-
-                                    } else {
-
-                                    ?>
-                                        <div>
-                                            <label for="" class="form-labe fw-bold"> 0</label>
-
-                                        </div>
-
-
-
-                                    <?php
-                                    }
-
-
-                                    ?>
-
-
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-4 mt-2">
-                            <div class="card border-left-success">
-                                <div class="card-body">
-                                    <small>FP: </small>
-                                    <div>
-
-                                        <?php
-
-                                        $dataForTotFP = Database::search("
-SELECT * FROM `police_t` 
-WHERE `users_u_id` = '$uid' 
-AND `status_s_id` = '1' 
-AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
-");
-
-                                        $dataForTotFPNum = $dataForTotFP->num_rows;
-
-                                        if ($dataForTotFPNum > 0) {
-
-                                            $totalFP = 0;
-                                            for ($i = 0; $i < $dataForTotFPNum; $i++) {
-
-                                                $dataFortotFP = $dataForTotFP->fetch_assoc();
-                                                if ($dataFortotFP['payments_pay_id'] == 3 || $dataFortotFP['payments_pay_id'] == 5) {
-
-                                                    $totalFP += $dataFortotFP['ammount'];
-                                                }
-                                            }
-                                        ?>
-                                            <div>
-
-                                                <label for="" class="form-labe fw-bold"> <?php echo $totalFP; ?></label>
-                                            </div>
-
-                                        <?php
-
+                                            echo "Rs. " . number_format($totalMCFP);
                                         } else {
-
-                                        ?>
-                                            <div>
-                                                <label for="" class="form-labe fw-bold"> 0</label>
-
-                                            </div>
-
-
-
-                                        <?php
+                                            echo "Rs. 0.00";
                                         }
-
-
                                         ?>
-                                    </div>
-
+                                    </h5>
                                 </div>
                             </div>
+                        </div>
 
+                        <!-- FP -->
+                        <div class="col-6 col-md-3">
+                            <div class="summary-card glow-green animate__animated animate__fadeInUp animate__delay-5s">
+                                <div class="card-body text-center text-success">
+                                    <small>FP (All Time)</small>
+                                    <h5 class="fw-bold mt-2 mb-0">
+                                        <?php
+                                        $dataForTotFP = Database::search("
+              SELECT * FROM `police_t`
+              WHERE `users_u_id` = '$uid'
+              AND `status_s_id` = '1'
+              AND `payments_pay_id` IN (3, 5)
+          ");
+                                        $totalFP = 0;
+                                        if ($dataForTotFP->num_rows > 0) {
+                                            while ($row = $dataForTotFP->fetch_assoc()) {
+                                                $totalFP += $row['ammount'];
+                                            }
+                                            echo "Rs. " . number_format($totalFP);
+                                        } else {
+                                            echo "Rs. 0.00";
+                                        }
+                                        ?>
+                                    </h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            <div class="card border-warning">
-                                <div class="card-body text-warning">
-                                    <?php
-
-                                    $dataForTotAll = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1' AND `payments_pay_id` IN (1, 2, 4)");
-                                    $dataForTotAllNum = $dataForTotAll->num_rows;
-
-                                    ?>
-                                    <div class="row ">
-                                        <div class="ol-lg-3 col-12 col-md-3 col-sm-12">
-                                            <label for="" class="form-labe fw-bold">MCFP:</label>
-
-                                        </div>
-                                        <div class="col-lg-9 col-12 col-md-9 col-sm-12 d-flex justify-content-lg-end justify-content-md-end justify-content-sm-start justify-content-start">
-                                            <?php
-                                            if ($dataForTotAllNum > 0) {
-
-                                                $totalAll = 0;
-                                                for ($i = 0; $i < $dataForTotAllNum; $i++) {
-                                                    $dataFortotAll = $dataForTotAll->fetch_assoc();
-                                                    $totalAll += $dataFortotAll['ammount'];
-                                                }
-                                            ?>
-                                                <label for="" class="form-labe fw-bold"><?php echo $totalAll; ?>.00/=</label>
-                                            <?php
-
-                                            } else {
-                                            ?>
-                                                <label for="" class="form-labe fw-bold">Rs. 00.00/=</label>
-                                            <?php
-
-                                            }
-
-                                            ?>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--  -->
-                        <div class="col-6">
-                            <div class="card ">
-                                <div class="card-body">
-                                    <?php
-
-                                    $dataForTotAll = Database::search("SELECT * FROM `police_t` WHERE `users_u_id` = '$uid' AND `status_s_id`='1' AND `payments_pay_id` IN (3, 5)");
-                                    $dataForTotAllNum = $dataForTotAll->num_rows;
-
-                                    ?>
-                                    <div class="row ">
-                                        <div class="col-lg-3 col-12 col-md-3 col-sm-12">
-                                            <label for="" class="form-labe fw-bold">FP:</label>
-
-                                        </div>
-                                        <div class="col-lg-9 col-12 col-md-9 col-sm-12 d-flex justify-content-lg-end justify-content-md-end justify-content-sm-start justify-content-start">
-                                            <?php
-                                            if ($dataForTotAllNum > 0) {
-
-                                                $totalAll = 0;
-                                                for ($i = 0; $i < $dataForTotAllNum; $i++) {
-                                                    $dataFortotAll = $dataForTotAll->fetch_assoc();
-                                                    $totalAll += $dataFortotAll['ammount'];
-                                                }
-                                            ?>
-                                                <label for="" class="form-labe fw-bold text-success"><?php echo $totalAll; ?>.00/=</label>
-                                            <?php
-
-                                            } else {
-                                            ?>
-                                                <label for="" class="form-labe fw-bold">Rs. 00.00/=</label>
-                                            <?php
-
-                                            }
-
-                                            ?>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <button class="btn btn-sm btn-outline-secondary text-warning mt-3 mb-3" onclick="showModal();">Add New &nbsp<i class="fas fa-plus"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary text-warning mt-3 mb-3" onclick="showModal();">Add New
+                        &nbsp<i class="fas fa-plus"></i></button>
 
                     <h2>Pending Policies</h2>
                     <div class="table-responsive small mb-3 d-block" style="max-height: 250px; overflow-y: auto;">
@@ -706,10 +573,10 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                 } else {
                                     ?>
                                     <tr>
-    <td colspan="6" style="text-align: center; font-weight: bold; padding: 10px;">
-        No Pending Policies
-    </td>
-</tr>
+                                        <td colspan="6" style="text-align: center; font-weight: bold; padding: 10px;">
+                                            No Pending Policies
+                                        </td>
+                                    </tr>
 
 
 
@@ -724,78 +591,108 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                         </table>
                     </div>
 
-                    <div class="row">
-                        <div class="col-6"><h2>Previous Policies</h2></div>
-                        <diiv class="col-6">
-                            <input type="text" class="form-control form-control-sm" placeholder="Search by First Name, NIC, Contact" onkeyup="searchPolicy(this.value);">
-                        </diiv>
-                    </div>
-                    <div id="policiesTable">
-                        <div class="table-responsive small" style="max-height: 250px; overflow-y: auto;">
-                            <table class="table table-striped table-sm table-hover">
-                                <thead class="sticky-top">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First N</th>
-                                        <th scope="col">NIC</th>
-                                        <th scope="col">Contact</th>
-                                        <th scope="col">Plane</th>
-                                        <th scope="col">Ammount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
 
+                    <div id="policiesTable" class="mt-4">
+                        <div
+                            class="card bg-dark border-0 shadow-lg rounded-4 overflow-hidden animate__animated animate__fadeInUp">
+                            <div class="card-header border-0 bg-gradient d-flex justify-content-between align-items-center px-4 py-3"
+                                style="background: linear-gradient(135deg, #0d6efd, #6610f2);">
+                                <h5 class="mb-0 text-white fw-semibold d-flex align-items-center">
+                                    <i class="bi bi-file-earmark-text me-2"></i> Active Policies
+                                </h5>
+                                <div class="badge bg-light text-dark px-3 py-2 rounded-pill shadow-sm">
+                                    <i class="bi bi-person-badge me-1"></i> User: <?php echo htmlspecialchars($uid); ?>
+                                </div>
+                            </div>
 
-
-
-                                    $policies = Database::search("SELECT * FROM `customers` JOIN `police_t` ON `customers`.`id` = `police_t`.`customers_id` JOIN `plans` ON `plans`.`p_id` = `police_t`.`plans_p_id` JOIN `payments` ON `payments`.`pay_id` = `police_t`.`payments_pay_id` JOIN `users` ON `users`.`u_id` =`police_t`.`users_u_id` WHERE `police_t`.`users_u_id` ='$uid' AND `police_t`.`status_s_id`='1' ORDER BY `customers`.`id` DESC");
-                                    if ($policies->num_rows > 0) {
-                                        for ($i = 0; $i < $policies->num_rows; $i++) {
-                                            $data = $policies->fetch_assoc();
-                                    ?>
-                                            <tr onclick="showCanvasModal(<?php echo $data['id'] ?>);">
-                                                <td>0<?php echo $i + 1 ?></td>
-                                                <td><?php echo $data['fname'] ?></td>
-                                                <td><?php echo $data['nic'] ?></td>
-                                                <td><?php echo $data['contact'] ?></td>
-                                                <td><?php echo $data['plane'] ?></td>
-                                                <td>Rs. <?php echo $data['ammount'] ?></td>
-
-
+                            <div class="card-body p-0 position-relative">
+                                <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                                    <table class="table table-dark table-hover align-middle mb-0">
+                                        <thead class="sticky-top bg-secondary text-light">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>First Name</th>
+                                                <th>NIC</th>
+                                                <th>Contact</th>
+                                                <th>Plan</th>
+                                                <th>Amount</th>
                                             </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                            <?php
+                                            $policies = Database::search("
+                SELECT * FROM `customers` 
+                JOIN `police_t` ON `customers`.`id` = `police_t`.`customers_id`
+                JOIN `plans` ON `plans`.`p_id` = `police_t`.`plans_p_id`
+                JOIN `payments` ON `payments`.`pay_id` = `police_t`.`payments_pay_id`
+                JOIN `users` ON `users`.`u_id` = `police_t`.`users_u_id`
+                WHERE `police_t`.`users_u_id` = '$uid'
+                AND `police_t`.`status_s_id` = '1'
+                ORDER BY `customers`.`id` DESC
+              ");
 
+                                            $totalMCFP = 0;
+                                            $totalFP = 0;
 
-                                        <?php
+                                            if ($policies->num_rows > 0) {
+                                                for ($i = 0; $i < $policies->num_rows; $i++) {
+                                                    $data = $policies->fetch_assoc();
+                                                    $phone = preg_replace('/^0/', '', $data['contact']);
 
+                                                    // sum by plan type
+                                                    if (strtoupper($data['plane']) === 'MCFP') {
+                                                        $totalMCFP += (float)$data['ammount'];
+                                                    } elseif (strtoupper($data['plane']) === 'FP') {
+                                                        $totalFP += (float)$data['ammount'];
+                                                    }
+                                            ?>
+                                                    <tr class="clickable-row animate__animated animate__fadeIn"
+                                                        style="cursor:pointer; transition: all 0.3s ease;"
+                                                        onclick="showCanvasModal(<?php echo $data['id']; ?>)">
+                                                        <td class="fw-bold text-info">0<?php echo $i + 1; ?></td>
+                                                        <td><?php echo htmlspecialchars($data['fname']); ?></td>
+                                                        <td><?php echo htmlspecialchars($data['nic']); ?></td>
+                                                        <td><?php echo htmlspecialchars($phone); ?></td>
+                                                        <td class="fw-semibold"><?php echo htmlspecialchars($data['plane']); ?></td>
+                                                        <td class="text-success fw-semibold">Rs.
+                                                            <?php echo number_format($data['ammount'], 2); ?></td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                            } else {
+                                                ?>
+                                                <tr>
+                                                    <td colspan="6" class="text-center text-muted py-4 fw-semibold">
+                                                        <i class="bi bi-info-circle me-2"></i> No Active Policies
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-
-                                        }
-                                    } else {
-                                        ?>
-                                        <tr>
-    <td colspan="6" style="text-align: center; font-weight: bold; padding: 10px;">
-        No Actve Policies
-    </td>
-</tr>
-
-
-
-
-                                    <?php
-                                    }
-
-
-
-
-                                    ?>
-
-
-
-                                </tbody>
-                            </table>
+                                <!-- Animated Total Footer -->
+                                <div
+                                    class="p-4 text-center border-top border-secondary bg-dark-subtle animate__animated animate__fadeInUp">
+                                    <div class="d-flex justify-content-around flex-wrap text-light fw-semibold">
+                                        <div class="fade-in-delay">
+                                            <i class="bi bi-cash-stack text-info me-2"></i>
+                                            Total MCFP:
+                                            <span class="text-info">Rs. <?php echo number_format($totalMCFP, 2); ?></span>
+                                        </div>
+                                        <div class="fade-in-delay2">
+                                            <i class="bi bi-cash-coin text-success me-2"></i>
+                                            Total FP:
+                                            <span class="text-success">Rs. <?php echo number_format($totalFP, 2); ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+
+
 
 
 
@@ -805,22 +702,26 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">New Customer</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="con ">
                                         <div class="row mb-2">
                                             <!-- personal info begin -->
                                             <div class="col-12">
-                                                <label for="" class="form-label">Date : <span class="text-danger">*</span></label>
-                                                <input type="date" id="date" class="form-control form-control-sm" value="<?php echo date('Y-m-d'); ?>">
+                                                <label for="" class="form-label">Date : <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="date" id="date" class="form-control form-control-sm"
+                                                    value="<?php echo date('Y-m-d'); ?>">
 
                                             </div>
 
                                         </div>
                                         <div class="row mb-2">
                                             <div class="col-6">
-                                                <label for="" class="form-label">First Name : <span class="text-danger">*</span></label>
+                                                <label for="" class="form-label">First Name : <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="text" id="fname" class="form-control form-control-sm">
 
                                             </div>
@@ -837,35 +738,40 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                                 <input type="text" id="nic" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-4">
-                                                <label for="" class="form-label">Age : <span class="text-danger">*</span></label>
+                                                <label for="" class="form-label">Age : <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="text" id="age" class="form-control form-control-sm">
                                             </div>
 
                                         </div>
                                         <div class="row mb-2">
                                             <div>
-                                                <label for="" class="form-label">DOB: <span class="text-danger">*</span></label>
+                                                <label for="" class="form-label">DOB: <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="date" id="dob" class="form-control form-control-sm">
                                             </div>
 
                                         </div>
                                         <div class="row mb-2">
                                             <div>
-                                                <label for="" class="form-label">Contact Number : <span class="text-danger">*</span></label>
+                                                <label for="" class="form-label">Contact Number : <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="tel" id="contact" class="form-control form-control-sm">
                                             </div>
 
                                         </div>
                                         <div class="row mb-2">
                                             <div>
-                                                <label for="" class="form-label">Address : <span class="text-danger">*</span></label>
+                                                <label for="" class="form-label">Address : <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="text" id="address" class="form-control form-control-sm">
                                             </div>
                                             <!-- personal info end and plane info begin -->
                                         </div>
                                         <div class="row mb-2">
                                             <div>
-                                                <label for="" class="form-label">Plane : <span class="text-danger">*</span></label>
+                                                <label for="" class="form-label">Plane : <span
+                                                        class="text-danger">*</span></label>
 
                                                 <select class="form-control form-control-sm" id="plane">
                                                     <?php
@@ -873,7 +779,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                                     for ($i = 0; $i < $pldata->num_rows; $i++) {
                                                         $row = $pldata->fetch_assoc();
                                                     ?>
-                                                        <option value="<?php echo $row['p_id']; ?>"><?php echo $row['plane']; ?></option>
+                                                        <option value="<?php echo $row['p_id']; ?>"><?php echo $row['plane']; ?>
+                                                        </option>
 
 
                                                     <?php
@@ -889,7 +796,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                         </div>
                                         <div class="row mb-2">
                                             <div>
-                                                <label for="" class="form-label">Payment Type : <span class="text-danger">*</span></label>
+                                                <label for="" class="form-label">Payment Type : <span
+                                                        class="text-danger">*</span></label>
 
                                                 <select class="form-control form-control-sm" id="payment">
                                                     <?php
@@ -897,7 +805,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                                     for ($i = 0; $i < $padata->num_rows; $i++) {
                                                         $row2 = $padata->fetch_assoc();
                                                     ?>
-                                                        <option value="<?php echo $row2['pay_id']; ?>"><?php echo $row2['payment_ty']; ?></option>
+                                                        <option value="<?php echo $row2['pay_id']; ?>">
+                                                            <?php echo $row2['payment_ty']; ?></option>
 
 
                                                     <?php
@@ -912,7 +821,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                         </div>
                                         <div class="row mb-2">
                                             <div>
-                                                <label for="" class="form-label">Ammount : <span class="text-danger">*</span></label>
+                                                <label for="" class="form-label">Ammount : <span
+                                                        class="text-danger">*</span></label>
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Rs.</span>
                                                     <input type="number" id="ammount" class="form-control form-control-sm">
@@ -924,8 +834,10 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                         </div>
                                         <div class="row mb-2">
                                             <div>
-                                                <label for="" class="form-label">Time Period : <span class="text-danger">*</span></label>
-                                                <input type="number" id="timep" class="form-control form-control-sm" minimum="5">
+                                                <label for="" class="form-label">Time Period : <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="number" id="timep" class="form-control form-control-sm"
+                                                    minimum="5">
 
                                             </div>
 
@@ -933,12 +845,14 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                         <div class="row mb-2">
                                             <div>
                                                 <label for="" class="form-label">Note : </label>
-                                                <textarea type="text" id="note" class="form-control form-control-sm" cols="5" rows="5"></textarea>
+                                                <textarea type="text" id="note" class="form-control form-control-sm"
+                                                    cols="5" rows="5"></textarea>
                                             </div>
 
                                         </div>
                                         <div class="row mb-2">
-                                            <label for="" class="form-label">Location :<span class="text-danger"> *</span></label>
+                                            <label for="" class="form-label">Location :<span class="text-danger">
+                                                    *</span></label>
                                             <div class="col-12" onclick="getLocation('locText');">
 
                                                 <input type="text" class="form-control form-control-sm" id="locText">
@@ -953,25 +867,29 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                 </div>
                                 <div class="modal-footer">
 
-                                    <button type="button" class="btn btn-warning btn-sm" onclick="submitBtn();">Confirm</button>
+                                    <button type="button" class="btn btn-warning btn-sm"
+                                        onclick="submitBtn();">Confirm</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- complete modal(police number and proposel number enter modal) -->
 
-                    <div class="modal fade" id="proposalModal" data-bs-backdrop="modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="proposalModal" data-bs-backdrop="modal" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Completion</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <label for="" class="form-label d-none" id="cidStore"></label>
                                     <div class="row mt-3 mb-3">
                                         <div class="col-6">
-                                            <label for="" class="form-label">Proposal Number : <span class="text-danger">*</span></label>
+                                            <label for="" class="form-label">Proposal Number : <span
+                                                    class="text-danger">*</span></label>
                                             <input type="number" id="proNum" class="form-control form-control-sm">
                                         </div>
                                         <div class="col-6">
@@ -983,7 +901,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                                 </div>
                                 <div class="modal-footer">
 
-                                    <button type="button" class="btn btn-warning" onclick="submitProposal(); ">Submit</button>
+                                    <button type="button" class="btn btn-warning"
+                                        onclick="submitProposal(); ">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -996,7 +915,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="nicModalLabel">NIC PDF Preview</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <iframe id="nicPreviewFrame" src="" width="100%" height="500px"></iframe>
@@ -1011,7 +931,8 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
 
                     <!-- offcanves begin -->
 
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 400px">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                        aria-labelledby="offcanvasRightLabel" style="width: 400px">
 
 
                     </div>
@@ -1039,12 +960,16 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
 
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
         <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
         <script src="script.js"></script>
 
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
+            integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous">
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script src="dashboard.js"></script>

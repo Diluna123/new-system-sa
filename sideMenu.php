@@ -45,6 +45,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="searchPolicy.php" class="nav-link d-flex align-items-center gap-2" onclick="">
+            <svg class="bi">
+              <use xlink:href="#file-earmark" />
+            </svg>
+            Policy Search
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="cutomerLeets.php">
             <svg class="bi">
               <use xlink:href="#people" />

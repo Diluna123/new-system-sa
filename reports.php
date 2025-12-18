@@ -131,7 +131,7 @@
     if (isset($_SESSION['user'])) {
 
     ?>
-       <?php include 'logos.php';?>
+        <?php include 'logos.php'; ?>
 
         <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">SANASA LIFE</a>
@@ -160,70 +160,83 @@
 
         <div class="container-fluid">
             <div class="row">
-                <?php include 'sideMenu.php';?>
+                <?php include 'sideMenu.php'; ?>
 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-dev">
-                    <div class="row ">
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h1 class="h2">Reports</h1>
+                    <div class="row">
+                        <!-- Header -->
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+                            <h1 class="h2 fw-bold text-warning"><i class="bi bi-bar-chart-line me-2"></i> Reports</h1>
                             <div class="btn-toolbar mb-2 mb-md-0">
                                 <div class="btn-group me-2">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                                    <button type="button" class="btn btn-sm btn-outline-warning"><i class="bi bi-share"></i> Share</button>
+                                    <button type="button" class="btn btn-sm btn-outline-warning"><i class="bi bi-download"></i> Export</button>
                                 </div>
-                                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
-                                    <svg class="bi">
-                                        <use xlink:href="#calendar3" />
-                                    </svg>
+                                <button type="button" class="btn btn-sm btn-outline-light dropdown-toggle d-flex align-items-center gap-1">
+                                    <i class="bi bi-calendar3"></i>
                                     This week
                                 </button>
                             </div>
                         </div>
 
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <!-- Tabs -->
+                        <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="policy-tab" data-bs-toggle="tab" data-bs-target="#policyReport" type="button" role="tab">Policy Report</button>
+                                <button class="nav-link active fw-semibold" id="policy-tab" data-bs-toggle="tab" data-bs-target="#policyReport" type="button" role="tab">
+                                    <i class="bi bi-file-earmark-text me-1"></i> Policy Report
+                                </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="leads-tab" data-bs-toggle="tab" data-bs-target="#leadsReport" type="button" role="tab">Monthly Summery</button>
+                                <button class="nav-link fw-semibold" id="monthly-tab" data-bs-toggle="tab" data-bs-target="#monthlyReport" type="button" role="tab">
+                                    <i class="bi bi-calendar-month me-1"></i> Monthly Summary
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-semibold" id="plan31-tab" data-bs-toggle="tab" data-bs-target="#plan31Report" type="button" role="tab">
+                                    <i class="bi bi-graph-up me-1"></i> 31 Plans
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-semibold" id="plan18-tab" data-bs-toggle="tab" data-bs-target="#plan18Report" type="button" role="tab">
+                                    <i class="bi bi-graph-down me-1"></i> 18 Plans
+                                </button>
                             </li>
                         </ul>
-                        <div class="tab-content mt-3" id="myTabContent">
+
+                        <!-- Tab Content -->
+                        <div class="tab-content mt-4" id="myTabContent">
+
+                            <!-- Policy Report -->
                             <div class="tab-pane fade show active" id="policyReport" role="tabpanel">
-                                <div class="row mt-3">
-                                    <div class="col-4">
-                                        <div>
-                                            <label for="type" class="form-label mb-1">Type :</label>
-                                            <select name="type" id="PlanType" class="form-control form-control-sm" onchange="searchPolicyReport();">
+                                <div class="card bg-dark border-0 shadow-sm rounded-4 p-3">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <label for="PlanType" class="form-label mb-1 text-light">Type :</label>
+                                            <select name="type" id="PlanType" class="form-select form-select-sm bg-body-secondary border-0 text-light" onchange="searchPolicyReport();">
                                                 <option value="all">ALL</option>
                                                 <option value="MCFP">MCFP</option>
                                                 <option value="FP">FP</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div>
-                                            <label for="fromDate" class="form-label mb-1">From :</label>
-                                            <input type="month" class="form-control form-control-sm" id="fromDate" value="" onchange="searchPolicyReport();">
+                                        <div class="col-md-4">
+                                            <label for="fromDate" class="form-label mb-1 text-light">From :</label>
+                                            <input type="month" class="form-control form-control-sm bg-body-secondary border-0 text-light" id="fromDate" onchange="searchPolicyReport();">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="toDate" class="form-label mb-1 text-light">To :</label>
+                                            <input type="month" class="form-control form-control-sm bg-body-secondary border-0 text-light" id="toDate" onchange="searchPolicyReport();">
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <div>
-                                            <label for="toDate" class="form-label mb-1">To :</label>
-                                            <input type="month" class="form-control form-control-sm" id="toDate" onchange="searchPolicyReport();">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-5">
-                                    <div id="reportSearchPre">
-                                        <table class="table table-striped table-hover table-sm">
-                                            <thead>
+
+                                    <div class="table-responsive mt-4" id="reportSearchPre">
+                                        <table class="table table-dark table-striped table-hover align-middle text-center">
+                                            <thead class="table-secondary text-dark">
                                                 <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Proposal/ Policy</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">MCFP</th>
-                                                    <th scope="col">FP</th>
+                                                    <th>#</th>
+                                                    <th>Proposal / Policy</th>
+                                                    <th>Date</th>
+                                                    <th>MCFP</th>
+                                                    <th>FP</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -234,14 +247,14 @@
                                                 $totalFP = 0;
 
                                                 if ($rDataPCount == 0) {
-                                                    echo '<tr><td colspan="5" class="text-center">No data found</td></tr>';
+                                                    echo '<tr><td colspan="5" class="text-center text-muted py-4">No data found</td></tr>';
                                                 } else {
                                                     for ($i = 0; $i < $rDataPCount; $i++) {
                                                         $rDataPData = $rDataP->fetch_assoc();
                                                 ?>
                                                         <tr>
-                                                            <th scope="row"><?php echo $i + 1; ?></th>
-                                                            <td> <?php echo $rDataPData['pro_num']; ?> / <?php echo $rDataPData['pol_num']; ?></td>
+                                                            <td><?php echo $i + 1; ?></td>
+                                                            <td><?php echo $rDataPData['pro_num']; ?> / <?php echo $rDataPData['pol_num']; ?></td>
                                                             <td><?php echo $rDataPData['date']; ?></td>
                                                             <?php
                                                             if ($rDataPData['payments_pay_id'] == '1' || $rDataPData['payments_pay_id'] == '2' || $rDataPData['payments_pay_id'] == '4') {
@@ -264,7 +277,7 @@
                                                 }
                                                 ?>
                                             </tbody>
-                                            <tfoot>
+                                            <tfoot class="table-borderless">
                                                 <tr>
                                                     <th colspan="3" class="text-start text-warning-emphasis">Sub Total:</th>
                                                     <th class="text-warning text-end"><?php echo $totalMCFP; ?></th>
@@ -273,41 +286,56 @@
                                                 <tr>
                                                     <th colspan="3" class="text-start text-warning-emphasis">Total:</th>
                                                     <th></th>
-                                                    <th class="bg-warning-subtle text-end "><?php echo $totalMCFP + $totalFP; ?></th>
-
+                                                    <th class="bg-warning-subtle text-dark text-end fw-bold"><?php echo $totalMCFP + $totalFP; ?></th>
                                                 </tr>
                                             </tfoot>
                                         </table>
                                     </div>
 
-
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-12 d-flex justify-content-end">
-                                        <button class="btn btn-sm btn-warning col-3" onclick="printReport();">Get Report</button>
+                                    <div class="d-flex justify-content-end mt-3">
+                                        <button class="btn btn-warning px-4" onclick="printReport();">
+                                            <i class="bi bi-printer-fill me-1"></i> Get Report
+                                        </button>
                                     </div>
-
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="leadsReport" role="tabpanel">
-                                
-                                <h2>Monthlty Summery</h2>
-                                <p>Details about the leads report go here.</p>
-                                <button class="btn btn-sm btn-warning" onclick="window.location.href='salesAnalizeReport.php';">Get Monthly Summery Report</button>
+
+                            <!-- Monthly Summary -->
+                            <div class="tab-pane fade" id="monthlyReport" role="tabpanel">
+                                <div class="card bg-dark border-0 shadow-sm rounded-4 p-4">
+                                    <h3 class="fw-semibold text-warning"><i class="bi bi-bar-chart me-2"></i> Monthly Summary</h3>
+                                    <p class="text-secondary">View and download your monthly summary reports.</p>
+                                    <button class="btn btn-warning mt-2" onclick="window.location.href='salesAnalizeReport.php';">
+                                        <i class="bi bi-download me-1"></i> Get Monthly Summary Report
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 31 Plans -->
+                            <div class="tab-pane fade" id="plan31Report" role="tabpanel">
+                                <div class="card bg-dark border-0 shadow-sm rounded-4 p-4">
+                                    <h3 class="fw-semibold text-warning"><i class="bi bi-graph-up-arrow me-2"></i> 31 Plans</h3>
+                                    <p class="text-secondary">Detailed report for 31 Plan-related policies and performance.</p>
+                                    <button class="btn btn-warning mt-2" onclick="window.location.href='plan31Report.php';">
+                                        <i class="bi bi-file-earmark-bar-graph me-1"></i> Get 31 Plan Report
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 18 Plans -->
+                            <div class="tab-pane fade" id="plan18Report" role="tabpanel">
+                                <div class="card bg-dark border-0 shadow-sm rounded-4 p-4">
+                                    <h3 class="fw-semibold text-warning"><i class="bi bi-graph-down-arrow me-2"></i> 18 Plans</h3>
+                                    <p class="text-secondary">Detailed report for 18 Plan-related policies and summaries.</p>
+                                    <button class="btn btn-warning mt-2" onclick="window.location.href='plan18Report.php';">
+                                        <i class="bi bi-file-earmark-bar-graph me-1"></i> Get 18 Plan Report
+                                    </button>
+                                </div>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </main>
+
             </div>
         </div>
         <div class="mt-5">
