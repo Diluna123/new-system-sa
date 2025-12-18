@@ -982,3 +982,23 @@ function sendWpMessage() {
 
 
 }
+
+
+function searchPolicy() {
+
+  const policyNumber = document.getElementById("policyNumberSearch").value;
+
+
+  var req = new XMLHttpRequest();
+  var form = new FormData();
+  form.append("policyNumber", policyNumber);
+
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      const searchResultsDiv = document.getElementById("searcResults");
+      searchResultsDiv.innerHTML = req.responseText;
+    }
+  };
+  req.open("POST", "searchPolicyProcess.php", true);
+  req.send(form);
+}
