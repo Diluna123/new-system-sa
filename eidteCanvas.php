@@ -22,6 +22,24 @@ $cAllData2 = $policies2->fetch_assoc();
 
 </div> -->
 <div class="row mb-2">
+    <div class="row mb-2 ">
+        <div class="col-8">
+            <div>
+                <label for="" class="form-label">Date: </label>
+
+            </div>
+            <div>
+
+                <input type="date" id="datep" class="form-control form-control-sm" value="<?php echo $cAllData2['date']; ?>">
+
+
+
+            </div>
+
+
+        </div>
+
+    </div>
 
     <div class="col-6">
         <div>

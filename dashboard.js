@@ -101,7 +101,9 @@ function updateCustomer(cid) {
   const phone = document.getElementById("contactU");
   const address = document.getElementById("addresU");
   const dob = document.getElementById("dobU");
+  const datep = document.getElementById("datep");
   // const location = document.getElementById("locText");
+ 
 
   // police details
   const plane = document.getElementById("planeU");
@@ -126,6 +128,7 @@ function updateCustomer(cid) {
   form.append("nic", nic.value);
   form.append("age", age.value);
   form.append("dob", dob.value);
+  form.append("datep", datep.value);
 
   form.append("contact", phone.value);
   form.append("address", address.value);
@@ -525,18 +528,30 @@ function leadsOffcanvas(clid) {
   req.open("GET", "leadsOffcanvasProcess.php?clid=" + clid, true);
   req.send();
 }
+// appointment js functions
+function openAppointmentModal() {
+  const modalElement = document.getElementById("appointmentModal");
+  const modal = new bootstrap.Modal(modalElement);
+  modal.show();
+}
 
 function leadsUpdate(clid, sOrD) {
+  
+  const apmodal = document.getElementById("apbody");
   var req = new XMLHttpRequest();
   var form = new FormData();
   form.append("clid", clid);
   form.append("sOrD", sOrD);
   req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
-      if (req.responseText == "success") {
+      if (req.responseText == "deleted") {
+        alert("Lead Deleted Successfully");
         performSearch();
       } else {
-        alert(req.responseText);
+        openAppointmentModal();
+        apmodal.innerHTML = req.responseText;
+
+        performSearch();
       }
     }
   };
@@ -971,7 +986,7 @@ function verifyAf(afuid, status) {
   }
 }
 
-function afUserDetailsCanvas(afid){
+function afUserDetailsCanvas(afid) {
   var myOffcanvas = document.getElementById("offCanvasAf");
   var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
   bsOffcanvas.show();
@@ -979,15 +994,10 @@ function afUserDetailsCanvas(afid){
 
 function sendWpMessage() {
   alert("ok");
-
-
 }
 
-
 function searchPolicy() {
-
   const policyNumber = document.getElementById("policyNumberSearch").value;
-
 
   var req = new XMLHttpRequest();
   var form = new FormData();
@@ -1000,5 +1010,51 @@ function searchPolicy() {
     }
   };
   req.open("POST", "searchPolicyProcess.php", true);
+  req.send(form);
+}
+
+function sheduleAp() {
+  const fname = document.getElementById("firstName").value;
+  const lname = document.getElementById("lastName").value;
+  const contact = document.getElementById("contactNumber").value;
+  const date = document.getElementById("appointmentDate").value;
+  const time = document.getElementById("appointmentTime").value;
+  const note = document.getElementById("note-text").value;
+  const aplocation = document.getElementById("apLocation").value;
+  var clid = document.getElementById("clid").value;
+
+
+  var req = new XMLHttpRequest();
+  var form = new FormData();
+  form.append("fname", fname);
+  form.append("lname", lname);
+  form.append("contact", contact);
+  form.append("date", date);
+  form.append("time", time);
+  form.append("note", note);
+  form.append("loc", aplocation);
+  form.append("clid", clid);
+
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      if (req.responseText == "success") {
+        Swal.fire({
+          icon: "success",
+          title: "Scheduled",
+          text: "Appointment Scheduled Successfully!",
+        });
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: req.responseText,
+        });
+      }
+    }
+  };
+  req.open("POST", "scheduleAppointmentProcess.php", true);
   req.send(form);
 }
