@@ -4,7 +4,7 @@ include "connection.php";
 $policyNumber = $_POST['policyNumber'] ?? '';
 $userId = $_SESSION['user']['u_id'];
 
-$query = "SELECT * FROM `police_t` JOIN `customers` ON `police_t`.`customers_id`=`customers`.`id` JOIN `plans` ON `police_t`.`plans_p_id`=`plans`.`p_id` JOIN `payments` ON `police_t`.`payments_pay_id`=`payments`.`pay_id` JOIN `users` ON `police_t`.`users_u_id`=`users`.`u_id` WHERE `pol_num` LIKE '%$policyNumber%' AND `users_u_id`='$userId'";
+$query = "SELECT * FROM `police_t` JOIN `customers` ON `police_t`.`customers_id`=`customers`.`id` JOIN `plans` ON `police_t`.`plans_p_id`=`plans`.`p_id` JOIN `payments` ON `police_t`.`payments_pay_id`=`payments`.`pay_id` JOIN `users` ON `police_t`.`users_u_id`=`users`.`u_id` WHERE `pol_num` LIKE '%$policyNumber%' AND `status_s_id`='1'";
 
 $result = Database::search($query);
 $count = $result->num_rows;

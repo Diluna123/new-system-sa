@@ -124,12 +124,12 @@ function sendEmailWithPDF($email, $name, $month, $pdfFile)
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'dilunasithija111@gmail.com';
-        $mail->Password = 'gqraqnoofvydarhj';
+        $mail->Username = 'affinitysoft.solutions@gmail.com';
+        $mail->Password = 'yvotplnieooqifhx';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 
-        $mail->setFrom('dilunasithija111@gmail.com', 'Sales Report');
+        $mail->setFrom('affinitysoft.solutions@gmail.com', '<noreply>');
         $mail->addAddress($email, $name);
         $mail->addAttachment($pdfFile);
 

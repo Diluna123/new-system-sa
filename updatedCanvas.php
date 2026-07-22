@@ -36,9 +36,9 @@ $cAllData = $policies->fetch_assoc();
         ?>
             <span class="badge text-bg-primary">Closed</span>
         <?php
-        } else {
+        } else if( $cAllData['status_s_id'] == 6) {
         ?>
-            <span class="badge text-bg-secondary">Incomplete</span>
+            <span class="badge text-bg-danger">Laps</span>
 
         <?php
         }
@@ -301,17 +301,25 @@ $cAllData = $policies->fetch_assoc();
             if ($cAllData['status_s_id'] == 2) {
             ?>
                 <button class="btn btn-sm btn-warning col-3" onclick="showCModal(<?php echo $cAllData['id']; ?>, 1);">Close</button>
-                <button class="btn btn-sm btn-outline-success col-3 ms-2">Send</button>
+                <!-- <button class="btn btn-sm btn-outline-success col-3 ms-2">Send</button> -->
                 <button class="btn btn-sm btn-danger col-3 ms-2" onclick="deletePol(<?php echo $cAllData['id']; ?>);">Delete</button>
             <?php
 
 
-            } else {
+            } else if( $cAllData['status_s_id'] == 6) {
             ?>
                 <button class="btn btn-sm btn-danger col-3" onclick="deletePol(<?php echo $cAllData['id']; ?>);">Delete</button>
-                <button class="btn btn-sm btn-outline-success col-3 ms-2">Send</button>
+                <button class="btn btn-sm btn-outline-success col-3 ms-2">Active</button>
 
             <?php
+            }else{
+                ?>
+                 <button class="btn btn-sm btn-danger col-3" onclick="deletePol(<?php echo $cAllData['id']; ?>);">Delete</button>
+                <button class="btn btn-sm btn-outline-danger col-3 ms-2" onclick="lapsPol(<?php echo $cAllData['id']; ?>);">Laps</button>
+                
+                <?php
+
+                
             }
 
 

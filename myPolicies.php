@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-bs-theme="dark">
 
 <head>
@@ -10,7 +10,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title>Sanasa Easy</title>
-    <link rel="icon" type="image/png" href="sansalogo.png">
+    <link rel="icon" type="image/png" href="com.png">
 
 
 
@@ -796,13 +796,84 @@ AND DATE_FORMAT(`date`, '%Y-%m') = '$currentMonth'
 
                                 </tbody>
                             </table>
-                             
+
                         </div>
-                        <div class="mt-3">
-                            <div class="row">
-                                <h2>Laps Policies</h2>
-                            </div>
+
+                    </div>
+                    <!-- laps policy table begin -->
+
+                    <div class="mt-3">
+                        <div class="row">
+                            <h2>Laps Policies</h2>
                         </div>
+                    </div>
+                    <div id="policiesTable">
+                        <div class="table-responsive small" style="max-height: 250px; overflow-y: auto;">
+                            <table class="table table-striped table-sm table-hover">
+                                <thead class="sticky-top">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First N</th>
+                                        <th scope="col">NIC</th>
+                                        <th scope="col">Contact</th>
+                                        <th scope="col">Plane</th>
+                                        <th scope="col">Ammount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+
+
+
+
+                                    $policies = Database::search("SELECT * FROM `customers` JOIN `police_t` ON `customers`.`id` = `police_t`.`customers_id` JOIN `plans` ON `plans`.`p_id` = `police_t`.`plans_p_id` JOIN `payments` ON `payments`.`pay_id` = `police_t`.`payments_pay_id` JOIN `users` ON `users`.`u_id` =`police_t`.`users_u_id` WHERE `police_t`.`users_u_id` ='$uid' AND `police_t`.`status_s_id`='6' ORDER BY `customers`.`id` DESC");
+                                    if ($policies->num_rows > 0) {
+                                        for ($i = 0; $i < $policies->num_rows; $i++) {
+                                            $data = $policies->fetch_assoc();
+                                    ?>
+                                            <tr onclick="showCanvasModal(<?php echo $data['id'] ?>);">
+                                                <td>0<?php echo $i + 1 ?></td>
+                                                <td><?php echo $data['fname'] ?></td>
+                                                <td><?php echo $data['nic'] ?></td>
+                                                <td><?php echo $data['contact'] ?></td>
+                                                <td><?php echo $data['plane'] ?></td>
+                                                <td>Rs. <?php echo $data['ammount'] ?></td>
+
+
+                                            </tr>
+
+
+                                        <?php
+
+
+
+                                        }
+                                    } else {
+                                        ?>
+                                        <tr>
+                                            <td colspan="6" style="text-align: center; font-weight: bold; padding: 10px;">
+                                                No Laps Policies
+                                            </td>
+                                        </tr>
+
+
+
+
+                                    <?php
+                                    }
+
+
+
+
+                                    ?>
+
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
                     </div>
 
 

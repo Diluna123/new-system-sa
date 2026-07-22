@@ -113,6 +113,7 @@ if ($data->num_rows > 0) {
         <div class="col-6">
             <div class="d-grid">
                 <button class="btn btn-sm btn-success" data-bs-dismiss="offcanvas" onclick="leadsUpdate('<?php echo $clid; ?>','1');">Success</button>
+                 <!-- <button class="btn btn-sm btn-success" data-bs-dismiss="offcanvas" onclick="openAppointmentModal();">Success</button> -->
             </div>
         </div>
     </div>

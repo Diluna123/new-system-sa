@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-bs-theme="dark">
 <?php
 session_start();
@@ -15,7 +15,7 @@ session_start();
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title>Sanasa Easy</title>
-    <link rel="icon" type="image/png" href="sansalogo.png">
+    <link rel="icon" type="image/png" href="com.png">
 
 
 

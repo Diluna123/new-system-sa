@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-bs-theme="dark">
 <?php
 include 'connection.php';
@@ -11,7 +11,7 @@ include 'connection.php';
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.122.0">
   <title>Sanasa Easy</title>
-  <link rel="icon" type="image/png" href="sansalogo.png">
+  <link rel="icon" type="image/png" href="com.png">
 
   <!-- Core CSS -->
   <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
@@ -189,20 +189,25 @@ $phone = preg_replace('/^0/', '', $phone); // remove leading 0
 
         if ($daysLeft <= 3) {
           $badgeClass = 'bg-danger';
-          $badgeText = "In $daysLeft day" . ($daysLeft > 1 ? 's' : '') . " 🎂";
+          $badgeText = "In $daysLeft day" . ($daysLeft > 1 ? 's' : '') . " ðŸŽ‚";
         } elseif ($daysLeft <= 10) {
           $badgeClass = 'bg-warning text-dark';
           $badgeText = "Soon - $daysLeft days";
         } else if ($daysLeft == 365 || $daysLeft == 366) {
           $badgeClass = 'bg-success';
-          $badgeText = "Today! 🎉";
+          $badgeText = "Today! ðŸŽ‰";
         } else {
           $badgeClass = 'bg-primary';
           $badgeText = "In $daysLeft days";
         }
 
         // Personalized wish
-        $wishMessage = "Happy Birthday, $fullName! 🎉 Wishing you a day filled with love, laughter, and happiness. From all of us at Sanasa Life Madampe Branch 💛";
+        $wishMessageEn = "Happy Birthday, $fullName! ðŸŽ‰ Wishing you a day filled with love, laughter, and happiness. From all of us at Sanasa Life Madampe Branch ðŸ’›";
+
+$wishMessageSi = "à·ƒà·”à¶· à¶‹à¶´à¶±à·Šà¶¯à·’à¶±à¶ºà¶šà·Š, $fullName! ðŸŽ‰ à¶†à¶¯à¶»à¶º, à·ƒà·’à¶±à·„à·€ à·ƒà·„ à·ƒà¶­à·”à¶§ à¶´à·’à¶»à·”à¶«à·” à¶¯à·’à¶±à¶ºà¶šà·Š à¶”à¶¶à¶§ à¶´à·Šâ€à¶»à·à¶»à·Šà¶®à¶±à· à¶šà¶»à¶¸à·’. à·ƒà¶«à·ƒ à¶½à¶ºà·’à·†à·Š à¶¸à·à¶¯à¶¸à·Šà¶´à·š à·à·à¶›à·à·€à·š à¶…à¶´ à·ƒà·à¶¸à¶œà·™à¶±à·Š ðŸ’›";
+
+$wishMessage = $wishMessageEn . " " . $wishMessageSi;
+
     ?>
         <div class="col-md-4 col-sm-6">
           <div class="card border-0 rounded-4 shadow-sm bg-dark-subtle hover-card"
@@ -227,7 +232,7 @@ $phone = preg_replace('/^0/', '', $phone); // remove leading 0
     <?php
       }
     } else {
-      echo '<div class="no-data-message">🎉 No upcoming birthdays in the next 30 days.</div>';
+      echo '<div class="no-data-message">ðŸŽ‰ No upcoming birthdays in the next 30 days.</div>';
     }
     ?>
   </div>

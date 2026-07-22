@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-bs-theme="dark">
 
 <head>
@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sanasa Easy</title>
-  <link rel="icon" type="image/png" href="sansalogo.png">
+  <link rel="icon" type="image/png" href="com.png">
 
   <?php include "connection.php";
   session_start();

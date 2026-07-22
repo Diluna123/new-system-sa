@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/png" href="../com.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms & Conditions | Sanasa Easy Affiliate</title>
@@ -142,8 +143,9 @@
     <h2>8. Contact</h2>
     <p>If you have any questions, contact us at <a href="mailto:dilunasithija111@gmail.com">dilunasithija111@gmail.com</a>.</p>
 
-    <a href="register.php" class="btn-back">← Back to Registration</a>
+    <a href="register.php" class="btn-back">â† Back to Registration</a>
   </div>
 </body>
 
 </html>
+

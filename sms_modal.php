@@ -1,6 +1,9 @@
 <?php
-define("SERVER", "https://app.sms8.io");
-define("API_KEY", "ccf0b8370300b908ebd8baa6eb56f3f9f168b504");
+$smsServer = getenv("SMS8_SERVER");
+$smsApiKey = getenv("SMS8_API_KEY");
+
+define("SERVER", ($smsServer && trim($smsServer) !== '') ? trim($smsServer) : "https://app.sms8.io");
+define("API_KEY", ($smsApiKey && trim($smsApiKey) !== '') ? trim($smsApiKey) : "");
 
 define("USE_SPECIFIED", 0);
 define("USE_ALL_DEVICES", 1);

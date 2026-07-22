@@ -12,9 +12,9 @@ $date = $_POST['date'];
 
 
 if (empty($date)) {
-    $getLData = Database::search("SELECT * FROM `c_leads` WHERE `contact_cl` LIKE '%$cont%' AND  `teams_tid` = '$teamid' AND  `status_s_id` != '3'  ORDER BY `date_cl` DESC");
+    $getLData = Database::search("SELECT * FROM `c_leads` WHERE `contact_cl` LIKE '%$cont%' AND  `teams_tid` = '$teamid' AND  `status_s_id` != '3' AND `status_s_id` != '1'  ORDER BY `date_cl` DESC");
 } else {
-    $getLData = Database::search("SELECT * FROM `c_leads` WHERE `contact_cl` LIKE '%$cont%' AND  `teams_tid` = '$teamid' AND `date_cl` = '$date' AND  `status_s_id` != '3'  ORDER BY `date_cl` DESC");
+    $getLData = Database::search("SELECT * FROM `c_leads` WHERE `contact_cl` LIKE '%$cont%' AND  `teams_tid` = '$teamid' AND `date_cl` = '$date' AND  `status_s_id` != '3' AND `status_s_id` != '1'  ORDER BY `date_cl` DESC");
 }
 
 

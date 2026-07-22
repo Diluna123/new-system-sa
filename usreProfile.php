@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-bs-theme="dark">
 
 <head>
@@ -10,7 +10,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title>Sanasa Easy</title>
-    <link rel="icon" type="image/png" href="sansalogo.png">
+    <link rel="icon" type="image/png" href="com.png">
 
 
 
@@ -142,32 +142,38 @@
             height: 40px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
-        .stat-card {
-    border-radius: 1rem;
-    transition: transform 0.3s ease-in-out;
-}
-.stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
-}
-.bg-gradient-primary {
-    background: linear-gradient(135deg, #007bff, #0056b3);
-}
-.bg-gradient-success {
-    background: linear-gradient(135deg, #28a745, #1e7e34);
-}
-.bg-gradient-warning {
-    background: linear-gradient(135deg, #ffc107, #e0a800);
-}
-.bg-gradient-info {
-    background: linear-gradient(135deg, #17a2b8, #117a8b);
-}
-.icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
+        .stat-card {
+            border-radius: 1rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+
+        .bg-gradient-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+        }
+
+        .bg-gradient-warning {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+        }
+
+        .bg-gradient-info {
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+        }
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 
 
@@ -230,14 +236,14 @@
                                 <span class="me-2 d-none d-md-inline"><?php echo $_SESSION['user']['u_fname'] . " " . $_SESSION['user']['u_lname']; ?></span>
                                 <div class="proPic bg-secondary d-flex justify-content-center align-items-center"
                                     style="width: 32px; height: 32px; border-radius: 50%;">
-                                    <span class="text-white  fw-bold"> <img src="my.JPG" class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
+                                    <span class="text-white  fw-bold"> <img src="pro.png" class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
                                 </div>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow rounded border-0" aria-labelledby="userDropdown" style="min-width: 200px;">
                                 <li class="px-3 py-2">
                                     <div class="d-flex align-items-center">
                                         <div class="bg-secondary d-flex justify-content-center align-items-center rounded-circle me-2" style="width: 40px; height: 40px;">
-                                            <span class="text-white fw-bold"> <img src="my.JPG" class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
+                                            <span class="text-white fw-bold"> <img src="pro.png" class="rounded-circle border border-3 border-light shadow" style="width: 40px; height: 40px; object-fit: cover;" alt=""></span>
                                         </div>
                                         <div>
                                             <div class="fw-semibold"><?php echo $_SESSION['user']['u_fname'] . " " . $_SESSION['user']['u_lname']; ?></div>
@@ -320,6 +326,52 @@
                                                 <label class="form-label">Code </label>
                                                 <input type="tel" class="form-control input-glass" id="Scode" placeholder="SPO2000xxx" value="<?php echo $UData['code']; ?>">
                                             </div>
+                                            <!-- tl details part -->
+                                              
+
+                                            <?php
+
+                                            if ($_SESSION['user']['position_pid'] == 1) {
+                                                $TeamData = Database::search("SELECT * FROM `teams` WHERE `tid` = '" . $UData['teams_tid'] . "'");
+                                                $TeamData = $TeamData->fetch_assoc();
+                                                $TLData = Database::search("SELECT * FROM `users` WHERE `u_id` = '" . $TeamData['tl'] . "'");
+                                                $TLData = $TLData->fetch_assoc();
+                                            ?>
+
+                                            <div class="mt-3">
+                                                <hr>
+                                            </div>
+
+                                           
+                                                <div class="col-md-4">
+                                                    
+                                                    <label class="form-label">Team Leader </label>
+                                                    <input type="text" class="form-control input-glass" id="STeamLeader" value="<?php echo $TLData['u_fname'] . " " . $TLData['u_lname']; ?>" disabled>
+                                                </div>
+                                                <div class="col-md-4">
+                                                     
+                                                    <label class="form-label">TL.Code </label>
+                                                    <input type="text" class="form-control input-glass" id="STLCode" value="<?php echo $TLData['code']; ?>" disabled>
+                                                </div>
+                                                <div class="col-md-4">
+                                                     
+                                                    <label class="form-label">TL.Contact no </label>
+                                                    <input type="text" class="form-control input-glass" id="STLContactNo" value="<?php echo $TLData['con_num']; ?>" disabled>
+                                                </div>
+
+
+                                            <?php
+
+
+
+
+                                            } else if ($_SESSION['user']['position_pid'] == 2) {
+                                                $TLData = Database::search("SELECT * FROM `users` WHERE `u_id` = '" . $UData['u_id'] . "'");
+                                                $TLData = $TLData->fetch_assoc();
+                                            }
+
+                                            ?>
+
                                         </div>
                                         <div class="text-end mt-4">
                                             <button onclick="updateUserInfo();" class="btn btn-warning px-4 py-2 rounded-3">
@@ -334,7 +386,7 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col-12">
-                            <h4 class="mb-4 border-bottom border-secondary pb-2 text-info">📊 Policy / Agent Stats</h4>
+                            <h4 class="mb-4 border-bottom border-secondary pb-2 text-info">ðŸ“Š Policy / Agent Stats</h4>
                         </div>
 
                         <div class="col-md-3 col-sm-6 mb-4">

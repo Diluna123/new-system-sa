@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <?php include '../connection.php';
@@ -12,6 +12,7 @@ if(!isset($_SESSION['afuser'])) {
 ?>
 
 <head>
+    <link rel="icon" type="image/png" href="../com.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanasa Easy Affiliate Admin Panel</title>

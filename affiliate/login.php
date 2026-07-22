@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/png" href="../sansalogo.png">
+    <link rel="icon" type="image/png" href="../com.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -300,12 +300,12 @@
                 langToggle: "Switch to Sinhala",
             },
             si: {
-                welcomeText: "සනසා ඉසි අන්තර්ජාල වැඩසටහනට ආයුබෝවන්",
-                loginText: "ඔබගේ ගිණුමට පිවිස ඔබගේ අයැදුම් පනස්වන්න.",
-                loginHeader: "පිවිසෙන්න",
-                contactNumLabel: "සම්බන්ධතා අංකය",
-                passwordLabel: "මුරපදය",
-                loginButton: "පිවිසෙන්න",
+                welcomeText: "à·ƒà¶±à·ƒà· à¶‰à·ƒà·’ à¶…à¶±à·Šà¶­à¶»à·Šà¶¢à·à¶½ à·€à·à¶©à·ƒà¶§à·„à¶±à¶§ à¶†à¶ºà·”à¶¶à·à·€à¶±à·Š",
+                loginText: "à¶”à¶¶à¶œà·š à¶œà·’à¶«à·”à¶¸à¶§ à¶´à·’à·€à·’à·ƒ à¶”à¶¶à¶œà·š à¶…à¶ºà·à¶¯à·”à¶¸à·Š à¶´à¶±à·ƒà·Šà·€à¶±à·Šà¶±.",
+                loginHeader: "à¶´à·’à·€à·’à·ƒà·™à¶±à·Šà¶±",
+                contactNumLabel: "à·ƒà¶¸à·Šà¶¶à¶±à·Šà¶°à¶­à· à¶…à¶‚à¶šà¶º",
+                passwordLabel: "à¶¸à·”à¶»à¶´à¶¯à¶º",
+                loginButton: "à¶´à·’à·€à·’à·ƒà·™à¶±à·Šà¶±",
                 langToggle: "Switch to English",
             },
         };

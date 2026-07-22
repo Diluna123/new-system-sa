@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <?php
 include '../connection.php';
@@ -10,6 +10,7 @@ if (!isset($_SESSION['afuser'])) {
 ?>
 
 <head>
+    <link rel="icon" type="image/png" href="../com.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Affiliates - Sanasa Easy</title>
@@ -149,10 +150,10 @@ if (!isset($_SESSION['afuser'])) {
                         <li><strong>31 Plan:</strong> Earn 10% commission on the amount for each 31 Plan.</li>
                         <li><strong>Pension Plan:</strong> Earn 7% commission on the amount for each Pension Plan.</li>
                     </ul>
-                    <h6>කමිෂන් දැනුම්දීම:</h6>
+                    <h6>à¶šà¶¸à·’à·‚à¶±à·Š à¶¯à·à¶±à·”à¶¸à·Šà¶¯à·“à¶¸:</h6>
                     <ul>
-                        <li><strong>31 සැලැස්ම:</strong> 10% කමිෂන් ලබාගන්න, සෑම 31 සැලැස්මකටම මුදලෙන්.</li>
-                        <li><strong>විශ්‍රාම සැලැස්ම:</strong> 7% කමිෂන් ලබාගන්න, සෑම පැන්ෂන් සැලැස්මකටම මුදලෙන්.</li>
+                        <li><strong>31 à·ƒà·à¶½à·à·ƒà·Šà¶¸:</strong> 10% à¶šà¶¸à·’à·‚à¶±à·Š à¶½à¶¶à·à¶œà¶±à·Šà¶±, à·ƒà·‘à¶¸ 31 à·ƒà·à¶½à·à·ƒà·Šà¶¸à¶šà¶§à¶¸ à¶¸à·”à¶¯à¶½à·™à¶±à·Š.</li>
+                        <li><strong>à·€à·’à·à·Šâ€à¶»à·à¶¸ à·ƒà·à¶½à·à·ƒà·Šà¶¸:</strong> 7% à¶šà¶¸à·’à·‚à¶±à·Š à¶½à¶¶à·à¶œà¶±à·Šà¶±, à·ƒà·‘à¶¸ à¶´à·à¶±à·Šà·‚à¶±à·Š à·ƒà·à¶½à·à·ƒà·Šà¶¸à¶šà¶§à¶¸ à¶¸à·”à¶¯à¶½à·™à¶±à·Š.</li>
                     </ul>
                     <hr>
                     <h6>Examples:</h6>
@@ -167,7 +168,7 @@ if (!isset($_SESSION['afuser'])) {
                                     <h6>English:</h6>
                                     <p>If the amount for the 31 Plan is <strong>LKR 10,000</strong>, the commission will be <strong>LKR 10,000 x 10% = LKR 1000</strong>.</p>
                                     <h6>Sinhala:</h6>
-                                    <p>31 සැලැස්මට <strong>LKR 10,000</strong> මුදලක් නම්, කමිෂන් වනුයේ <strong>LKR 10,000 x 10% = LKR 1000</strong>.</p>
+                                    <p>31 à·ƒà·à¶½à·à·ƒà·Šà¶¸à¶§ <strong>LKR 10,000</strong> à¶¸à·”à¶¯à¶½à¶šà·Š à¶±à¶¸à·Š, à¶šà¶¸à·’à·‚à¶±à·Š à·€à¶±à·”à¶ºà·š <strong>LKR 10,000 x 10% = LKR 1000</strong>.</p>
                                 </div>
                             </div>
                         </div>
@@ -181,7 +182,7 @@ if (!isset($_SESSION['afuser'])) {
                                     <h6>English:</h6>
                                     <p>If the amount for the Pension Plan is <strong>LKR 5,000</strong>, the commission will be <strong>LKR 5,000 x 7% = LKR 350</strong>.</p>
                                     <h6>Sinhala:</h6>
-                                    <p>පැන්ෂන් සැලැස්මට <strong>LKR 5,000</strong> මුදලක් නම්, කමිෂන් වනුයේ <strong>LKR 5,000 x 7% = LKR 350</strong>.</p>
+                                    <p>à¶´à·à¶±à·Šà·‚à¶±à·Š à·ƒà·à¶½à·à·ƒà·Šà¶¸à¶§ <strong>LKR 5,000</strong> à¶¸à·”à¶¯à¶½à¶šà·Š à¶±à¶¸à·Š, à¶šà¶¸à·’à·‚à¶±à·Š à·€à¶±à·”à¶ºà·š <strong>LKR 5,000 x 7% = LKR 350</strong>.</p>
                                 </div>
                             </div>
                         </div>
@@ -274,31 +275,31 @@ if (!isset($_SESSION['afuser'])) {
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-info p-2 mb-3" role="alert">
-                        <small><span class="text-danger">*</span> සහිත ක්ෂේත්‍ර අනිවාර්ය වේ.</small>
+                        <small><span class="text-danger">*</span> à·ƒà·„à·’à¶­ à¶šà·Šà·‚à·šà¶­à·Šâ€à¶» à¶…à¶±à·’à·€à·à¶»à·Šà¶º à·€à·š.</small>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="afFname" class="form-label">First Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="afFname" placeholder="මුල් නම" required>
+                                <input type="text" class="form-control" id="afFname" placeholder="à¶¸à·”à¶½à·Š à¶±à¶¸" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="afLname" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="afLname" placeholder="අවසන් නම" required>
+                                <input type="text" class="form-control" id="afLname" placeholder="à¶…à·€à·ƒà¶±à·Š à¶±à¶¸" required>
                             </div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="afCnum" class="form-label">Contact<span class="text-danger">*</span></label>
-                        <input type="tel" class="form-control" id="afCnum" placeholder="දුරකථන අංකය" required>
+                        <input type="tel" class="form-control" id="afCnum" placeholder="à¶¯à·”à¶»à¶šà¶®à¶± à¶…à¶‚à¶šà¶º" required>
                     </div>
                     <div class="mb-3">
                         <label for="afPlane" class="form-label">Plan<span class="text-danger">*</span></label>
                         <select class="form-select" id="afPlane" required>
-                            <option value="">-- යෝජනාව තෝරන්න --</option>
+                            <option value="">-- à¶ºà·à¶¢à¶±à·à·€ à¶­à·à¶»à¶±à·Šà¶± --</option>
 
                             <?php
                             $pldata = Database::search("SELECT * FROM `plans`");
@@ -320,14 +321,14 @@ if (!isset($_SESSION['afuser'])) {
 
                     <div class="mb-3">
                         <label for="afAmount" class="form-label">Amount<span class="text-danger">*</span> </label>
-                        <input type="number" class="form-control" id="afAmount" placeholder="මුදල" min="0" required>
+                        <input type="number" class="form-control" id="afAmount" placeholder="à¶¸à·”à¶¯à¶½" min="0" required>
                     </div>
 
 
 
                     <div class="mb-3">
                         <label for="afNic" class="form-label">NIC <span class="text-secondary">(Optional)</span></label>
-                        <input type="text" class="form-control" id="afNic" placeholder="හැඳුනුම්පත් අංකය">
+                        <input type="text" class="form-control" id="afNic" placeholder="à·„à·à¶³à·”à¶±à·”à¶¸à·Šà¶´à¶­à·Š à¶…à¶‚à¶šà¶º">
                     </div>
 
                 </div>

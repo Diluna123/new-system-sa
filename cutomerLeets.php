@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-bs-theme="dark">
 <?php
 
@@ -18,7 +18,7 @@ include 'connection.php';
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title>Sanasa Easy</title>
-    <link rel="icon" type="image/png" href="sansalogo.png">
+    <link rel="icon" type="image/png" href="com.png">
 
 
 
@@ -136,7 +136,7 @@ include 'connection.php';
     if (isset($_SESSION['user'])) {
 
     ?>
-        <?php include 'logos.php';?>
+        <?php include 'logos.php'; ?>
 
         <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">SANASA LIFE</a>
@@ -280,90 +280,90 @@ include 'connection.php';
 
 
                     <div class="table-responsive small">
-    <table class="table table-striped table-sm table-hover">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">C.Name</th>
-                <th scope="col">Contact</th>
-                <th scope="col">Date</th>
-                <th scope="col">Status</th>
-                <!-- <th scope="col">Total</th> -->
-            </tr>
-        </thead>
-        <tbody id="searchResults">
+                        <table class="table table-striped table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">C.Name</th>
+                                    <th scope="col">Contact</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                    <!-- <th scope="col">Total</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="searchResults">
 
-            <?php
-            $teamid = $_SESSION['user']['teams_tid'];
-            $limit = 4; // number of records per page
-            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-            $start = ($page - 1) * $limit;
+                                <?php
+                                $teamid = $_SESSION['user']['teams_tid'];
+                                $limit = 4; // number of records per page
+                                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                                $start = ($page - 1) * $limit;
 
-            // Get total row count for pagination
-            $totalResult = Database::search("SELECT COUNT(*) as total FROM `c_leads` WHERE `teams_tid` = '$teamid' AND `status_s_id` != '3'");
-            $totalRow = $totalResult->fetch_assoc()['total'];
-            $totalPages = ceil($totalRow / $limit);
+                                // Get total row count for pagination
+                                $totalResult = Database::search("SELECT COUNT(*) as total FROM `c_leads` WHERE `teams_tid` = '$teamid' AND `status_s_id` != '3' AND `status_s_id` != '1'");
+                                $totalRow = $totalResult->fetch_assoc()['total'];
+                                $totalPages = ceil($totalRow / $limit);
 
-            // Main data query with LIMIT
-            $getLData = Database::search("SELECT * FROM `c_leads` WHERE `teams_tid` = '$teamid' AND `status_s_id` != '3' ORDER BY `date_cl` DESC LIMIT $start, $limit");
+                                // Main data query with LIMIT
+                                $getLData = Database::search("SELECT * FROM `c_leads` WHERE `teams_tid` = '$teamid' AND `status_s_id` != '3' AND `status_s_id` != '1' ORDER BY `date_cl` DESC LIMIT $start, $limit");
 
-            if ($getLData->num_rows > 0) {
-                for ($i = 0; $i < $getLData->num_rows; $i++) {
-                    $dataCl = $getLData->fetch_assoc();
-            ?>
-                    <tr onclick="leadsOffcanvas(<?php echo $dataCl['clid']; ?>);">
-                        <td><?php echo $start + $i + 1 ?></td>
-                        <td><?php echo $dataCl['cname']; ?></td>
-                        <td><?php echo $dataCl['contact_cl']; ?></td>
-                        <td><?php echo $dataCl['date_cl']; ?></td>
-                        <td>
-                            <?php
-                            if ($dataCl['status_s_id'] == 5) {
-                                echo "<span class='badge text-bg-primary'>New</span> ";
-                            } else if ($dataCl['status_s_id'] == 4) {
-                                echo "<span class='badge text-bg-warning'>Pending</span> ";
-                            } else if ($dataCl['status_s_id'] == 1) {
-                                echo "<span class='badge text-bg-success'>Closed</span> ";
-                            }
-                            ?>
-                        </td>
-                    </tr>
-                <?php
-                }
-            } else {
-                ?>
-                <tr class="text-center">
-                    <td colspan="5" class="fw-bold text-muted">NO CUSTOMER LEADS</td>
-                </tr>
-            <?php
-            }
-            ?>
-        </tbody>
-    </table>
+                                if ($getLData->num_rows > 0) {
+                                    for ($i = 0; $i < $getLData->num_rows; $i++) {
+                                        $dataCl = $getLData->fetch_assoc();
+                                ?>
+                                        <tr onclick="leadsOffcanvas(<?php echo $dataCl['clid']; ?>);">
+                                            <td><?php echo $start + $i + 1 ?></td>
+                                            <td><?php echo $dataCl['cname']; ?></td>
+                                            <td><?php echo $dataCl['contact_cl']; ?></td>
+                                            <td><?php echo $dataCl['date_cl']; ?></td>
+                                            <td>
+                                                <?php
+                                                if ($dataCl['status_s_id'] == 5) {
+                                                    echo "<span class='badge text-bg-primary'>New</span> ";
+                                                } else if ($dataCl['status_s_id'] == 4) {
+                                                    echo "<span class='badge text-bg-warning'>Pending</span> ";
+                                                } else if ($dataCl['status_s_id'] == 1) {
+                                                    echo "<span class='badge text-bg-success'>Closed</span> ";
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                } else {
+                                    ?>
+                                    <tr class="text-center">
+                                        <td colspan="5" class="fw-bold text-muted">NO CUSTOMER LEADS</td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
 
-    <!-- Pagination -->
-    <nav>
-        <ul class="pagination justify-content-center">
-            <?php if ($page > 1): ?>
-                <li class="page-item">
-                    <a class="page-link" href="?page=<?php echo $page - 1; ?>">Previous</a>
-                </li>
-            <?php endif; ?>
+                        <!-- Pagination -->
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                <?php if ($page > 1): ?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<?php echo $page - 1; ?>">Previous</a>
+                                    </li>
+                                <?php endif; ?>
 
-            <?php for ($p = 1; $p <= $totalPages; $p++): ?>
-                <li class="page-item <?php echo $p == $page ? 'active' : ''; ?>">
-                    <a class="page-link" href="?page=<?php echo $p; ?>"><?php echo $p; ?></a>
-                </li>
-            <?php endfor; ?>
+                                <?php for ($p = 1; $p <= $totalPages; $p++): ?>
+                                    <li class="page-item <?php echo $p == $page ? 'active' : ''; ?>">
+                                        <a class="page-link" href="?page=<?php echo $p; ?>"><?php echo $p; ?></a>
+                                    </li>
+                                <?php endfor; ?>
 
-            <?php if ($page < $totalPages): ?>
-                <li class="page-item">
-                    <a class="page-link" href="?page=<?php echo $page + 1; ?>">Next</a>
-                </li>
-            <?php endif; ?>
-        </ul>
-    </nav>
-</div>
+                                <?php if ($page < $totalPages): ?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<?php echo $page + 1; ?>">Next</a>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
+                        </nav>
+                    </div>
 
 
 
@@ -390,6 +390,24 @@ include 'connection.php';
             <div class="offcanvas-body" id="leadsOffBody">
 
 
+            </div>
+        </div>
+        <!-- modal appointment -->
+        <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Shedule appointment</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="apbody">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        
+                        <button type="button" class="btn btn-sm btn-warning" onclick="sheduleAp();">Confirm</button>
+                    </div>
+                </div>
             </div>
         </div>
 

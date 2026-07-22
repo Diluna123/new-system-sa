@@ -440,6 +440,32 @@ function deletePol(cid) {
   req1.send();
 }
 
+function lapsPol(cid) {
+  const mainDev = document.getElementById("customerDetailsCanvasBody");
+  mainDev.innerHTML = "";
+  mainDev.innerHTML =
+    '<div class="row h-100"><div class="col-12 d-flex flex-column justify-content-center align-items-center  "><div class="spinner-border text-warning" role="status"><span class="visually-hidden">Loading...</span></div><div><small class="text-secondary">Lapsing Details</small></div></div></div>';
+  var req1 = new XMLHttpRequest();
+  req1.onreadystatechange = function () {
+    if (req1.readyState == 4 && req1.status == 200) {
+      if (req1.responseText == "success") {
+        mainDev.innerHTML =
+          '<div class="row h-100"><div class="col-12 d-flex flex-column justify-content-center align-items-center  "><div class="" role=""><i class="fas fa-check fs-5 text-danger"></i></div><div><small class="text-danger">Laps Success</small></div></div></div>';
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
+      } else {
+        alert(req1.responseText);
+      }
+    }
+  };
+  req1.open("GET", "lapsPoliceProcess.php?cid=" + cid, true);
+  req1.send();
+  
+
+
+}
+
 // function signin(){
 //   alert("ok");
 // }

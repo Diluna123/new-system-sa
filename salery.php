@@ -1,10 +1,11 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-bs-theme="dark">
 
 <head>
+    <link rel="icon" type="image/png" href="com.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sanasa Easy – Salary</title>
+    <title>Sanasa Easy â€“ Salary</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -27,9 +28,31 @@
 
     <?php include 'logos.php'; ?>
 
-    <header class="navbar sticky-top bg-dark shadow">
-        <a class="navbar-brand px-3 text-white" href="#">SANASA LIFE</a>
+    <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">SANASA LIFE</a>
+
+        <ul class="navbar-nav flex-row d-md-none">
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
+                    <svg class="bi">
+                        <use xlink:href="#search" />
+                    </svg>
+                </button>
+            </li>
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <svg class="bi">
+                        <use xlink:href="#list" />
+                    </svg>
+                </button>
+            </li>
+        </ul>
+
+        <div id="navbarSearch" class="navbar-search w-100 collapse">
+            <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+        </div>
     </header>
+
 
     <div class="container-fluid">
         <div class="row">
@@ -96,32 +119,32 @@
                             $comID = 3;
                         } elseif ($monthsPassed >= 36) {
                             $comID = 4;
-                        }elseif ($monthsPassed >= 48) {
+                        } elseif ($monthsPassed >= 48) {
                             $comID = 5;
                         }
 
-                        if($comID == 1) {
+                        if ($comID == 1) {
                             $type1Commission = $type1Total * 0.30;
                         } elseif ($comID == 2) {
                             $cq = Database::search("SELECT `c_rate` FROM `31_table` WHERE `id_c31` = '$comID' ");
                             $cr = $cq->fetch_assoc();
                             $rate = $cr["c_rate"];
-                            $type1Commission = $type1Total * $rate ;
+                            $type1Commission = $type1Total * $rate;
                         } elseif ($comID == 3) {
                             $cq = Database::search("SELECT `c_rate` FROM `31_table` WHERE `id_c31` = '$comID' ");
                             $cr = $cq->fetch_assoc();
                             $rate = $cr["c_rate"];
-                            $type1Commission = $type1Total * $rate ;
+                            $type1Commission = $type1Total * $rate;
                         } elseif ($comID == 4) {
                             $cq = Database::search("SELECT `c_rate` FROM `31_table` WHERE `id_c31` = '$comID' ");
                             $cr = $cq->fetch_assoc();
                             $rate = $cr["c_rate"];
-                            $type1Commission = $type1Total * $rate ;
+                            $type1Commission = $type1Total * $rate;
                         } else {
                             $cq = Database::search("SELECT `c_rate` FROM `31_table` WHERE `id_c31` = '$comID' ");
                             $cr = $cq->fetch_assoc();
                             $rate = $cr["c_rate"];
-                            $type1Commission = $type1Total * $rate ;
+                            $type1Commission = $type1Total * $rate;
                         }
 
                         // if ($monthsPassed >= 9) {
@@ -142,22 +165,20 @@
                     ")->fetch_assoc();
 
                         $type2Total = $type2['total'] ?? 0;
-                        if($comID == 1) {
+                        if ($comID == 1) {
                             $type2Commission = $type2Total * 0.15;
                         } elseif ($comID == 2) {
                             $cq = Database::search("SELECT `c_rate_p` FROM `18_table` WHERE `id_c18` = '$comID' ");
                             $cr = $cq->fetch_assoc();
                             $rate = $cr["c_rate_p"];
-                            $type2Commission = $type2Total * $rate ;
+                            $type2Commission = $type2Total * $rate;
                         } elseif ($comID == 3) {
                             $cq = Database::search("SELECT `c_rate_p` FROM `18_table` WHERE `id_c18` = '$comID' ");
                             $cr = $cq->fetch_assoc();
                             $rate = $cr["c_rate_p"];
-                            $type2Commission = $type2Total * $rate ;
-                        } else{
-                            $type2Commission = $type2Total * 0 ;
-
-
+                            $type2Commission = $type2Total * $rate;
+                        } else {
+                            $type2Commission = $type2Total * 0;
                         }
 
                         $monthlyTotal = $type1Commission + $type2Commission;
@@ -182,7 +203,7 @@
                                 <button class="accordion-button collapsed bg-dark text-info fw-bold"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#m<?= $accordionId ?>">
-                                    <?= $monthName ?> – Commission Summary
+                                    <?= $monthName ?> â€“ Commission Summary
                                 </button>
                             </h2>
 
